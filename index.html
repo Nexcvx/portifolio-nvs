@@ -9,7 +9,7 @@
         /* --- VARIÁVEIS DE TEMA (CLARO/ESCURO) --- */
         /* ========================================= */
         :root {
-            /* Modo Claro (Padrão) */
+            /* Modo Claro */
             --bg-color: #f4f4f9;
             --panel-bg: rgba(255, 255, 255, 0.85);
             --accent: #ff3e3e;
@@ -24,7 +24,7 @@
         }
 
         body.dark-mode {
-            /* Modo Escuro (Cyber) */
+            /* Modo Escuro (Cyber) - AGORA É O PADRÃO */
             --bg-color: #050505;
             --panel-bg: rgba(26, 28, 35, 0.7);
             --text-main: #ffffff;
@@ -160,8 +160,11 @@
             box-shadow: 0 8px 20px rgba(220, 39, 67, 0.3);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        .ig-btn:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 12px 25px rgba(220, 39, 67, 0.5); }
-        .ig-btn svg { width: 22px; height: 22px; fill: white; }
+        .ig-btn:hover { transform: translateY(-3px) scale(1.05); }
+
+        /* Efeito Glow Escuro - Instagram */
+        body.dark-mode .ig-btn { box-shadow: 0 0 25px rgba(220, 39, 67, 0.4); }
+        body.dark-mode .ig-btn:hover { box-shadow: 0 0 40px rgba(220, 39, 67, 0.7); }
 
         /* --- PAINÉIS DOS SERVIÇOS --- */
         .services-wrapper {
@@ -189,12 +192,21 @@
         .wheel-selector { position: relative; display: flex; justify-content: center; align-items: center; margin-bottom: 40px; }
         .hint-pop { position: absolute; top: -35px; font-weight: 800; font-size: 0.7rem; letter-spacing: 2px; color: var(--text-muted); text-transform: uppercase; animation: pulseHint 2s infinite ease-in-out; pointer-events: none; }
         @keyframes pulseHint { 0%, 100% { opacity: 0.6; transform: translateY(0); } 50% { opacity: 1; transform: translateY(-3px); } }
+        
         .radio-input {
             position: relative; height: 240px; width: 230px; 
-            background: #111; border: 2px solid #2a2a2a; border-radius: 30px;
+            background: #111; border: 2px solid var(--border-color); border-radius: 30px;
             overflow: hidden; display: flex; align-items: center;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(0, 0, 0, 0.8);
+            transition: box-shadow 0.4s, border-color 0.4s;
         }
+        
+        /* Efeito Glow Escuro - Caixa da Roleta */
+        body.dark-mode .radio-input {
+            box-shadow: 0 0 30px rgba(255, 62, 62, 0.15), inset 0 0 15px rgba(0, 0, 0, 0.8);
+            border-color: rgba(255, 62, 62, 0.3);
+        }
+
         .radio-input::after {
             content: ""; position: absolute; right: -150px; width: 300px; height: 300px;
             background: repeating-conic-gradient(from 0deg, #1a1a1a 0deg 10deg, #222 10deg 20deg);
@@ -211,7 +223,7 @@
         .wheel-label {
             position: absolute; left: 35px; display: flex; flex-direction: column;
             transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-            transform-origin: 280px center; filter: blur(2px); opacity: 0.1; z-index: 5;
+            transform-origin: 280px center; filter: blur(2px); opacity: 0.3; z-index: 5; /* Opacidade aumentada para 0.3 para melhor leitura */
         }
         .wheel-label .num { font-weight: 900; font-size: 0.7rem; color: var(--accent); margin-bottom: -2px; }
         .wheel-label .label { font-weight: 900; font-size: 1.6rem; color: #ffffff; letter-spacing: -1px; text-transform: uppercase; line-height: 1.1; }
@@ -219,9 +231,14 @@
         .radio-input:has(input[data-pos="1"]:checked) .wheel-label[data-pos="1"],
         .radio-input:has(input[data-pos="2"]:checked) .wheel-label[data-pos="2"],
         .radio-input:has(input[data-pos="3"]:checked) .wheel-label[data-pos="3"] { opacity: 1; filter: blur(0); transform: rotate(0deg) translateX(10px); z-index: 10; }
-        .radio-input:has(input[data-pos="1"]:checked) .wheel-label[data-pos="1"] .label,
-        .radio-input:has(input[data-pos="2"]:checked) .wheel-label[data-pos="2"] .label,
-        .radio-input:has(input[data-pos="3"]:checked) .wheel-label[data-pos="3"] .label { text-shadow: 0 0 15px rgba(255, 255, 255, 0.2); }
+        
+        /* Efeito Glow Escuro - Textos da Roleta */
+        body.dark-mode .radio-input:has(input[data-pos="1"]:checked) .wheel-label[data-pos="1"] .label,
+        body.dark-mode .radio-input:has(input[data-pos="2"]:checked) .wheel-label[data-pos="2"] .label,
+        body.dark-mode .radio-input:has(input[data-pos="3"]:checked) .wheel-label[data-pos="3"] .label { 
+            text-shadow: 0 0 15px var(--accent), 0 0 30px var(--accent-glow); 
+        }
+
         .radio-input:has(input[data-pos="1"]:checked) .wheel-label { transform: rotate(calc(var(--angle) + 35deg)); }
         .radio-input:has(input[data-pos="2"]:checked) .wheel-label { transform: rotate(calc(var(--angle) + 0deg)); }
         .radio-input:has(input[data-pos="3"]:checked) .wheel-label { transform: rotate(calc(var(--angle) - 35deg)); }
@@ -237,7 +254,11 @@
             box-shadow: 0 10px 20px rgba(255, 62, 62, 0.2); transition: transform 0.3s ease, box-shadow 0.3s ease;
             width: 100%; max-width: 250px;
         }
-        .btn-expand:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 15px 30px rgba(255, 62, 62, 0.4); }
+        .btn-expand:hover { transform: translateY(-3px) scale(1.02); }
+
+        /* Efeito Glow Escuro - Botão Ver Detalhes */
+        body.dark-mode .btn-expand { box-shadow: 0 0 20px rgba(255, 62, 62, 0.4); }
+        body.dark-mode .btn-expand:hover { box-shadow: 0 0 35px rgba(255, 62, 62, 0.7); }
 
         .special-service {
             margin-top: 30px; width: 100%; padding: 20px;
@@ -296,8 +317,12 @@
         .modal-features li { list-style: none; margin-bottom: 12px; display: flex; align-items: flex-start; font-size: 0.95em; }
         .modal-features li::before { content: "✓"; display: block; width: 20px; height: 20px; background: linear-gradient(135deg, var(--accent), var(--accent-glow)); color: white; border-radius: 50%; text-align: center; line-height: 20px; margin-right: 12px; font-weight: bold; flex-shrink: 0; font-size: 0.8em; }
 
-        .btn-whatsapp { display: inline-block; width: 100%; padding: 16px; background: #25D366; color: white; text-decoration: none; border-radius: 12px; font-size: 1.1em; font-weight: 800; transition: all 0.3s; box-shadow: 0 10px 20px rgba(37, 211, 102, 0.2); }
-        .btn-whatsapp:hover { background: #1ebd57; transform: translateY(-2px); box-shadow: 0 15px 25px rgba(37, 211, 102, 0.3); }
+        .btn-whatsapp { display: inline-block; width: 100%; padding: 16px; background: #25D366; color: white; text-decoration: none; border-radius: 12px; font-size: 1.1em; font-weight: 800; transition: all 0.3s; }
+        .btn-whatsapp:hover { background: #1ebd57; transform: translateY(-2px); }
+
+        /* Efeito Glow Escuro - WhatsApp */
+        body.dark-mode .btn-whatsapp { box-shadow: 0 0 25px rgba(37, 211, 102, 0.4); }
+        body.dark-mode .btn-whatsapp:hover { box-shadow: 0 0 35px rgba(37, 211, 102, 0.7); }
 
         @media (max-width: 600px) {
             .radio-input { transform: scale(0.95); } 
@@ -309,14 +334,14 @@
         }
     </style>
 </head>
-<body>
+<body class="dark-mode">
 
     <div class="container">
         
-        <!-- SWITCH CLARO/ESCURO -->
+        <!-- SWITCH CLARO/ESCURO (Modo escuro habilitado por padrão com "checked") -->
         <div class="theme-switch-wrapper">
             <label class="switch">
-                <input type="checkbox" id="input">
+                <input type="checkbox" id="input" checked>
                 <div class="slider round">
                     <div class="stars">
                         <svg id="star-1" class="star" viewBox="0 0 20 20"><path d="M10 0 L12 8 L20 10 L12 12 L10 20 L8 12 L0 10 L8 8 Z"/></svg>
@@ -486,9 +511,7 @@
             currentGroup = groupName;
             const inputSelecionadoId = document.querySelector(`input[name="${groupName}"]:checked`).id;
             
-            // Encontra o índice do plano selecionado na categoria
             currentIndex = dadosDosPlanos[groupName].findIndex(plano => plano.id === inputSelecionadoId);
-            
             preencherModal(dadosDosPlanos[groupName][currentIndex]);
 
             let x = eventoClick.clientX;
