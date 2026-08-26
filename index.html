@@ -137,7 +137,7 @@
         @keyframes animatedGradientText { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
         .header p { color: var(--text-muted); font-size: 1.1em; }
 
-        /* --- BOTÃO DO INSTAGRAM --- */
+        /* --- BOTÃO DO INSTAGRAM (CORRIGIDO) --- */
         .instagram-section {
             display: flex;
             justify-content: center;
@@ -159,8 +159,16 @@
             border-radius: 50px;
             box-shadow: 0 8px 20px rgba(220, 39, 67, 0.3);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            white-space: nowrap; /* Evita que o texto quebre linhas */
         }
         .ig-btn:hover { transform: translateY(-3px) scale(1.05); }
+        .ig-btn svg { 
+            width: 24px; 
+            height: 24px; 
+            min-width: 24px; /* Trava a largura mínima do ícone */
+            flex-shrink: 0; /* Impede o ícone de encolher/deformar */
+            fill: white; 
+        }
 
         /* Efeito Glow Escuro - Instagram */
         body.dark-mode .ig-btn { box-shadow: 0 0 25px rgba(220, 39, 67, 0.4); }
@@ -223,7 +231,7 @@
         .wheel-label {
             position: absolute; left: 35px; display: flex; flex-direction: column;
             transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-            transform-origin: 280px center; filter: blur(2px); opacity: 0.3; z-index: 5; /* Opacidade aumentada para 0.3 para melhor leitura */
+            transform-origin: 280px center; filter: blur(2px); opacity: 0.3; z-index: 5;
         }
         .wheel-label .num { font-weight: 900; font-size: 0.7rem; color: var(--accent); margin-bottom: -2px; }
         .wheel-label .label { font-weight: 900; font-size: 1.6rem; color: #ffffff; letter-spacing: -1px; text-transform: uppercase; line-height: 1.1; }
@@ -330,7 +338,6 @@
             .modal-nav { font-size: 1.8em; }
             .modal-nav.left { left: 0px; }
             .modal-nav.right { right: 0px; }
-            .ig-btn { width: 100%; max-width: 320px; font-size: 1.05em; }
         }
     </style>
 </head>
@@ -338,7 +345,7 @@
 
     <div class="container">
         
-        <!-- SWITCH CLARO/ESCURO (Modo escuro habilitado por padrão com "checked") -->
+        <!-- SWITCH CLARO/ESCURO -->
         <div class="theme-switch-wrapper">
             <label class="switch">
                 <input type="checkbox" id="input" checked>
@@ -362,7 +369,7 @@
             <p>Eternizando seus momentos com qualidade cinematográfica</p>
         </div>
 
-        <!-- BOTÃO DO INSTAGRAM NO TOPO -->
+        <!-- BOTÃO DO INSTAGRAM NO TOPO (CORRIGIDO) -->
         <div class="instagram-section">
             <a href="https://instagram.com/nvs.producoes" target="_blank" class="ig-btn">
                 <svg viewBox="0 0 24 24">
@@ -442,7 +449,6 @@
         <div class="modal-content">
             <button class="btn-close" onclick="fecharDetalhes()">×</button>
             
-            <!-- Setas de Navegação -->
             <button class="modal-nav left" onclick="mudarPlano(-1)">&#10094;</button>
             <button class="modal-nav right" onclick="mudarPlano(1)">&#10095;</button>
 
@@ -459,7 +465,6 @@
 
     <!-- SCRIPT DE INTERAÇÃO -->
     <script>
-        // Lógica do Switch de Tema
         const themeToggle = document.getElementById('input');
         themeToggle.addEventListener('change', (e) => {
             if (e.target.checked) {
@@ -503,7 +508,6 @@
             const msgWhatsApp = encodeURIComponent(`Olá, Nvs Produções! Quero agendar o plano: *${dados.title} (${dados.price})*. Podemos conversar?`);
             document.getElementById('modalWhatsAppBtn').href = `https://wa.me/5534996300397?text=${msgWhatsApp}`;
             
-            // Sincroniza a roleta de fundo para o input correto
             document.getElementById(dados.id).checked = true;
         }
 
