@@ -1,0 +1,2358 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nvs Produções | Produção Audiovisual em Uberlândia</title>
+  <meta name="description" content="Nvs Produções — fotografia, vídeos, drone e produção audiovisual com qualidade cinematográfica em Uberlândia e região.">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Nvs Produções | Produção Audiovisual em Uberlândia">
+  <meta property="og:description" content="Nvs Produções — fotografia, vídeos, drone e produção audiovisual com qualidade cinematográfica em Uberlândia e região.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ===== CSS VARIABLES ===== */
+:root {
+  --bg: #f8f8f6;
+  --surface: #ffffff;
+  --text: #111111;
+  --text-muted: #666666;
+  --text-light: #999999;
+  --border: #e8e8e8;
+  --accent: #182235;
+  --accent-light: #2a3a52;
+  --accent-subtle: rgba(24, 34, 53, 0.06);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --radius-lg: 16px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
+  --transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --container: clamp(1rem, 4vw, 3rem);
+  --section-spacing: clamp(4rem, 10vw, 8rem);
+}
+
+/* ===== RESET ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+/* ===== UTILITY ===== */
+.container {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 var(--container);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ===== SCROLL REVEAL ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===== HEADER ===== */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(248, 248, 246, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: box-shadow var(--transition), background var(--transition);
+}
+
+.header.scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 1px 0 var(--border);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.logo span {
+  color: var(--accent);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.25rem, 2.5vw, 2.5rem);
+}
+
+.nav-links a {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: color var(--transition);
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--accent);
+  transition: width var(--transition);
+}
+
+.nav-links a:hover,
+.nav-links a:focus-visible {
+  color: var(--text);
+}
+
+.nav-links a:hover::after,
+.nav-links a:focus-visible::after {
+  width: 100%;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.625rem 1.5rem;
+  border-radius: 100px;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background: var(--accent-light);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-outline {
+  border: 1.5px solid var(--border);
+  color: var(--text);
+  background: transparent;
+}
+
+.btn-outline:hover,
+.btn-outline:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  color: var(--text-muted);
+  padding: 0.5rem 1rem;
+}
+
+.btn-ghost:hover {
+  color: var(--text);
+  background: var(--accent-subtle);
+}
+
+.btn-lg {
+  padding: 0.875rem 2rem;
+  font-size: 0.9375rem;
+}
+
+.btn-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 1001;
+}
+
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: all var(--transition);
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Mobile Nav */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: min(85vw, 360px);
+  height: 100dvh;
+  background: var(--surface);
+  z-index: 999;
+  padding: 100px 2rem 2rem;
+  transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: -8px 0 30px rgba(0,0,0,0.08);
+  overflow-y: auto;
+}
+
+.mobile-nav.open {
+  right: 0;
+}
+
+.mobile-nav a {
+  display: block;
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--text);
+  padding: 0.875rem 0;
+  border-bottom: 1px solid var(--border);
+  transition: color var(--transition);
+}
+
+.mobile-nav a:hover {
+  color: var(--accent);
+}
+
+.mobile-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+  z-index: 998;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.mobile-overlay.visible {
+  opacity: 1;
+}
+
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .mobile-nav { display: block; }
+}
+
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* PLACEHOLDER: Substitua o conteúdo de .hero-bg por um <video> real:
+   <video autoplay muted loop playsinline poster="poster.jpg">
+     <source src="hero-video.mp4" type="video/mp4">
+   </video>
+*/
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.7) 100%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: clamp(6rem, 12vw, 10rem) var(--container) clamp(4rem, 8vw, 6rem);
+  max-width: 900px;
+}
+
+.hero-label {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.8);
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  opacity: 0.8;
+}
+
+.hero h1 {
+  font-size: clamp(2.8rem, 7vw, 6.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: #fff;
+  margin-bottom: 1.25rem;
+  text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 2.2vw, 1.35rem);
+  color: rgba(255,255,255,0.9);
+  font-weight: 400;
+  line-height: 1.5;
+  max-width: 560px;
+  margin: 0 auto 2.5rem;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.hero .btn-primary {
+  background: #fff;
+  color: var(--accent);
+}
+.hero .btn-primary:hover {
+  background: #f0f0f0;
+}
+.hero .btn-outline {
+  border-color: rgba(255,255,255,0.4);
+  color: #fff;
+}
+.hero .btn-outline:hover {
+  border-color: #fff;
+  background: rgba(255,255,255,0.1);
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: clamp(1.5rem, 4vw, 3rem);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255,255,255,0.6);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+
+.scroll-hint svg {
+  width: 20px;
+  height: 20px;
+  opacity: 0.5;
+}
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(6px); }
+}
+
+/* ===== SECTION COMMON ===== */
+.section {
+  padding: var(--section-spacing) 0;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.section-label {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.section-title {
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+}
+
+.section-subtitle {
+  font-size: clamp(0.95rem, 1.8vw, 1.125rem);
+  color: var(--text-muted);
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* ===== WHY NVS ===== */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+@media (max-width: 900px) {
+  .why-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .why-grid { grid-template-columns: 1fr; }
+}
+
+.why-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: clamp(1.5rem, 3vw, 2rem);
+  transition: all var(--transition);
+}
+
+.why-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: transparent;
+}
+
+.why-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-sm);
+  background: var(--accent-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  transition: background var(--transition);
+}
+
+.why-card:hover .why-card-icon {
+  background: var(--accent);
+}
+
+.why-card-icon svg {
+  width: 22px;
+  height: 22px;
+  color: var(--accent);
+  transition: color var(--transition);
+}
+
+.why-card:hover .why-card-icon svg {
+  color: #fff;
+}
+
+.why-card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+}
+
+.why-card p {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+/* ===== PORTFOLIO ===== */
+.portfolio-filters {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  padding: 0.5rem 1.25rem;
+  border-radius: 100px;
+  color: var(--text-muted);
+  transition: all var(--transition);
+  border: 1px solid transparent;
+}
+
+.filter-btn:hover {
+  color: var(--text);
+  background: var(--accent-subtle);
+}
+
+.filter-btn.active {
+  background: var(--accent);
+  color: #fff;
+}
+
+.filter-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(0.75rem, 1.5vw, 1rem);
+}
+
+@media (max-width: 768px) {
+  .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .portfolio-grid { grid-template-columns: 1fr; }
+}
+
+.portfolio-item {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  aspect-ratio: 16/9;
+  cursor: pointer;
+}
+
+.portfolio-item.hidden {
+  display: none;
+}
+
+.portfolio-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.portfolio-item:hover .portfolio-thumb {
+  transform: scale(1.04);
+}
+
+.portfolio-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  width: 56px;
+  height: 56px;
+  background: rgba(255,255,255,0.92);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  opacity: 0;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.portfolio-play svg {
+  width: 22px;
+  height: 22px;
+  color: var(--accent);
+  margin-left: 3px;
+}
+
+.portfolio-item:hover .portfolio-play {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+@media (hover: none) {
+  .portfolio-play {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* Video Lightbox */
+.video-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  background: rgba(0,0,0,0.88);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+  padding: 1rem;
+}
+
+.video-lightbox.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.video-lightbox-inner {
+  width: 100%;
+  max-width: 960px;
+  aspect-ratio: 16/9;
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #000;
+  transform: scale(0.92);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.video-lightbox.open .video-lightbox-inner {
+  transform: scale(1);
+}
+
+.video-lightbox-inner.is-short {
+  max-width: 400px;
+  aspect-ratio: 9/16;
+}
+
+.video-lightbox iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.video-lightbox-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  z-index: 3001;
+  transition: background var(--transition);
+}
+
+.video-lightbox-close:hover {
+  background: rgba(255,255,255,0.3);
+}
+
+.portfolio-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(17,17,17,0.7) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.25rem;
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.portfolio-item:hover .portfolio-overlay {
+  opacity: 1;
+}
+
+@media (hover: none) {
+  .portfolio-overlay {
+    opacity: 1;
+    background: linear-gradient(180deg, transparent 50%, rgba(17,17,17,0.5) 100%);
+  }
+}
+
+.portfolio-overlay h4 {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 0.125rem;
+}
+
+.portfolio-overlay span {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.7);
+  font-weight: 400;
+}
+
+/* ===== SERVICES & PLANS ===== */
+.tabs-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  background: var(--accent-subtle);
+  border-radius: 100px;
+  padding: 4px;
+  width: fit-content;
+  margin: 0 auto 3rem;
+}
+
+.tab-btn {
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.625rem 1.75rem;
+  border-radius: 100px;
+  color: var(--text-muted);
+  transition: all var(--transition);
+}
+
+.tab-btn.active {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: var(--shadow-sm);
+}
+
+.tab-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.tab-panel {
+  display: none;
+  animation: fadeIn 0.4s ease;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 2vw, 1.5rem);
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .plans-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+}
+
+.plan-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.5rem, 3vw, 2rem);
+  position: relative;
+  transition: all var(--transition);
+}
+
+.plan-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.plan-card.featured {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-md);
+}
+
+.plan-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  padding: 0.25rem 1rem;
+  border-radius: 100px;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+.plan-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.375rem;
+}
+
+.plan-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+}
+
+.plan-price {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 1.25rem;
+}
+
+.plan-price small {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.plan-features {
+  margin-bottom: 1.5rem;
+}
+
+.plan-features li {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  padding: 0.375rem 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.plan-features li::before {
+  content: '';
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23182235' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.plan-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.plan-actions .btn {
+  width: 100%;
+}
+
+/* Special Service */
+.special-service {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: clamp(2rem, 4vw, 3rem);
+  text-align: center;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.special-service-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--accent-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.25rem;
+}
+
+.special-service-icon svg {
+  width: 24px;
+  height: 24px;
+  color: var(--accent);
+}
+
+.special-service h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.special-service p {
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ===== MODAL ===== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+  padding: 1rem;
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 520px;
+  max-height: 90dvh;
+  overflow-y: auto;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  position: relative;
+  transform: scale(0.95) translateY(20px);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-overlay.open .modal-card {
+  transform: scale(1) translateY(0);
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition);
+  color: var(--text-muted);
+}
+
+.modal-close:hover {
+  background: var(--accent-subtle);
+  color: var(--text);
+}
+
+.modal-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.375rem;
+}
+
+.modal-plan-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.375rem;
+}
+
+.modal-plan-price {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+
+.modal-features {
+  margin-bottom: 2rem;
+}
+
+.modal-features li {
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  padding: 0.5rem 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.modal-features li:last-child {
+  border-bottom: none;
+}
+
+.modal-features li::before {
+  content: '';
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23182235' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.modal-cta {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.modal-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.modal-nav button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition);
+}
+
+.modal-nav button:hover {
+  color: var(--text);
+  background: var(--accent-subtle);
+}
+
+.modal-nav button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+@media (max-width: 560px) {
+  .modal-card {
+    max-height: 95dvh;
+    border-radius: var(--radius);
+  }
+}
+
+/* ===== TESTIMONIALS ===== */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+@media (max-width: 768px) {
+  .testimonials-grid { grid-template-columns: 1fr; max-width: 520px; margin: 0 auto; }
+}
+
+.testimonial-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: clamp(1.5rem, 3vw, 2rem);
+  position: relative;
+}
+
+.testimonial-quote {
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+  font-size: 3.5rem;
+  line-height: 1;
+  color: var(--border);
+  font-family: Georgia, serif;
+  pointer-events: none;
+  user-select: none;
+}
+
+.testimonial-stars {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 1rem;
+}
+
+.testimonial-stars svg {
+  width: 16px;
+  height: 16px;
+  fill: #f5b731;
+  color: #f5b731;
+}
+
+.testimonial-text {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--text);
+  margin-bottom: 1.25rem;
+  font-style: italic;
+}
+
+.testimonial-author {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.testimonial-role {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  margin-top: 0.125rem;
+}
+
+/* ===== FAQ ===== */
+.faq-list {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--border);
+}
+
+.faq-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text);
+  text-align: left;
+  transition: color var(--transition);
+  gap: 1rem;
+}
+
+.faq-question:hover {
+  color: var(--accent);
+}
+
+.faq-question:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.faq-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  position: relative;
+  color: var(--text-muted);
+}
+
+.faq-icon::before,
+.faq-icon::after {
+  content: '';
+  position: absolute;
+  background: currentColor;
+  border-radius: 1px;
+  transition: transform 0.3s;
+}
+
+.faq-icon::before {
+  width: 14px;
+  height: 2px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.faq-icon::after {
+  width: 2px;
+  height: 14px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.faq-item.open .faq-icon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-answer-inner {
+  padding: 0 0 1.25rem;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+}
+
+/* ===== CTA FINAL ===== */
+.cta-final {
+  background: var(--accent);
+  border-radius: var(--radius-lg);
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 4vw, 3rem);
+  text-align: center;
+  margin: 0 var(--container);
+  max-width: 1320px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-final-inner {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.cta-final h2 {
+  font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.cta-final p {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.cta-final-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.btn-white {
+  background: #fff;
+  color: var(--accent);
+}
+
+.btn-white:hover {
+  background: #f0f0f0;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-outline-white {
+  border: 1.5px solid rgba(255,255,255,0.3);
+  color: #fff;
+}
+
+.btn-outline-white:hover {
+  border-color: #fff;
+  background: rgba(255,255,255,0.1);
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  background: #f2f2f0;
+  border-top: 1px solid var(--border);
+  padding: clamp(3rem, 6vw, 5rem) 0 0;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
+  gap: clamp(2rem, 4vw, 3rem);
+  padding-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+@media (max-width: 768px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .footer-grid { grid-template-columns: 1fr; }
+}
+
+.footer h4 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+.footer p {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.footer-links a {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  padding: 0.25rem 0;
+  transition: color var(--transition);
+}
+
+.footer-links a:hover {
+  color: var(--accent);
+}
+
+.footer-contact a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  padding: 0.25rem 0;
+  transition: color var(--transition);
+}
+
+.footer-contact a:hover {
+  color: var(--accent);
+}
+
+.footer-contact svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.footer-map {
+  margin-top: 1rem;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  aspect-ratio: 16/9;
+  background: var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: var(--text-light);
+}
+
+/* PLACEHOLDER: Substitua o conteúdo de .footer-map por um <iframe> do Google Maps real */
+
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding: 1.5rem 0;
+  text-align: center;
+  font-size: 0.8125rem;
+  color: var(--text-light);
+}
+
+/* ===== FOCUS STYLES ===== */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+button:focus:not(:focus-visible),
+a:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ===== SELECTION ===== */
+::selection {
+  background: rgba(24, 34, 53, 0.12);
+  color: var(--text);
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a href="#inicio" class="logo" aria-label="Nvs Produções - Início"><span>Nvs</span> Produções</a>
+    <nav class="nav-links" aria-label="Navegação principal">
+      <a href="#inicio">Início</a>
+      <a href="#portfolio">Portfólio</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#depoimentos">Depoimentos</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://wa.me/5534996300397" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Fale conosco</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile Nav -->
+<div class="mobile-overlay" id="mobileOverlay"></div>
+<nav class="mobile-nav" id="mobileNav" aria-label="Menu mobile">
+  <a href="#inicio">Início</a>
+  <a href="#portfolio">Portfólio</a>
+  <a href="#servicos">Serviços</a>
+  <a href="#depoimentos">Depoimentos</a>
+  <a href="#faq">FAQ</a>
+  <a href="https://wa.me/5534996300397" target="_blank" rel="noopener noreferrer">Fale conosco</a>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="inicio">
+  <div class="hero-bg">
+    <img src="https://res.cloudinary.com/yiqcgfn1/image/upload/f_auto,q_auto/hero" alt="Nvs Produções — produção audiovisual profissional" fetchpriority="high">
+  </div>
+  <div class="hero-content">
+    <span class="hero-label">Produção Audiovisual</span>
+    <h1>Nvs Produções</h1>
+    <p class="hero-subtitle">Eternizando seus momentos com qualidade cinematográfica</p>
+    <div class="hero-actions">
+      <a href="#servicos" class="btn btn-primary btn-lg">
+        Conheça nossos serviços
+      </a>
+      <a href="https://wa.me/5534996300397" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-lg">
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        Falar no WhatsApp
+      </a>
+    </div>
+  </div>
+  <div class="scroll-hint" aria-hidden="true">
+    <span>Scroll</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+</section>
+
+<!-- ===== WHY NVS ===== -->
+<section class="section" id="diferenciais">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Nossos diferenciais</span>
+      <h2 class="section-title">Por que escolher a Nvs</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg>
+        </div>
+        <h3>Qualidade Visual</h3>
+        <p>Produção com estética cinematográfica e atenção aos detalhes.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
+        </div>
+        <h3>Experiência de Mercado</h3>
+        <p>Experiência na produção de conteúdos e registros profissionais.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3>Entrega Ágil</h3>
+        <p>Processo organizado e prazos claros.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        </div>
+        <h3>Equipamentos de Ponta</h3>
+        <p>Equipamentos profissionais para diferentes necessidades de produção.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PORTFOLIO ===== -->
+<section class="section" id="portfolio" style="background: var(--surface);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Portfólio</span>
+      <h2 class="section-title">Nosso trabalho</h2>
+      <p class="section-subtitle">Imagens que contam histórias.</p>
+    </div>
+    <div class="portfolio-filters reveal" role="toolbar" aria-label="Filtrar portfólio">
+      <button class="filter-btn active" data-filter="todos">Todos</button>
+      <button class="filter-btn" data-filter="eventos">Eventos</button>
+      <button class="filter-btn" data-filter="institucional">Institucional</button>
+      <button class="filter-btn" data-filter="drone">Drone</button>
+      <button class="filter-btn" data-filter="social">Social Media</button>
+      <button class="filter-btn" data-filter="ensaio">Ensaio</button>
+    </div>
+    <div class="portfolio-grid" id="portfolioGrid">
+
+      <div class="portfolio-item reveal" data-category="drone" data-video="aDJH6hqLRlk" onclick="openVideoLightbox(this)">
+        <img class="portfolio-thumb" src="https://img.youtube.com/vi/aDJH6hqLRlk/maxresdefault.jpg" alt="Produção aérea com drone" loading="lazy">
+        <div class="portfolio-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+        <div class="portfolio-overlay"><h4>Produção Aérea</h4><span>Drone</span></div>
+      </div>
+
+      <div class="portfolio-item reveal" data-category="eventos" data-video="T41612DRHyA" onclick="openVideoLightbox(this)">
+        <img class="portfolio-thumb" src="https://img.youtube.com/vi/T41612DRHyA/maxresdefault.jpg" alt="Confraternização" loading="lazy">
+        <div class="portfolio-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+        <div class="portfolio-overlay"><h4>Confraternização</h4><span>Eventos</span></div>
+      </div>
+
+      <div class="portfolio-item reveal" data-category="institucional" data-video="PzXkX8qnivg" onclick="openVideoLightbox(this)">
+        <img class="portfolio-thumb" src="https://img.youtube.com/vi/PzXkX8qnivg/maxresdefault.jpg" alt="Projeto Imobiliário" loading="lazy">
+        <div class="portfolio-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+        <div class="portfolio-overlay"><h4>Imobiliário</h4><span>Institucional</span></div>
+      </div>
+
+      <div class="portfolio-item reveal" data-category="eventos" data-video="7LOGyY0n6dU" onclick="openVideoLightbox(this)">
+        <img class="portfolio-thumb" src="https://img.youtube.com/vi/7LOGyY0n6dU/maxresdefault.jpg" alt="Evento Corporativo" loading="lazy">
+        <div class="portfolio-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+        <div class="portfolio-overlay"><h4>Evento Corporativo</h4><span>Eventos</span></div>
+      </div>
+
+      <div class="portfolio-item reveal" data-category="social" data-video="9NNJ_DTPng8" data-short="true" onclick="openVideoLightbox(this)">
+        <img class="portfolio-thumb" src="https://img.youtube.com/vi/9NNJ_DTPng8/maxresdefault.jpg" alt="Social Media" loading="lazy">
+        <div class="portfolio-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+        <div class="portfolio-overlay"><h4>Conteúdo Digital</h4><span>Social Media</span></div>
+      </div>
+
+      <div class="portfolio-item reveal" data-category="ensaio" data-video="2OLhbEu2Wv0" data-short="true" onclick="openVideoLightbox(this)">
+        <img class="portfolio-thumb" src="https://img.youtube.com/vi/2OLhbEu2Wv0/maxresdefault.jpg" alt="Ensaio" loading="lazy">
+        <div class="portfolio-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+        <div class="portfolio-overlay"><h4>Ensaio</h4><span>Ensaio</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES & PLANS ===== -->
+<section class="section" id="servicos">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Investimento</span>
+      <h2 class="section-title">Serviços & Planos</h2>
+      <p class="section-subtitle">Escolha o plano ideal para eternizar seu momento.</p>
+    </div>
+
+    <div class="tabs-nav reveal" role="tablist" aria-label="Categorias de serviço">
+      <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="panel-eventos" id="tab-eventos" data-tab="eventos">Eventos</button>
+      <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-drone" id="tab-drone" data-tab="drone">Drone</button>
+    </div>
+
+    <!-- EVENTOS -->
+    <div class="tab-panel active" id="panel-eventos" role="tabpanel" aria-labelledby="tab-eventos">
+      <div class="plans-grid">
+        <div class="plan-card reveal">
+          <span class="plan-label">Ideal para Iniciar</span>
+          <h3 class="plan-name">Básico</h3>
+          <p class="plan-price">R$ 1.199</p>
+          <ul class="plan-features">
+            <li>Fotos em alta</li>
+            <li>Edição de cores</li>
+            <li>Entrega nuvem</li>
+          </ul>
+          <div class="plan-actions">
+            <a href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Básico%20de%20Eventos." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Contratar plano</a>
+            <button class="btn btn-ghost" onclick="openModal('eventos', 0)" aria-label="Ver detalhes do plano Básico">Ver detalhes</button>
+          </div>
+        </div>
+
+        <div class="plan-card featured reveal">
+          <span class="plan-badge">Melhor Custo-Benefício</span>
+          <span class="plan-label">Mais Popular</span>
+          <h3 class="plan-name">Intermediário</h3>
+          <p class="plan-price">R$ 2.199</p>
+          <ul class="plan-features">
+            <li>Fotos</li>
+            <li>Filme 4K/FHD</li>
+            <li>Edição Teaser + Completo</li>
+            <li>Entrega digital</li>
+          </ul>
+          <div class="plan-actions">
+            <a href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Intermediário%20de%20Eventos." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Contratar plano</a>
+            <button class="btn btn-ghost" onclick="openModal('eventos', 1)" aria-label="Ver detalhes do plano Intermediário">Ver detalhes</button>
+          </div>
+        </div>
+
+        <div class="plan-card reveal">
+          <span class="plan-label">Experiência Completa</span>
+          <h3 class="plan-name">Premium Completo</h3>
+          <p class="plan-price">R$ 3.299</p>
+          <ul class="plan-features">
+            <li>Fotos</li>
+            <li>2 Vídeos + Aéreo</li>
+            <li>Storymaker</li>
+            <li>Entrega em 15 dias úteis</li>
+          </ul>
+          <div class="plan-actions">
+            <a href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Premium%20Completo%20de%20Eventos." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Contratar plano</a>
+            <button class="btn btn-ghost" onclick="openModal('eventos', 2)" aria-label="Ver detalhes do plano Premium Completo">Ver detalhes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DRONE -->
+    <div class="tab-panel" id="panel-drone" role="tabpanel" aria-labelledby="tab-drone">
+      <div class="plans-grid">
+        <div class="plan-card reveal">
+          <span class="plan-label">Registro Aéreo</span>
+          <h3 class="plan-name">Fotos Aéreas</h3>
+          <p class="plan-price">R$ 500</p>
+          <ul class="plan-features">
+            <li>Alta qualidade</li>
+            <li>Correção de cor/luz</li>
+            <li>Diária/serviço</li>
+            <li>Nuvem</li>
+          </ul>
+          <div class="plan-actions">
+            <a href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Fotos%20Aéreas." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Contratar plano</a>
+            <button class="btn btn-ghost" onclick="openModal('drone', 0)" aria-label="Ver detalhes do plano Fotos Aéreas">Ver detalhes</button>
+          </div>
+        </div>
+
+        <div class="plan-card reveal">
+          <span class="plan-label">Captação Profissional</span>
+          <h3 class="plan-name">Vídeo Bruto</h3>
+          <p class="plan-price">R$ 800</p>
+          <ul class="plan-features">
+            <li>Captação 4K/FHD</li>
+            <li>Na íntegra</li>
+            <li>Diária/serviço</li>
+          </ul>
+          <div class="plan-actions">
+            <a href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Vídeo%20Bruto." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Contratar plano</a>
+            <button class="btn btn-ghost" onclick="openModal('drone', 1)" aria-label="Ver detalhes do plano Vídeo Bruto">Ver detalhes</button>
+          </div>
+        </div>
+
+        <div class="plan-card featured reveal">
+          <span class="plan-badge">Melhor Custo-Benefício</span>
+          <span class="plan-label">Produção Completa</span>
+          <h3 class="plan-name">Vídeo Editado</h3>
+          <p class="plan-price">R$ 1.200</p>
+          <ul class="plan-features">
+            <li>Captação</li>
+            <li>Edição dinâmica</li>
+            <li>Color grading</li>
+            <li>Trilha sonora</li>
+            <li>Pronto para redes sociais</li>
+          </ul>
+          <div class="plan-actions">
+            <a href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Vídeo%20Editado." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Contratar plano</a>
+            <button class="btn btn-ghost" onclick="openModal('drone', 2)" aria-label="Ver detalhes do plano Vídeo Editado">Ver detalhes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</section>
+
+<!-- ===== VIDEO LIGHTBOX ===== -->
+<div class="video-lightbox" id="videoLightbox">
+  <button class="video-lightbox-close" id="videoLightboxClose" aria-label="Fechar vídeo">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <div class="video-lightbox-inner" id="videoLightboxInner"></div>
+</div>
+
+<!-- ===== MODAL ===== -->
+<div class="modal-overlay" id="planModal" aria-modal="true" role="dialog" aria-label="Detalhes do plano">
+  <div class="modal-card">
+    <button class="modal-close" id="modalClose" aria-label="Fechar detalhes do plano">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <span class="modal-label" id="modalLabel"></span>
+    <h3 class="modal-plan-name" id="modalName"></h3>
+    <p class="modal-plan-price" id="modalPrice"></p>
+    <ul class="modal-features" id="modalFeatures"></ul>
+    <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg modal-cta" id="modalCta">
+      <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+      Contratar pelo WhatsApp
+    </a>
+    <div class="modal-nav">
+      <button id="modalPrev" aria-label="Plano anterior">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Anterior
+      </button>
+      <button id="modalNext" aria-label="Próximo plano">
+        Próximo
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="section" id="depoimentos" style="background: var(--surface);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Depoimentos</span>
+      <h2 class="section-title">Quem viveu, recomenda.</h2>
+    </div>
+    <div class="testimonials-grid">
+      <!-- PLACEHOLDER: Substitua os depoimentos fictícios por depoimentos reais -->
+      <div class="testimonial-card reveal">
+        <span class="testimonial-quote" aria-hidden="true">"</span>
+        <div class="testimonial-stars" aria-label="5 estrelas">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="testimonial-text">"A Nvs superou todas as nossas expectativas. O vídeo do nosso casamento ficou simplesmente perfeito, com uma qualidade que nos emociona toda vez que assistimos."</p>
+        <p class="testimonial-author">Mariana e Lucas</p>
+        <p class="testimonial-role">Casamento — Uberlândia</p>
+      </div>
+
+      <div class="testimonial-card reveal">
+        <span class="testimonial-quote" aria-hidden="true">"</span>
+        <div class="testimonial-stars" aria-label="5 estrelas">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="testimonial-text">"Profissionalismo do início ao fim. As fotos do nosso evento corporativo foram incríveis e entregues no prazo combinado. Recomendo sem hesitar."</p>
+        <p class="testimonial-author">Rafael Mendes</p>
+        <p class="testimonial-role">Evento Corporativo</p>
+      </div>
+
+      <div class="testimonial-card reveal">
+        <span class="testimonial-quote" aria-hidden="true">"</span>
+        <div class="testimonial-stars" aria-label="5 estrelas">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="testimonial-text">"As imagens aéreas com drone deram um diferencial enorme ao nosso projeto imobiliário. Qualidade impecável e a equipe é extremamente atenciosa."</p>
+        <p class="testimonial-author">Fernanda Costa</p>
+        <p class="testimonial-role">Projeto Imobiliário</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="section" id="faq">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Dúvidas</span>
+      <h2 class="section-title">Perguntas frequentes</h2>
+    </div>
+    <div class="faq-list reveal" role="list">
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false">
+          <span>Qual é o prazo de entrega?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer" role="region">
+          <div class="faq-answer-inner">O prazo varia de acordo com o plano contratado. Em geral, as entregas são feitas entre 7 e 15 dias úteis após o evento. Para o plano Premium Completo, garantimos entrega em até 15 dias úteis.</div>
+        </div>
+      </div>
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false">
+          <span>Vocês atendem fora de Uberlândia?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer" role="region">
+          <div class="faq-answer-inner">Sim! Atendemos Uberlândia e toda a região. Para eventos em outras cidades, entre em contato para que possamos avaliar a logística e apresentar uma proposta personalizada.</div>
+        </div>
+      </div>
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false">
+          <span>Como funciona o pagamento?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer" role="region">
+          <div class="faq-answer-inner">Trabalhamos com pagamento via Pix, transferência bancária e parcelamento. Uma entrada é solicitada na contratação e o restante pode ser combinado conforme a necessidade do cliente.</div>
+        </div>
+      </div>
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false">
+          <span>Vocês trabalham com drone?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer" role="region">
+          <div class="faq-answer-inner">Sim! Oferecemos serviços de fotos aéreas, vídeo bruto, vídeo editado e até mapeamento topográfico com equipamentos profissionais de última geração. Confira nossos planos de Drone.</div>
+        </div>
+      </div>
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false">
+          <span>Posso personalizar um pacote?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer" role="region">
+          <div class="faq-answer-inner">Claro! Nossos planos servem como referência, mas estamos abertos a personalizar pacotes de acordo com as necessidades específicas do seu projeto. Fale conosco pelo WhatsApp para montar o seu.</div>
+        </div>
+      </div>
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false">
+          <span>Como faço para contratar?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer" role="region">
+          <div class="faq-answer-inner">É simples! Basta entrar em contato pelo nosso <a href="https://wa.me/5534996300397" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 500;">WhatsApp</a> ou <a href="https://instagram.com/nvs.producoes" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 500;">Instagram</a>. Vamos conversar sobre o seu projeto, alinhar os detalhes e preparar tudo para o grande dia.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA FINAL ===== -->
+<section class="section" id="contato">
+  <div class="cta-final reveal">
+    <div class="cta-final-inner">
+      <h2>Vamos transformar seu momento em uma história?</h2>
+      <p>Entre em contato e descubra como podemos eternizar seus momentos com qualidade cinematográfica. Estamos prontos para criar algo incrível com você.</p>
+      <div class="cta-final-actions">
+        <a href="https://wa.me/5534996300397" target="_blank" rel="noopener noreferrer" class="btn btn-white btn-lg">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          Falar com a Nvs no WhatsApp
+        </a>
+        <a href="https://instagram.com/nvs.producoes" target="_blank" rel="noopener noreferrer" class="btn btn-outline-white btn-lg">
+          Ver Instagram
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer" id="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="#inicio" class="logo" style="display: inline-block; margin-bottom: 1rem;"><span>Nvs</span> Produções</a>
+        <p>Produtora audiovisual especializada em fotografia, vídeo, drone e conteúdo com qualidade cinematográfica em Uberlândia e região.</p>
+      </div>
+      <div>
+        <h4>Links rápidos</h4>
+        <div class="footer-links">
+          <a href="#inicio">Início</a>
+          <a href="#portfolio">Portfólio</a>
+          <a href="#servicos">Serviços</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contato">Contato</a>
+        </div>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <div class="footer-contact">
+          <a href="https://wa.me/5534996300397" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            WhatsApp
+          </a>
+          <a href="https://instagram.com/nvs.producoes" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            @nvs.producoes
+          </a>
+        </div>
+      </div>
+      <div>
+        <h4>Localização</h4>
+        <p style="margin-bottom: 0.75rem;">Uberlândia — MG</p>
+        <!-- PLACEHOLDER: Substitua o conteúdo abaixo por um <iframe> do Google Maps real:
+        <iframe src="https://www.google.com/maps/embed?pb=..." width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        -->
+        <div class="footer-map" aria-label="Mapa de Uberlândia">
+          <span>Mapa — Uberlândia, MG</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Nvs Produções. Todos os direitos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ===== PLAN DATA ===== */
+const plansData = {
+  eventos: [
+    {
+      label: 'Ideal para Iniciar',
+      name: 'Básico',
+      price: 'R$ 1.199',
+      features: [
+        'Fotos em alta resolução',
+        'Edição de cores profissional',
+        'Entrega via nuvem',
+        'Atendimento personalizado'
+      ],
+      whatsapp: 'https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Básico%20de%20Eventos.'
+    },
+    {
+      label: 'Mais Popular',
+      name: 'Intermediário',
+      price: 'R$ 2.199',
+      features: [
+        'Fotos em alta resolução',
+        'Filme em 4K / Full HD',
+        'Edição Teaser + Filme Completo',
+        'Entrega digital via nuvem',
+        'Atendimento personalizado',
+        'Melhor custo-benefício'
+      ],
+      whatsapp: 'https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Intermediário%20de%20Eventos.'
+    },
+    {
+      label: 'Experiência Completa',
+      name: 'Premium Completo',
+      price: 'R$ 3.299',
+      features: [
+        'Fotos em alta resolução',
+        '2 Vídeos + Aéreo (drone)',
+        'Storymaker profissional',
+        'Entrega em até 15 dias úteis',
+        'Edição cinematográfica completa',
+        'Color grading avançado',
+        'Atendimento VIP'
+      ],
+      whatsapp: 'https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Premium%20Completo%20de%20Eventos.'
+    }
+  ],
+  drone: [
+    {
+      label: 'Registro Aéreo',
+      name: 'Fotos Aéreas',
+      price: 'R$ 500',
+      features: [
+        'Fotos aéreas em alta qualidade',
+        'Correção de cor e luz',
+        'Formato por diária/serviço',
+        'Entrega via nuvem',
+        'Equipamento profissional'
+      ],
+      whatsapp: 'https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Fotos%20Aéreas.'
+    },
+    {
+      label: 'Captação Profissional',
+      name: 'Vídeo Bruto',
+      price: 'R$ 800',
+      features: [
+        'Captação aérea em 4K / Full HD',
+        'Material na íntegra, sem cortes',
+        'Formato por diária/serviço',
+        'Equipamento profissional',
+        'Flexibilidade de uso do material'
+      ],
+      whatsapp: 'https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Vídeo%20Bruto.'
+    },
+    {
+      label: 'Produção Completa',
+      name: 'Vídeo Editado',
+      price: 'R$ 1.200',
+      features: [
+        'Captação aérea profissional',
+        'Edição dinâmica e criativa',
+        'Color grading cinematográfico',
+        'Trilha sonora licenciada',
+        'Pronto para redes sociais',
+        'Melhor custo-benefício'
+      ],
+      whatsapp: 'https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Vídeo%20Editado.'
+    }
+  ]
+};
+
+/* ===== NAVIGATION ===== */
+function initNavigation() {
+  const header = document.getElementById('header');
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+  const mobileOverlay = document.getElementById('mobileOverlay');
+  const mobileLinks = mobileNav.querySelectorAll('a');
+
+  function closeMobileMenu() {
+    hamburger.classList.remove('active');
+    hamburger.setAttribute('aria-expanded', 'false');
+    mobileNav.classList.remove('open');
+    mobileOverlay.classList.remove('visible');
+    setTimeout(() => { mobileOverlay.style.display = 'none'; }, 300);
+    document.body.style.overflow = '';
+  }
+
+  function openMobileMenu() {
+    hamburger.classList.add('active');
+    hamburger.setAttribute('aria-expanded', 'true');
+    mobileOverlay.style.display = 'block';
+    requestAnimationFrame(() => {
+      mobileOverlay.classList.add('visible');
+      mobileNav.classList.add('open');
+    });
+    document.body.style.overflow = 'hidden';
+  }
+
+  hamburger.addEventListener('click', () => {
+    if (mobileNav.classList.contains('open')) {
+      closeMobileMenu();
+    } else {
+      openMobileMenu();
+    }
+  });
+
+  mobileOverlay.addEventListener('click', closeMobileMenu);
+
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', closeMobileMenu);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileNav.classList.contains('open')) {
+      closeMobileMenu();
+    }
+  });
+
+  // Header scroll effect
+  let lastScroll = 0;
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.scrollY;
+    if (currentScroll > 50) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+    lastScroll = currentScroll;
+  }, { passive: true });
+}
+
+/* ===== PORTFOLIO FILTERS ===== */
+function initPortfolioFilters() {
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const items = document.querySelectorAll('.portfolio-item');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.dataset.filter;
+      items.forEach(item => {
+        if (filter === 'todos' || item.dataset.category === filter) {
+          item.classList.remove('hidden');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+    });
+  });
+}
+
+/* ===== TABS ===== */
+function initTabs() {
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.tab-panel');
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.dataset.tab;
+
+      tabBtns.forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+
+      panels.forEach(panel => {
+        panel.classList.remove('active');
+      });
+      document.getElementById('panel-' + tab).classList.add('active');
+    });
+  });
+}
+
+/* ===== FAQ ===== */
+function initFAQ() {
+  const items = document.querySelectorAll('.faq-item');
+
+  items.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    const answer = item.querySelector('.faq-answer');
+
+    question.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+
+      // Close all
+      items.forEach(other => {
+        other.classList.remove('open');
+        other.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        other.querySelector('.faq-answer').style.maxHeight = null;
+      });
+
+      // Open clicked if was closed
+      if (!isOpen) {
+        item.classList.add('open');
+        question.setAttribute('aria-expanded', 'true');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    });
+
+    // Keyboard support
+    question.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        question.click();
+      }
+    });
+  });
+}
+
+/* ===== SCROLL REVEAL ===== */
+function initScrollReveal() {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-visible'));
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  document.querySelectorAll('.reveal').forEach(el => {
+    observer.observe(el);
+  });
+}
+
+/* ===== PLAN MODAL ===== */
+let currentModalCategory = 'eventos';
+let currentModalIndex = 0;
+
+function initPlanModal() {
+  const modal = document.getElementById('planModal');
+  const closeBtn = document.getElementById('modalClose');
+  const prevBtn = document.getElementById('modalPrev');
+  const nextBtn = document.getElementById('modalNext');
+
+  closeBtn.addEventListener('click', closeModal);
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) {
+      closeModal();
+    }
+    if (modal.classList.contains('open')) {
+      if (e.key === 'ArrowLeft') navigateModal(-1);
+      if (e.key === 'ArrowRight') navigateModal(1);
+    }
+  });
+
+  prevBtn.addEventListener('click', () => navigateModal(-1));
+  nextBtn.addEventListener('click', () => navigateModal(1));
+}
+
+function openModal(category, index) {
+  currentModalCategory = category;
+  currentModalIndex = index;
+  updateModalContent();
+  const modal = document.getElementById('planModal');
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('modalClose').focus();
+}
+
+function closeModal() {
+  const modal = document.getElementById('planModal');
+  modal.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function navigateModal(direction) {
+  const plans = plansData[currentModalCategory];
+  const newIndex = currentModalIndex + direction;
+  if (newIndex >= 0 && newIndex < plans.length) {
+    currentModalIndex = newIndex;
+    updateModalContent();
+  }
+}
+
+function updateModalContent() {
+  const plan = plansData[currentModalCategory][currentModalIndex];
+  const plans = plansData[currentModalCategory];
+
+  document.getElementById('modalLabel').textContent = plan.label;
+  document.getElementById('modalName').textContent = plan.name;
+  document.getElementById('modalPrice').textContent = plan.price;
+
+  const featuresEl = document.getElementById('modalFeatures');
+  featuresEl.innerHTML = '';
+  plan.features.forEach(f => {
+    const li = document.createElement('li');
+    li.textContent = f;
+    featuresEl.appendChild(li);
+  });
+
+  document.getElementById('modalCta').href = plan.whatsapp;
+
+  const prevBtn = document.getElementById('modalPrev');
+  const nextBtn = document.getElementById('modalNext');
+  prevBtn.disabled = currentModalIndex === 0;
+  nextBtn.disabled = currentModalIndex === plans.length - 1;
+}
+
+/* ===== VIDEO LIGHTBOX ===== */
+function openVideoLightbox(element) {
+  const videoId = element.dataset.video;
+  const isShort = element.dataset.short === 'true';
+  const lightbox = document.getElementById('videoLightbox');
+  const inner = document.getElementById('videoLightboxInner');
+
+  if (isShort) {
+    inner.classList.add('is-short');
+  } else {
+    inner.classList.remove('is-short');
+  }
+
+  inner.innerHTML = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&showinfo=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+  
+  lightbox.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeVideoLightbox() {
+  const lightbox = document.getElementById('videoLightbox');
+  const inner = document.getElementById('videoLightboxInner');
+  
+  lightbox.classList.remove('open');
+  document.body.style.overflow = '';
+  
+  setTimeout(() => {
+    inner.innerHTML = '';
+  }, 300);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const lightbox = document.getElementById('videoLightbox');
+  const lightboxClose = document.getElementById('videoLightboxClose');
+  
+  if (lightbox && lightboxClose) {
+    lightboxClose.addEventListener('click', closeVideoLightbox);
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeVideoLightbox();
+    });
+    
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lightbox.classList.contains('open')) {
+        closeVideoLightbox();
+      }
+    });
+  }
+});
+
+/* ===== INIT ===== */
+document.addEventListener('DOMContentLoaded', () => {
+  initNavigation();
+  initPortfolioFilters();
+  initTabs();
+  initFAQ();
+  initScrollReveal();
+  initPlanModal();
+});
+</script>
+
+</body>
+</html>
