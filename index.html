@@ -359,11 +359,6 @@ ul, ol {
   z-index: 0;
 }
 
-/* PLACEHOLDER: Substitua o conteúdo de .hero-bg por um <video> real:
-   <video autoplay muted loop playsinline poster="poster.jpg">
-     <source src="hero-video.mp4" type="video/mp4">
-   </video>
-*/
 .hero-bg img {
   width: 100%;
   height: 100%;
@@ -943,51 +938,6 @@ ul, ol {
   width: 100%;
 }
 
-/* Special Service */
-.special-service {
-  margin-top: clamp(2rem, 4vw, 3rem);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: clamp(2rem, 4vw, 3rem);
-  text-align: center;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.special-service-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: var(--accent-subtle);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 1.25rem;
-}
-
-.special-service-icon svg {
-  width: 24px;
-  height: 24px;
-  color: var(--accent);
-}
-
-.special-service h3 {
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-}
-
-.special-service p {
-  font-size: 0.9375rem;
-  color: var(--text-muted);
-  margin-bottom: 1.5rem;
-  max-width: 420px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 /* ===== MODAL ===== */
 .modal-overlay {
   position: fixed;
@@ -1427,8 +1377,6 @@ ul, ol {
   color: var(--text-light);
 }
 
-/* PLACEHOLDER: Substitua o conteúdo de .footer-map por um <iframe> do Google Maps real */
-
 .footer-bottom {
   border-top: 1px solid var(--border);
   padding: 1.5rem 0;
@@ -1622,6 +1570,7 @@ a:focus:not(:focus-visible) {
     <div class="tabs-nav reveal" role="tablist" aria-label="Categorias de serviço">
       <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="panel-eventos" id="tab-eventos" data-tab="eventos">Eventos</button>
       <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-drone" id="tab-drone" data-tab="drone">Drone</button>
+      <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-videos" id="tab-videos" data-tab="videos">Vídeos</button>
     </div>
 
     <!-- EVENTOS -->
@@ -1728,6 +1677,94 @@ a:focus:not(:focus-visible) {
             <button class="btn btn-ghost" onclick="openModal('drone', 2)" aria-label="Ver detalhes do plano Vídeo Editado">Ver detalhes</button>
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- VÍDEOS -->
+    <div class="tab-panel" id="panel-videos" role="tabpanel" aria-labelledby="tab-videos">
+      <div class="plans-grid">
+        
+        <div class="plan-card reveal">
+          <span class="plan-label">Para Empresas</span>
+          <h3 class="plan-name">Corporativo & Social</h3>
+          <p class="plan-price">R$ 1.200 <small>a R$ 5.000</small></p>
+          <ul class="plan-features">
+            <li>Produção para Social Media</li>
+            <li>Vídeo de Evento Corporativo</li>
+            <li>Edição e formatação ideal</li>
+            <li>Projeto conforme demanda</li>
+          </ul>
+          <div class="plan-actions">
+            <a href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Corporativo%20e%20Social." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Contratar plano</a>
+            <button class="btn btn-ghost" onclick="openModal('videos', 0)" aria-label="Ver detalhes">Ver detalhes</button>
+          </div>
+        </div>
+
+        <div class="plan-card reveal">
+          <span class="plan-label">Confraternização</span>
+          <h3 class="plan-name">Essencial</h3>
+          <p class="plan-price">R$ 1.200</p>
+          <ul class="plan-features">
+            <li>Gravação com 1 câmera</li>
+            <li>Edição normal do evento</li>
+            <li>Cobertura dos principais momentos</li>
+            <li>Entrega digital</li>
+          </ul>
+          <div class="plan-actions">
+            <a href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Confraternização%20Essencial." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Contratar plano</a>
+            <button class="btn btn-ghost" onclick="openModal('videos', 1)" aria-label="Ver detalhes">Ver detalhes</button>
+          </div>
+        </div>
+
+        <div class="plan-card featured reveal">
+          <span class="plan-badge">Mais Escolhido</span>
+          <span class="plan-label">Confraternização</span>
+          <h3 class="plan-name">Avançado</h3>
+          <p class="plan-price">R$ 1.800</p>
+          <ul class="plan-features">
+            <li>Gravação com 1 câmera</li>
+            <li>Captação aérea com Drone</li>
+            <li>Edição dinâmica</li>
+            <li>Entrega digital</li>
+          </ul>
+          <div class="plan-actions">
+            <a href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Confraternização%20Avançado." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Contratar plano</a>
+            <button class="btn btn-ghost" onclick="openModal('videos', 2)" aria-label="Ver detalhes">Ver detalhes</button>
+          </div>
+        </div>
+
+        <div class="plan-card reveal">
+          <span class="plan-label">Confraternização</span>
+          <h3 class="plan-name">Premium</h3>
+          <p class="plan-price">R$ 2.899</p>
+          <ul class="plan-features">
+            <li>Gravação com 2 câmeras</li>
+            <li>Captação aérea com Drone</li>
+            <li>Edição cinematográfica</li>
+            <li>Cobertura completa</li>
+          </ul>
+          <div class="plan-actions">
+            <a href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Confraternização%20Premium." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Contratar plano</a>
+            <button class="btn btn-ghost" onclick="openModal('videos', 3)" aria-label="Ver detalhes">Ver detalhes</button>
+          </div>
+        </div>
+
+        <div class="plan-card reveal">
+          <span class="plan-label">Sob Medida</span>
+          <h3 class="plan-name">Personalizado</h3>
+          <p class="plan-price">Consulta</p>
+          <ul class="plan-features">
+            <li>3 ou mais câmeras</li>
+            <li>5 horas+ de evento</li>
+            <li>Aplicações específicas</li>
+            <li>Roteiro e direção sob medida</li>
+          </ul>
+          <div class="plan-actions">
+            <a href="https://wa.me/5534996300397?text=Olá!%20Gostaria%20de%20um%20orçamento%20Personalizado%20para%20vídeo." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Solicitar orçamento</a>
+            <button class="btn btn-ghost" onclick="openModal('videos', 4)" aria-label="Ver detalhes">Ver detalhes</button>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -2043,6 +2080,69 @@ const plansData = {
         'Melhor custo-benefício'
       ],
       whatsapp: 'https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Vídeo%20Editado.'
+    }
+  ],
+  videos: [
+    {
+      label: 'Para Empresas',
+      name: 'Corporativo & Social',
+      price: 'R$ 1.200 a R$ 5.000',
+      features: [
+        'Produção para Social Media',
+        'Vídeo de Evento Corporativo',
+        'Edição e formatação ideal para as redes',
+        'Projeto escalável conforme a demanda'
+      ],
+      whatsapp: 'https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Corporativo%20e%20Social.'
+    },
+    {
+      label: 'Confraternização',
+      name: 'Essencial',
+      price: 'R$ 1.200',
+      features: [
+        'Gravação com 1 câmera',
+        'Edição normal do evento',
+        'Cobertura dos principais momentos',
+        'Entrega digital'
+      ],
+      whatsapp: 'https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Confraternização%20Essencial.'
+    },
+    {
+      label: 'Confraternização',
+      name: 'Avançado',
+      price: 'R$ 1.800',
+      features: [
+        'Gravação com 1 câmera',
+        'Captação aérea com Drone',
+        'Edição dinâmica',
+        'Entrega digital',
+        'Melhor custo-benefício'
+      ],
+      whatsapp: 'https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Confraternização%20Avançado.'
+    },
+    {
+      label: 'Confraternização',
+      name: 'Premium',
+      price: 'R$ 2.899',
+      features: [
+        'Gravação com 2 câmeras',
+        'Captação aérea com Drone',
+        'Edição cinematográfica',
+        'Cobertura completa com ângulos variados'
+      ],
+      whatsapp: 'https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Confraternização%20Premium.'
+    },
+    {
+      label: 'Sob Medida',
+      name: 'Personalizado',
+      price: 'Sob Consulta',
+      features: [
+        '3 ou mais câmeras',
+        '5 horas ou mais de evento',
+        'Aplicações e formatos específicos',
+        'Roteiro e direção sob medida'
+      ],
+      whatsapp: 'https://wa.me/5534996300397?text=Olá!%20Gostaria%20de%20um%20orçamento%20Personalizado%20para%20vídeo.'
     }
   ]
 };
