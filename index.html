@@ -3,39 +3,83 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nvs Produções | Produção Audiovisual em Uberlândia</title>
-  <meta name="description" content="Nvs Produções — fotografia, vídeos, drone e produção audiovisual com qualidade cinematográfica em Uberlândia e região.">
+  <title>Nvs Produções | Produção Audiovisual & Video Editing</title>
+  <meta name="description" content="Nvs Produções — fotografia, vídeos, drone e produção audiovisual com qualidade cinematográfica em Uberlândia e região. Professional video editing services.">
+  
   <!-- Open Graph -->
-  <meta property="og:title" content="Nvs Produções | Produção Audiovisual em Uberlândia">
-  <meta property="og:description" content="Nvs Produções — fotografia, vídeos, drone e produção audiovisual com qualidade cinematográfica em Uberlândia e região.">
+  <meta property="og:title" content="Nvs Produções | Produção Audiovisual & Video Editing">
+  <meta property="og:description" content="Fotografia, filmes cinematográficos, drone e edição de vídeo profissional para criadores e empresas.">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
+  
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-/* ===== CSS VARIABLES ===== */
+/* ===== DESIGN SYSTEM & THEMING ===== */
 :root {
-  --bg: #f8f8f6;
-  --surface: #ffffff;
-  --text: #111111;
-  --text-muted: #666666;
-  --text-light: #999999;
-  --border: #e8e8e8;
-  --accent: #182235;
-  --accent-light: #2a3a52;
-  --accent-subtle: rgba(24, 34, 53, 0.06);
+  /* DARK THEME (PADRÃO) */
+  --bg: #0b0c10;
+  --surface: #14161f;
+  --surface-0: #0d0e14;
+  --surface-1: #171a24;
+  --surface-2: #202433;
+  --text: #f3f4f6;
+  --text-primary: #ffffff;
+  --text-secondary: #a1a1aa;
+  --text-muted: #9ca3af;
+  --text-light: #6b7280;
+  --text-danger: #ef4444;
+  --border: rgba(255, 255, 255, 0.1);
+  --border-accent: rgba(220, 38, 38, 0.35);
+  --bg-accent: rgba(220, 38, 38, 0.12);
+  --accent: #dc2626;
+  --accent-light: #ef4444;
+  --accent-subtle: rgba(220, 38, 38, 0.12);
+  --header-bg: rgba(11, 12, 16, 0.92);
+  --footer-bg: #07080a;
+  --card-bg: #14161f;
+  --modal-bg: #161822;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.5);
+  --shadow-md: 0 6px 20px rgba(0,0,0,0.6);
+  --shadow-lg: 0 14px 45px rgba(0,0,0,0.8);
   --radius: 12px;
   --radius-sm: 8px;
   --radius-lg: 16px;
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
-  --shadow-md: 0 4px 16px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
-  --shadow-lg: 0 12px 40px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
   --transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
   --container: clamp(1rem, 4vw, 3rem);
   --section-spacing: clamp(4rem, 10vw, 8rem);
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* LIGHT THEME OVERRIDE */
+body.light-theme {
+  --bg: #f8f8f6;
+  --surface: #ffffff;
+  --surface-0: #f4f4f5;
+  --surface-1: #ffffff;
+  --surface-2: #f0f0f2;
+  --text: #111111;
+  --text-primary: #111111;
+  --text-secondary: #555555;
+  --text-muted: #666666;
+  --text-light: #999999;
+  --text-danger: #dc2626;
+  --border: #e8e8e8;
+  --border-accent: rgba(220, 38, 38, 0.2);
+  --bg-accent: #fee2e2;
+  --accent: #182235;
+  --accent-light: #2a3a52;
+  --accent-subtle: rgba(24, 34, 53, 0.06);
+  --header-bg: rgba(248, 248, 246, 0.92);
+  --footer-bg: #f2f2f0;
+  --card-bg: #ffffff;
+  --modal-bg: #ffffff;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,0.12);
 }
 
 /* ===== RESET ===== */
@@ -51,13 +95,14 @@ html {
 }
 
 body {
-  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  font-family: var(--font-sans);
   background-color: var(--bg);
   color: var(--text);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 img {
@@ -82,7 +127,7 @@ ul, ol {
   list-style: none;
 }
 
-/* ===== UTILITY ===== */
+/* ===== UTILITIES ===== */
 .container {
   width: 100%;
   max-width: 1320px;
@@ -90,22 +135,9 @@ ul, ol {
   padding: 0 var(--container);
 }
 
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0,0,0,0);
-  white-space: nowrap;
-  border: 0;
-}
-
-/* ===== SCROLL REVEAL ===== */
 .reveal {
   opacity: 0;
-  transform: translateY(32px);
+  transform: translateY(28px);
   transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -120,54 +152,79 @@ ul, ol {
     transform: none;
     transition: none;
   }
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
 }
 
-/* ===== HEADER ===== */
+/* ===== HEADER & NAVBAR ===== */
 .header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-  background: rgba(248, 248, 246, 0.85);
+  background: var(--header-bg);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  transition: box-shadow var(--transition), background var(--transition);
-}
-
-.header.scrolled {
-  background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 1px 0 var(--border);
+  border-bottom: 1px solid var(--border);
+  transition: background var(--transition), border-color var(--transition);
 }
 
 .header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 72px;
+  height: 74px;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .logo {
   font-size: 1.25rem;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--text);
   white-space: nowrap;
 }
 
 .logo span {
-  color: var(--accent);
+  color: #dc2626;
+}
+
+/* VIEW SWITCHER IN HEADER */
+.view-switcher {
+  display: flex;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 3px;
+  gap: 2px;
+}
+
+.view-btn {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.35rem 0.85rem;
+  border-radius: 100px;
+  color: var(--text-muted);
+  transition: all var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.view-btn.active {
+  background: #dc2626;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.4);
 }
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: clamp(1.25rem, 2.5vw, 2.5rem);
+  gap: clamp(1rem, 2vw, 2rem);
 }
 
 .nav-links a {
@@ -178,27 +235,35 @@ ul, ol {
   position: relative;
 }
 
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 1.5px;
-  background: var(--accent);
-  transition: width var(--transition);
-}
-
-.nav-links a:hover,
-.nav-links a:focus-visible {
+.nav-links a:hover {
   color: var(--text);
 }
 
-.nav-links a:hover::after,
-.nav-links a:focus-visible::after {
-  width: 100%;
+/* THEME TOGGLE BUTTON */
+.theme-toggle-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface-1);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition);
 }
 
+.theme-toggle-btn:hover {
+  background: var(--surface-2);
+  transform: rotate(15deg);
+}
+
+.theme-toggle-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* BUTTONS */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -213,15 +278,14 @@ ul, ol {
 }
 
 .btn-primary {
-  background: var(--accent);
+  background: #dc2626;
   color: #fff;
 }
 
-.btn-primary:hover,
-.btn-primary:focus-visible {
-  background: var(--accent-light);
+.btn-primary:hover {
+  background: #b91c1c;
   transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
 }
 
 .btn-outline {
@@ -230,10 +294,9 @@ ul, ol {
   background: transparent;
 }
 
-.btn-outline:hover,
-.btn-outline:focus-visible {
-  border-color: var(--accent);
-  color: var(--accent);
+.btn-outline:hover {
+  border-color: #dc2626;
+  color: #dc2626;
   transform: translateY(-1px);
 }
 
@@ -249,16 +312,44 @@ ul, ol {
 
 .btn-lg {
   padding: 0.875rem 2rem;
-  font-size: 0.9375rem;
+  font-size: 0.95rem;
 }
 
 .btn-icon {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   flex-shrink: 0;
 }
 
-/* Hamburger */
+/* GLOW BUTTON FOR VIDEO EDITING */
+.btn-editing-glow {
+  background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+  color: #ffffff !important;
+  font-weight: 700;
+  border: 1px solid rgba(248, 113, 113, 0.4);
+  box-shadow: 0 0 15px rgba(220, 38, 38, 0.6), 0 0 30px rgba(220, 38, 38, 0.35);
+  animation: glowPulse 2.5s infinite alternate;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-editing-glow:hover {
+  background: #ef4444;
+  box-shadow: 0 0 25px rgba(239, 68, 68, 0.85), 0 0 50px rgba(220, 38, 38, 0.6);
+  transform: translateY(-2px) scale(1.03);
+}
+
+@keyframes glowPulse {
+  0% {
+    box-shadow: 0 0 15px rgba(220, 38, 38, 0.55), 0 0 28px rgba(220, 38, 38, 0.25);
+  }
+  100% {
+    box-shadow: 0 0 25px rgba(239, 68, 68, 0.85), 0 0 45px rgba(220, 38, 38, 0.55);
+  }
+}
+
+/* HAMBURGER */
 .hamburger {
   display: none;
   width: 44px;
@@ -289,7 +380,7 @@ ul, ol {
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* Mobile Nav */
+/* MOBILE NAV */
 .mobile-nav {
   display: none;
   position: fixed;
@@ -299,9 +390,9 @@ ul, ol {
   height: 100dvh;
   background: var(--surface);
   z-index: 999;
-  padding: 100px 2rem 2rem;
+  padding: 90px 2rem 2rem;
   transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: -8px 0 30px rgba(0,0,0,0.08);
+  box-shadow: -8px 0 30px rgba(0,0,0,0.3);
   overflow-y: auto;
 }
 
@@ -311,23 +402,18 @@ ul, ol {
 
 .mobile-nav a {
   display: block;
-  font-size: 1.125rem;
+  font-size: 1.1rem;
   font-weight: 500;
   color: var(--text);
   padding: 0.875rem 0;
   border-bottom: 1px solid var(--border);
-  transition: color var(--transition);
-}
-
-.mobile-nav a:hover {
-  color: var(--accent);
 }
 
 .mobile-overlay {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.3);
+  background: rgba(0,0,0,0.6);
   z-index: 998;
   opacity: 0;
   transition: opacity 0.3s;
@@ -337,14 +423,28 @@ ul, ol {
   opacity: 1;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 960px) {
   .nav-links { display: none; }
   .hamburger { display: flex; }
   .mobile-nav { display: block; }
 }
 
-/* ===== HERO ===== */
-.hero {
+/* ===== APP VIEWS (SPA SWITCH) ===== */
+.app-view {
+  display: none;
+}
+.app-view.active-view {
+  display: block;
+  animation: fadeInView 0.4s ease-out;
+}
+
+@keyframes fadeInView {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== HERO MAIN (PRODUÇÃO AUDIOVISUAL) ===== */
+.hero-main {
   position: relative;
   min-height: 100dvh;
   display: flex;
@@ -353,79 +453,68 @@ ul, ol {
   overflow: hidden;
 }
 
-.hero-bg {
+.hero-main-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
 }
 
-.hero-bg img {
+.hero-main-bg img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
 }
 
-.hero-bg::after {
+.hero-main-bg::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.7) 100%);
+  background: linear-gradient(180deg, rgba(11,12,16,0.5) 0%, rgba(11,12,16,0.85) 100%);
 }
 
-.hero-content {
+.hero-main-content {
   position: relative;
   z-index: 1;
   text-align: center;
   padding: clamp(6rem, 12vw, 10rem) var(--container) clamp(4rem, 8vw, 6rem);
-  max-width: 900px;
+  max-width: 960px;
 }
 
-.hero-label {
-  display: inline-block;
+.hero-badge-glow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 1rem;
+  border-radius: 100px;
   font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  color: rgba(255,255,255,0.8);
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
+  color: #fff;
+  background: rgba(220, 38, 38, 0.2);
+  border: 1px solid rgba(220, 38, 38, 0.4);
   margin-bottom: 1.5rem;
-  opacity: 0.8;
 }
 
-.hero h1 {
+.hero-main h1 {
   font-size: clamp(2.8rem, 7vw, 6.5rem);
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1.05;
   color: #fff;
   margin-bottom: 1.25rem;
-  text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  text-shadow: 0 4px 16px rgba(0,0,0,0.5);
 }
 
-.hero-subtitle {
+.hero-main-subtitle {
   font-size: clamp(1rem, 2.2vw, 1.35rem);
   color: rgba(255,255,255,0.9);
   font-weight: 400;
   line-height: 1.5;
-  max-width: 560px;
+  max-width: 600px;
   margin: 0 auto 2.5rem;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.3);
-}
-
-.hero .btn-primary {
-  background: #fff;
-  color: var(--accent);
-}
-.hero .btn-primary:hover {
-  background: #f0f0f0;
-}
-.hero .btn-outline {
-  border-color: rgba(255,255,255,0.4);
-  color: #fff;
-}
-.hero .btn-outline:hover {
-  border-color: #fff;
-  background: rgba(255,255,255,0.1);
+  text-shadow: 0 2px 8px rgba(0,0,0,0.4);
 }
 
 .hero-actions {
@@ -436,36 +525,7 @@ ul, ol {
   flex-wrap: wrap;
 }
 
-.scroll-hint {
-  position: absolute;
-  bottom: clamp(1.5rem, 4vw, 3rem);
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  color: rgba(255,255,255,0.6);
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  animation: scrollBounce 2s ease-in-out infinite;
-}
-
-.scroll-hint svg {
-  width: 20px;
-  height: 20px;
-  opacity: 0.5;
-}
-
-@keyframes scrollBounce {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(6px); }
-}
-
-/* ===== SECTION COMMON ===== */
+/* ===== SECTIONS COMMON ===== */
 .section {
   padding: var(--section-spacing) 0;
 }
@@ -478,10 +538,10 @@ ul, ol {
 .section-label {
   display: inline-block;
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: #dc2626;
   margin-bottom: 0.75rem;
 }
 
@@ -501,7 +561,7 @@ ul, ol {
   margin: 0 auto;
 }
 
-/* ===== WHY NVS ===== */
+/* ===== DIFFERENTIALS ===== */
 .why-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -526,7 +586,7 @@ ul, ol {
 .why-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-md);
-  border-color: transparent;
+  border-color: rgba(220, 38, 38, 0.4);
 }
 
 .why-card-icon {
@@ -538,29 +598,13 @@ ul, ol {
   align-items: center;
   justify-content: center;
   margin-bottom: 1.25rem;
-  transition: background var(--transition);
-}
-
-.why-card:hover .why-card-icon {
-  background: var(--accent);
-}
-
-.why-card-icon svg {
-  width: 22px;
-  height: 22px;
-  color: var(--accent);
-  transition: color var(--transition);
-}
-
-.why-card:hover .why-card-icon svg {
-  color: #fff;
+  color: #dc2626;
 }
 
 .why-card h3 {
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
-  letter-spacing: -0.01em;
 }
 
 .why-card p {
@@ -569,7 +613,7 @@ ul, ol {
   line-height: 1.55;
 }
 
-/* ===== PORTFOLIO ===== */
+/* ===== PORTFOLIO AUDIOVISUAL ===== */
 .portfolio-filters {
   display: flex;
   align-items: center;
@@ -587,27 +631,24 @@ ul, ol {
   color: var(--text-muted);
   transition: all var(--transition);
   border: 1px solid transparent;
+  background: var(--surface-1);
 }
 
 .filter-btn:hover {
   color: var(--text);
-  background: var(--accent-subtle);
+  border-color: var(--border);
 }
 
 .filter-btn.active {
-  background: var(--accent);
+  background: #dc2626;
   color: #fff;
-}
-
-.filter-btn:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
+  border-color: #dc2626;
 }
 
 .portfolio-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: clamp(0.75rem, 1.5vw, 1rem);
+  gap: clamp(0.75rem, 1.5vw, 1.25rem);
 }
 
 @media (max-width: 768px) {
@@ -623,6 +664,8 @@ ul, ol {
   overflow: hidden;
   aspect-ratio: 16/9;
   cursor: pointer;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
 }
 
 .portfolio-item.hidden {
@@ -637,7 +680,7 @@ ul, ol {
 }
 
 .portfolio-item:hover .portfolio-thumb {
-  transform: scale(1.04);
+  transform: scale(1.05);
 }
 
 .portfolio-play {
@@ -645,9 +688,9 @@ ul, ol {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0.9);
-  width: 56px;
-  height: 56px;
-  background: rgba(255,255,255,0.92);
+  width: 54px;
+  height: 54px;
+  background: rgba(220, 38, 38, 0.9);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -655,13 +698,13 @@ ul, ol {
   z-index: 2;
   opacity: 0;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
 }
 
 .portfolio-play svg {
   width: 22px;
   height: 22px;
-  color: var(--accent);
+  color: #fff;
   margin-left: 3px;
 }
 
@@ -670,21 +713,693 @@ ul, ol {
   transform: translate(-50%, -50%) scale(1);
 }
 
-@media (hover: none) {
-  .portfolio-play {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-    width: 48px;
-    height: 48px;
+.portfolio-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(11,12,16,0.85) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.25rem;
+}
+
+.portfolio-overlay h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.portfolio-overlay span {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.7);
+}
+
+/* ===== TABS & SERVICES ===== */
+.tabs-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 4px;
+  width: fit-content;
+  margin: 0 auto 3rem;
+}
+
+.tab-btn {
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.625rem 1.75rem;
+  border-radius: 100px;
+  color: var(--text-muted);
+  transition: all var(--transition);
+}
+
+.tab-btn.active {
+  background: #dc2626;
+  color: #fff;
+}
+
+.tab-panel {
+  display: none;
+  animation: fadeIn 0.4s ease;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 2vw, 1.5rem);
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .plans-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
+}
+
+.plan-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.5rem, 3vw, 2rem);
+  position: relative;
+  transition: all var(--transition);
+}
+
+.plan-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.plan-card.featured {
+  border-color: #dc2626;
+  box-shadow: 0 4px 20px rgba(220, 38, 38, 0.2);
+}
+
+.plan-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #dc2626;
+  color: #fff;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  padding: 0.25rem 1rem;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+.plan-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #dc2626;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.375rem;
+}
+
+.plan-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.plan-price {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 1.25rem;
+}
+
+.plan-price small {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.plan-features {
+  margin-bottom: 1.5rem;
+}
+
+.plan-features li {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  padding: 0.375rem 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.plan-features li::before {
+  content: '✓';
+  color: #dc2626;
+  font-weight: 700;
+}
+
+.plan-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.plan-actions .btn {
+  width: 100%;
+}
+
+/* ===== TESTIMONIALS & FAQ ===== */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+@media (max-width: 768px) {
+  .testimonials-grid { grid-template-columns: 1fr; max-width: 520px; margin: 0 auto; }
+}
+
+.testimonial-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: clamp(1.5rem, 3vw, 2rem);
+  position: relative;
+}
+
+.testimonial-stars {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 1rem;
+}
+
+.testimonial-stars svg {
+  width: 16px;
+  height: 16px;
+  fill: #f5b731;
+}
+
+.testimonial-text {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--text);
+  margin-bottom: 1.25rem;
+  font-style: italic;
+}
+
+.testimonial-author {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.testimonial-role {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.faq-list {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--border);
+}
+
+.faq-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text);
+  text-align: left;
+}
+
+.faq-question:hover {
+  color: #dc2626;
+}
+
+.faq-icon {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  color: var(--text-muted);
+}
+
+.faq-icon::before, .faq-icon::after {
+  content: '';
+  position: absolute;
+  background: currentColor;
+  border-radius: 1px;
+  transition: transform 0.3s;
+}
+
+.faq-icon::before {
+  width: 14px;
+  height: 2px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.faq-icon::after {
+  width: 2px;
+  height: 14px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.faq-item.open .faq-icon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-answer-inner {
+  padding: 0 0 1.25rem;
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+}
+
+/* ===== CTA FINAL ===== */
+.cta-final {
+  background: linear-gradient(135deg, #14161f 0%, #1a1622 100%);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  border-radius: var(--radius-lg);
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 4vw, 3rem);
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.cta-final h2 {
+  font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.cta-final p {
+  font-size: 1rem;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  background: var(--footer-bg);
+  border-top: 1px solid var(--border);
+  padding: clamp(3rem, 6vw, 5rem) 0 0;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
+  gap: clamp(2rem, 4vw, 3rem);
+  padding-bottom: 3rem;
+}
+
+@media (max-width: 768px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .footer-grid { grid-template-columns: 1fr; }
+}
+
+.footer h4 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.footer p {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.footer-links a, .footer-contact a {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  padding: 0.25rem 0;
+  transition: color var(--transition);
+}
+
+.footer-links a:hover, .footer-contact a:hover {
+  color: #dc2626;
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding: 1.5rem 0;
+  text-align: center;
+  font-size: 0.8125rem;
+  color: var(--text-light);
+}
+
+/* =======================================================
+   ===== VIDEO EDITING PORTFOLIO (ENGLISH VIEW STYLES) =====
+   ======================================================= */
+.editing-hero-wrapper {
+  width: 100%;
+  background: linear-gradient(135deg, var(--surface-0) 0%, var(--surface-1) 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 90px 0 3rem;
+  overflow: hidden;
+  perspective: 1200px;
+  border-bottom: 1px solid var(--border);
+}
+
+.editing-hero-container {
+  width: 100%;
+  max-width: 1400px;
+  padding: 2rem var(--container);
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.editing-left-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: relative;
+  z-index: 10;
+}
+
+.editing-tag {
+  color: var(--text-danger);
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin: 0 0 0.5rem 0;
+}
+
+.editing-title {
+  font-size: clamp(2.5rem, 5vw, 4.2rem);
+  line-height: 1.08;
+  margin: 0;
+  color: var(--text-primary);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.editing-title-gradient {
+  background: linear-gradient(90deg, #dc2626, #ef4444);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: block;
+}
+
+.editing-description {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin: 0;
+  max-width: 90%;
+}
+
+.editing-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+/* TIMELINE SVG & ANIMATIONS */
+#timeline-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
+  position: relative;
+}
+
+#timeline-svg {
+  max-width: 100%;
+  height: auto;
+  filter: drop-shadow(0 20px 40px rgba(220, 38, 38, 0.2));
+  transform-style: preserve-3d;
+  transition: transform 0.08s ease-out;
+  animation: float 4s ease-in-out infinite, pulse-glow 2.5s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotateX(0deg) rotateY(0deg); }
+  50% { transform: translateY(-12px) rotateX(2deg) rotateY(2deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { filter: drop-shadow(0 20px 40px rgba(220, 38, 38, 0.2)); }
+  50% { filter: drop-shadow(0 28px 55px rgba(220, 38, 38, 0.38)); }
+}
+
+@keyframes playheadMove {
+  0%, 100% { transform: translateX(0px); }
+  50% { transform: translateX(180px); }
+}
+
+@keyframes waveFloat {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(1.35); }
+}
+
+@keyframes clipShine {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+#playhead-group {
+  animation: playheadMove 3.2s ease-in-out infinite;
+  transform-origin: 200px 110px;
+}
+
+.clip-box {
+  animation: clipShine 2.5s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.wave-bar {
+  animation: waveFloat 0.6s ease-in-out infinite;
+  transform-origin: center;
+}
+
+/* PLACEHOLDER VIDEO SHOWCASE STYLES (RESERVADOS) */
+.editing-showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 900px) {
+  .editing-showcase-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 540px) {
+  .editing-showcase-grid { grid-template-columns: 1fr; }
+}
+
+.video-slot-card {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: all var(--transition);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.video-slot-card:hover {
+  border-color: rgba(220, 38, 38, 0.5);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.video-slot-preview {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: linear-gradient(135deg, var(--surface-2) 0%, rgba(220, 38, 38, 0.15) 100%);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.video-slot-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0,0,0,0.7);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  backdrop-filter: blur(4px);
+}
+
+.video-slot-duration {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(0,0,0,0.8);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+}
+
+.video-slot-icon-play {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(220, 38, 38, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition: transform 0.3s;
+  box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
+}
+
+.video-slot-card:hover .video-slot-icon-play {
+  transform: scale(1.1);
+  background: #dc2626;
+}
+
+.video-slot-info {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.video-slot-cat {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #dc2626;
+}
+
+.video-slot-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.video-slot-desc {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* EDITING CAPABILITIES */
+.capabilities-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+@media (max-width: 960px) {
+  .capabilities-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 520px) {
+  .capabilities-grid { grid-template-columns: 1fr; }
+}
+
+.capability-card {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+}
+
+.capability-num {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #dc2626;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
+}
+
+.capability-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+
+.capability-card p {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* EDITING RESPONSIVENESS */
+@media (max-width: 1024px) {
+  .editing-hero-container {
+    gap: 3rem;
   }
 }
 
-/* Video Lightbox */
+@media (max-width: 860px) {
+  .editing-hero-container {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding: 1.5rem var(--container);
+    text-align: center;
+  }
+  
+  .editing-left-content {
+    align-items: center;
+  }
+  
+  .editing-description {
+    max-width: 100%;
+  }
+  
+  .editing-actions {
+    justify-content: center;
+  }
+  
+  #timeline-container {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
+
+/* ===== VIDEO LIGHTBOX ===== */
 .video-lightbox {
   position: fixed;
   inset: 0;
   z-index: 3000;
-  background: rgba(0,0,0,0.88);
+  background: rgba(0,0,0,0.92);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -746,204 +1461,12 @@ ul, ol {
   background: rgba(255,255,255,0.3);
 }
 
-.portfolio-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 40%, rgba(17,17,17,0.7) 100%);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 1.25rem;
-  opacity: 0;
-  transition: opacity var(--transition);
-}
-
-.portfolio-item:hover .portfolio-overlay {
-  opacity: 1;
-}
-
-@media (hover: none) {
-  .portfolio-overlay {
-    opacity: 1;
-    background: linear-gradient(180deg, transparent 50%, rgba(17,17,17,0.5) 100%);
-  }
-}
-
-.portfolio-overlay h4 {
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: #fff;
-  margin-bottom: 0.125rem;
-}
-
-.portfolio-overlay span {
-  font-size: 0.75rem;
-  color: rgba(255,255,255,0.7);
-  font-weight: 400;
-}
-
-/* ===== SERVICES & PLANS ===== */
-.tabs-nav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.25rem;
-  background: var(--accent-subtle);
-  border-radius: 100px;
-  padding: 4px;
-  width: fit-content;
-  margin: 0 auto 3rem;
-}
-
-.tab-btn {
-  font-size: 0.875rem;
-  font-weight: 600;
-  padding: 0.625rem 1.75rem;
-  border-radius: 100px;
-  color: var(--text-muted);
-  transition: all var(--transition);
-}
-
-.tab-btn.active {
-  background: var(--accent);
-  color: #fff;
-  box-shadow: var(--shadow-sm);
-}
-
-.tab-btn:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
-
-.tab-panel {
-  display: none;
-  animation: fadeIn 0.4s ease;
-}
-
-.tab-panel.active {
-  display: block;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.plans-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(1rem, 2vw, 1.5rem);
-  align-items: start;
-}
-
-@media (max-width: 900px) {
-  .plans-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
-}
-
-.plan-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: clamp(1.5rem, 3vw, 2rem);
-  position: relative;
-  transition: all var(--transition);
-}
-
-.plan-card:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
-}
-
-.plan-card.featured {
-  border-color: var(--accent);
-  box-shadow: var(--shadow-md);
-}
-
-.plan-badge {
-  position: absolute;
-  top: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--accent);
-  color: #fff;
-  font-size: 0.6875rem;
-  font-weight: 600;
-  padding: 0.25rem 1rem;
-  border-radius: 100px;
-  white-space: nowrap;
-  letter-spacing: 0.02em;
-}
-
-.plan-label {
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--accent);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 0.375rem;
-}
-
-.plan-name {
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-  letter-spacing: -0.01em;
-}
-
-.plan-price {
-  font-size: clamp(1.75rem, 3vw, 2.25rem);
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  color: var(--text);
-  margin-bottom: 1.25rem;
-}
-
-.plan-price small {
-  font-size: 0.75rem;
-  font-weight: 400;
-  color: var(--text-muted);
-}
-
-.plan-features {
-  margin-bottom: 1.5rem;
-}
-
-.plan-features li {
-  font-size: 0.875rem;
-  color: var(--text-muted);
-  padding: 0.375rem 0;
-  display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
-}
-
-.plan-features li::before {
-  content: '';
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
-  margin-top: 1px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23182235' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-
-.plan-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.plan-actions .btn {
-  width: 100%;
-}
-
-/* ===== MODAL ===== */
+/* ===== MODAL GERAL PLANOS ===== */
 .modal-overlay {
   position: fixed;
   inset: 0;
   z-index: 2000;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
@@ -960,7 +1483,8 @@ ul, ol {
 }
 
 .modal-card {
-  background: var(--surface);
+  background: var(--modal-bg);
+  border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   width: 100%;
   max-width: 520px;
@@ -980,27 +1504,25 @@ ul, ol {
   position: absolute;
   top: 1rem;
   right: 1rem;
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background var(--transition);
+  background: var(--surface-2);
   color: var(--text-muted);
 }
 
 .modal-close:hover {
-  background: var(--accent-subtle);
   color: var(--text);
 }
 
 .modal-label {
   font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-weight: 700;
   text-transform: uppercase;
-  color: var(--accent);
+  color: #dc2626;
   margin-bottom: 0.375rem;
 }
 
@@ -1013,7 +1535,6 @@ ul, ol {
 .modal-plan-price {
   font-size: 2rem;
   font-weight: 800;
-  letter-spacing: -0.02em;
   margin-bottom: 1.5rem;
 }
 
@@ -1025,30 +1546,7 @@ ul, ol {
   font-size: 0.9375rem;
   color: var(--text-muted);
   padding: 0.5rem 0;
-  display: flex;
-  align-items: flex-start;
-  gap: 0.625rem;
   border-bottom: 1px solid var(--border);
-}
-
-.modal-features li:last-child {
-  border-bottom: none;
-}
-
-.modal-features li::before {
-  content: '';
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-  margin-top: 1px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23182235' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-
-.modal-cta {
-  width: 100%;
-  margin-bottom: 1rem;
 }
 
 .modal-nav {
@@ -1058,349 +1556,6 @@ ul, ol {
   padding-top: 1rem;
   border-top: 1px solid var(--border);
 }
-
-.modal-nav button {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  font-size: 0.8125rem;
-  font-weight: 500;
-  color: var(--text-muted);
-  padding: 0.5rem 0.75rem;
-  border-radius: var(--radius-sm);
-  transition: all var(--transition);
-}
-
-.modal-nav button:hover {
-  color: var(--text);
-  background: var(--accent-subtle);
-}
-
-.modal-nav button:disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
-}
-
-@media (max-width: 560px) {
-  .modal-card {
-    max-height: 95dvh;
-    border-radius: var(--radius);
-  }
-}
-
-/* ===== TESTIMONIALS ===== */
-.testimonials-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(1rem, 2vw, 1.5rem);
-}
-
-@media (max-width: 768px) {
-  .testimonials-grid { grid-template-columns: 1fr; max-width: 520px; margin: 0 auto; }
-}
-
-.testimonial-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: clamp(1.5rem, 3vw, 2rem);
-  position: relative;
-}
-
-.testimonial-quote {
-  position: absolute;
-  top: 1rem;
-  right: 1.25rem;
-  font-size: 3.5rem;
-  line-height: 1;
-  color: var(--border);
-  font-family: Georgia, serif;
-  pointer-events: none;
-  user-select: none;
-}
-
-.testimonial-stars {
-  display: flex;
-  gap: 2px;
-  margin-bottom: 1rem;
-}
-
-.testimonial-stars svg {
-  width: 16px;
-  height: 16px;
-  fill: #f5b731;
-  color: #f5b731;
-}
-
-.testimonial-text {
-  font-size: 0.9375rem;
-  line-height: 1.65;
-  color: var(--text);
-  margin-bottom: 1.25rem;
-  font-style: italic;
-}
-
-.testimonial-author {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--text);
-}
-
-.testimonial-role {
-  font-size: 0.8125rem;
-  color: var(--text-muted);
-  margin-top: 0.125rem;
-}
-
-/* ===== FAQ ===== */
-.faq-list {
-  max-width: 760px;
-  margin: 0 auto;
-}
-
-.faq-item {
-  border-bottom: 1px solid var(--border);
-}
-
-.faq-question {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.25rem 0;
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--text);
-  text-align: left;
-  transition: color var(--transition);
-  gap: 1rem;
-}
-
-.faq-question:hover {
-  color: var(--accent);
-}
-
-.faq-question:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-  border-radius: 4px;
-}
-
-.faq-icon {
-  width: 24px;
-  height: 24px;
-  flex-shrink: 0;
-  position: relative;
-  color: var(--text-muted);
-}
-
-.faq-icon::before,
-.faq-icon::after {
-  content: '';
-  position: absolute;
-  background: currentColor;
-  border-radius: 1px;
-  transition: transform 0.3s;
-}
-
-.faq-icon::before {
-  width: 14px;
-  height: 2px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.faq-icon::after {
-  width: 2px;
-  height: 14px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.faq-item.open .faq-icon::after {
-  transform: translate(-50%, -50%) rotate(90deg);
-}
-
-.faq-answer {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.faq-answer-inner {
-  padding: 0 0 1.25rem;
-  font-size: 0.9375rem;
-  line-height: 1.65;
-  color: var(--text-muted);
-}
-
-/* ===== CTA FINAL ===== */
-.cta-final {
-  background: var(--accent);
-  border-radius: var(--radius-lg);
-  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 4vw, 3rem);
-  text-align: center;
-  margin: 0 var(--container);
-  max-width: 1320px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.cta-final-inner {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.cta-final h2 {
-  font-size: clamp(1.5rem, 3.5vw, 2.5rem);
-  font-weight: 700;
-  color: #fff;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-  margin-bottom: 1rem;
-}
-
-.cta-final p {
-  font-size: 1rem;
-  color: rgba(255,255,255,0.7);
-  margin-bottom: 2rem;
-  line-height: 1.6;
-}
-
-.cta-final-actions {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-}
-
-.btn-white {
-  background: #fff;
-  color: var(--accent);
-}
-
-.btn-white:hover {
-  background: #f0f0f0;
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
-}
-
-.btn-outline-white {
-  border: 1.5px solid rgba(255,255,255,0.3);
-  color: #fff;
-}
-
-.btn-outline-white:hover {
-  border-color: #fff;
-  background: rgba(255,255,255,0.1);
-}
-
-/* ===== FOOTER ===== */
-.footer {
-  background: #f2f2f0;
-  border-top: 1px solid var(--border);
-  padding: clamp(3rem, 6vw, 5rem) 0 0;
-}
-
-.footer-grid {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
-  gap: clamp(2rem, 4vw, 3rem);
-  padding-bottom: clamp(2.5rem, 5vw, 4rem);
-}
-
-@media (max-width: 768px) {
-  .footer-grid { grid-template-columns: 1fr 1fr; }
-}
-@media (max-width: 480px) {
-  .footer-grid { grid-template-columns: 1fr; }
-}
-
-.footer h4 {
-  font-size: 0.875rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  color: var(--text);
-}
-
-.footer p {
-  font-size: 0.875rem;
-  color: var(--text-muted);
-  line-height: 1.6;
-}
-
-.footer-links a {
-  display: block;
-  font-size: 0.875rem;
-  color: var(--text-muted);
-  padding: 0.25rem 0;
-  transition: color var(--transition);
-}
-
-.footer-links a:hover {
-  color: var(--accent);
-}
-
-.footer-contact a {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.875rem;
-  color: var(--text-muted);
-  padding: 0.25rem 0;
-  transition: color var(--transition);
-}
-
-.footer-contact a:hover {
-  color: var(--accent);
-}
-
-.footer-contact svg {
-  width: 16px;
-  height: 16px;
-  flex-shrink: 0;
-}
-
-.footer-map {
-  margin-top: 1rem;
-  border-radius: var(--radius-sm);
-  overflow: hidden;
-  aspect-ratio: 16/9;
-  background: var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.75rem;
-  color: var(--text-light);
-}
-
-.footer-bottom {
-  border-top: 1px solid var(--border);
-  padding: 1.5rem 0;
-  text-align: center;
-  font-size: 0.8125rem;
-  color: var(--text-light);
-}
-
-/* ===== FOCUS STYLES ===== */
-:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
-
-button:focus:not(:focus-visible),
-a:focus:not(:focus-visible) {
-  outline: none;
-}
-
-/* ===== SELECTION ===== */
-::selection {
-  background: rgba(24, 34, 53, 0.12);
-  color: var(--text);
-}
 </style>
 </head>
 
@@ -1409,542 +1564,814 @@ a:focus:not(:focus-visible) {
 <!-- ===== HEADER ===== -->
 <header class="header" id="header">
   <div class="container header-inner">
-    <a href="#inicio" class="logo" aria-label="Nvs Produções - Início"><span>Nvs</span> Produções</a>
-    <nav class="nav-links" aria-label="Navegação principal">
+    <div class="logo-area">
+      <a href="#inicio" class="logo" id="logoLink" aria-label="Nvs Produções"><span>Nvs</span> Produções</a>
+      
+      <!-- NAVIGATION VIEW TOGGLE (PT-BR Audiovisual / EN Video Editing) -->
+      <div class="view-switcher" role="tablist" aria-label="Seletor de área">
+        <button class="view-btn active" id="viewBtnPt" onclick="switchMainView('pt')" title="Produção Audiovisual">
+          <span>🇧🇷</span> Audiovisual
+        </button>
+        <button class="view-btn" id="viewBtnEn" onclick="switchMainView('en')" title="Video Editing (English)">
+          <span>✂️</span> Editing
+        </button>
+      </div>
+    </div>
+
+    <!-- NAVBAR LINKS -->
+    <nav class="nav-links" id="mainNavLinks" aria-label="Navegação principal">
+      <!-- Links dinâmicos por JS dependendo da visão atual -->
       <a href="#inicio">Início</a>
       <a href="#portfolio">Portfólio</a>
       <a href="#servicos">Serviços</a>
       <a href="#depoimentos">Depoimentos</a>
       <a href="#faq">FAQ</a>
-      <a href="https://wa.me/5534996300397" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Fale conosco</a>
     </nav>
-    <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+
+    <div style="display: flex; align-items: center; gap: 0.75rem;">
+      <!-- DARK/LIGHT THEME SWITCH -->
+      <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Alternar modo claro e escuro" title="Modo Claro/Escuro">
+        <!-- Sun Icon (shown in dark mode) -->
+        <svg id="sunIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <!-- Moon Icon (shown in light mode) -->
+        <svg id="moonIcon" style="display: none;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+
+      <a href="https://wa.me/5534996300397" target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="headerCtaBtn" style="padding: 0.5rem 1.25rem; font-size: 0.8125rem;">
+        Fale conosco
+      </a>
+
+      <button class="hamburger" id="hamburger" aria-label="Menu mobile" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 </header>
 
 <!-- Mobile Nav -->
 <div class="mobile-overlay" id="mobileOverlay"></div>
 <nav class="mobile-nav" id="mobileNav" aria-label="Menu mobile">
-  <a href="#inicio">Início</a>
-  <a href="#portfolio">Portfólio</a>
-  <a href="#servicos">Serviços</a>
-  <a href="#depoimentos">Depoimentos</a>
-  <a href="#faq">FAQ</a>
-  <a href="https://wa.me/5534996300397" target="_blank" rel="noopener noreferrer">Fale conosco</a>
+  <div style="margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem;">
+    <span style="font-size: 0.75rem; font-weight: 700; color: #dc2626; text-transform: uppercase;">Mudar de Guia</span>
+    <div class="view-switcher" style="width: 100%;">
+      <button class="view-btn active" id="viewBtnPtMobile" onclick="switchMainView('pt'); closeMobileMenu();" style="flex: 1; justify-content: center;">
+        🇧🇷 Audiovisual
+      </button>
+      <button class="view-btn" id="viewBtnEnMobile" onclick="switchMainView('en'); closeMobileMenu();" style="flex: 1; justify-content: center;">
+        ✂️ Video Editing
+      </button>
+    </div>
+  </div>
+  <div id="mobileLinksContainer">
+    <a href="#inicio" onclick="closeMobileMenu()">Início</a>
+    <a href="#portfolio" onclick="closeMobileMenu()">Portfólio</a>
+    <a href="#servicos" onclick="closeMobileMenu()">Serviços</a>
+    <a href="#depoimentos" onclick="closeMobileMenu()">Depoimentos</a>
+    <a href="#faq" onclick="closeMobileMenu()">FAQ</a>
+    <a href="https://wa.me/5534996300397" target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
+  </div>
 </nav>
 
-<!-- ===== HERO ===== -->
-<section class="hero" id="inicio">
-  <div class="hero-bg">
-    <img src="https://res.cloudinary.com/yiqcgfn1/image/upload/f_auto,q_auto/hero" alt="Nvs Produções — produção audiovisual profissional" fetchpriority="high">
-  </div>
-  <div class="hero-content">
-    <span class="hero-label">Produção Audiovisual</span>
-    <h1>Nvs Produções</h1>
-    <p class="hero-subtitle">Eternizando seus momentos com qualidade cinematográfica</p>
-    <div class="hero-actions">
-      <a href="#servicos" class="btn btn-primary btn-lg">
-        Conheça nossos serviços
-      </a>
-      <a href="https://wa.me/5534996300397" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-lg">
-        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-        Falar no WhatsApp
-      </a>
+<!-- =========================================================================
+     VIEW 1: PÁGINA PRINCIPAL (PRODUÇÃO AUDIOVISUAL - PT-BR)
+     ========================================================================= -->
+<div class="app-view active-view" id="viewPt">
+
+  <!-- HERO PRINCIPAL COM BOTÃO VERMELHO GLOW (VIDEO EDITING) -->
+  <section class="hero-main" id="inicio">
+    <div class="hero-main-bg">
+      <img src="https://res.cloudinary.com/yiqcgfn1/image/upload/f_auto,q_auto/hero" alt="Nvs Produções Audiovisual" fetchpriority="high">
     </div>
-  </div>
-  <div class="scroll-hint" aria-hidden="true">
-    <span>Scroll</span>
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-  </div>
-</section>
-
-<!-- ===== WHY NVS ===== -->
-<section class="section" id="diferenciais">
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="section-label">Nossos diferenciais</span>
-      <h2 class="section-title">Por que escolher a Nvs</h2>
-    </div>
-    <div class="why-grid">
-      <div class="why-card reveal">
-        <div class="why-card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg>
-        </div>
-        <h3>Qualidade Visual</h3>
-        <p>Produção com estética cinematográfica e atenção aos detalhes.</p>
+    <div class="hero-main-content">
+      <div class="hero-badge-glow">
+        <span>🎬</span> Produtora Audiovisual Profissional
       </div>
-      <div class="why-card reveal">
-        <div class="why-card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
-        </div>
-        <h3>Experiência de Mercado</h3>
-        <p>Experiência na produção de conteúdos e registros profissionais.</p>
-      </div>
-      <div class="why-card reveal">
-        <div class="why-card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        </div>
-        <h3>Entrega Ágil</h3>
-        <p>Processo organizado e prazos claros.</p>
-      </div>
-      <div class="why-card reveal">
-        <div class="why-card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-        </div>
-        <h3>Equipamentos de Ponta</h3>
-        <p>Equipamentos profissionais para diferentes necessidades de produção.</p>
-      </div>
-    </div>
-  </div>
-</section>
+      <h1>Nvs Produções</h1>
+      <p class="hero-main-subtitle">Eternizando seus momentos com qualidade cinematográfica</p>
+      
+      <div class="hero-actions">
+        <!-- BOTÃO VERMELHO COM GLOW SOLICITADO -->
+        <button class="btn btn-lg btn-editing-glow" onclick="switchMainView('en')">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+          Video Editing (EN)
+        </button>
 
-<!-- ===== PORTFOLIO ===== -->
-<section class="section" id="portfolio" style="background: var(--surface);">
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="section-label">Portfólio</span>
-      <h2 class="section-title">Nosso trabalho</h2>
-      <p class="section-subtitle">Imagens que contam histórias.</p>
-    </div>
-    <div class="portfolio-filters reveal" role="toolbar" aria-label="Filtrar portfólio">
-      <button class="filter-btn active" data-filter="todos">Todos</button>
-      <button class="filter-btn" data-filter="eventos">Eventos</button>
-      <button class="filter-btn" data-filter="institucional">Institucional</button>
-      <button class="filter-btn" data-filter="drone">Drone</button>
-      <button class="filter-btn" data-filter="social">Social Media</button>
-      <button class="filter-btn" data-filter="ensaio">Ensaio</button>
-    </div>
-    <div class="portfolio-grid" id="portfolioGrid">
-
-      <div class="portfolio-item reveal" data-category="drone" data-video="aDJH6hqLRlk" onclick="openVideoLightbox(this)">
-        <img class="portfolio-thumb" src="https://img.youtube.com/vi/aDJH6hqLRlk/maxresdefault.jpg" alt="Produção aérea com drone" loading="lazy">
-        <div class="portfolio-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
-        <div class="portfolio-overlay"><h4>Produção Aérea</h4><span>Drone</span></div>
-      </div>
-
-      <div class="portfolio-item reveal" data-category="eventos" data-video="T41612DRHyA" onclick="openVideoLightbox(this)">
-        <img class="portfolio-thumb" src="https://img.youtube.com/vi/T41612DRHyA/maxresdefault.jpg" alt="Confraternização" loading="lazy">
-        <div class="portfolio-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
-        <div class="portfolio-overlay"><h4>Confraternização</h4><span>Eventos</span></div>
-      </div>
-
-      <div class="portfolio-item reveal" data-category="institucional" data-video="PzXkX8qnivg" onclick="openVideoLightbox(this)">
-        <img class="portfolio-thumb" src="https://img.youtube.com/vi/PzXkX8qnivg/maxresdefault.jpg" alt="Projeto Imobiliário" loading="lazy">
-        <div class="portfolio-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
-        <div class="portfolio-overlay"><h4>Imobiliário</h4><span>Institucional</span></div>
-      </div>
-
-      <div class="portfolio-item reveal" data-category="eventos" data-video="7LOGyY0n6dU" onclick="openVideoLightbox(this)">
-        <img class="portfolio-thumb" src="https://img.youtube.com/vi/7LOGyY0n6dU/maxresdefault.jpg" alt="Evento Corporativo" loading="lazy">
-        <div class="portfolio-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
-        <div class="portfolio-overlay"><h4>Evento Corporativo</h4><span>Eventos</span></div>
-      </div>
-
-      <div class="portfolio-item reveal" data-category="social" data-video="9NNJ_DTPng8" data-short="true" onclick="openVideoLightbox(this)">
-        <img class="portfolio-thumb" src="https://img.youtube.com/vi/9NNJ_DTPng8/maxresdefault.jpg" alt="Social Media" loading="lazy">
-        <div class="portfolio-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
-        <div class="portfolio-overlay"><h4>Conteúdo Digital</h4><span>Social Media</span></div>
-      </div>
-
-      <div class="portfolio-item reveal" data-category="ensaio" data-video="2OLhbEu2Wv0" data-short="true" onclick="openVideoLightbox(this)">
-        <img class="portfolio-thumb" src="https://img.youtube.com/vi/2OLhbEu2Wv0/maxresdefault.jpg" alt="Ensaio" loading="lazy">
-        <div class="portfolio-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
-        <div class="portfolio-overlay"><h4>Ensaio</h4><span>Ensaio</span></div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ===== SERVICES & PLANS ===== -->
-<section class="section" id="servicos">
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="section-label">Investimento</span>
-      <h2 class="section-title">Serviços & Planos</h2>
-      <p class="section-subtitle">Escolha o plano ideal para eternizar seu momento.</p>
-    </div>
-
-    <div class="tabs-nav reveal" role="tablist" aria-label="Categorias de serviço">
-      <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="panel-eventos" id="tab-eventos" data-tab="eventos">Eventos</button>
-      <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-drone" id="tab-drone" data-tab="drone">Drone</button>
-      <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-videos" id="tab-videos" data-tab="videos">Vídeos</button>
-    </div>
-
-    <!-- EVENTOS -->
-    <div class="tab-panel active" id="panel-eventos" role="tabpanel" aria-labelledby="tab-eventos">
-      <div class="plans-grid">
-        <div class="plan-card reveal">
-          <span class="plan-label">Ideal para Iniciar</span>
-          <h3 class="plan-name">Básico</h3>
-          <p class="plan-price">R$ 1.199</p>
-          <ul class="plan-features">
-            <li>Fotos em alta</li>
-            <li>Edição de cores</li>
-            <li>Entrega nuvem</li>
-          </ul>
-          <div class="plan-actions">
-            <a href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Básico%20de%20Eventos." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Contratar plano</a>
-            <button class="btn btn-ghost" onclick="openModal('eventos', 0)" aria-label="Ver detalhes do plano Básico">Ver detalhes</button>
-          </div>
-        </div>
-
-        <div class="plan-card featured reveal">
-          <span class="plan-badge">Melhor Custo-Benefício</span>
-          <span class="plan-label">Mais Popular</span>
-          <h3 class="plan-name">Intermediário</h3>
-          <p class="plan-price">R$ 2.199</p>
-          <ul class="plan-features">
-            <li>Fotos</li>
-            <li>Filme 4K/FHD</li>
-            <li>Edição Teaser + Completo</li>
-            <li>Entrega digital</li>
-          </ul>
-          <div class="plan-actions">
-            <a href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Intermediário%20de%20Eventos." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Contratar plano</a>
-            <button class="btn btn-ghost" onclick="openModal('eventos', 1)" aria-label="Ver detalhes do plano Intermediário">Ver detalhes</button>
-          </div>
-        </div>
-
-        <div class="plan-card reveal">
-          <span class="plan-label">Experiência Completa</span>
-          <h3 class="plan-name">Premium Completo</h3>
-          <p class="plan-price">R$ 3.299</p>
-          <ul class="plan-features">
-            <li>Fotos</li>
-            <li>2 Vídeos + Aéreo</li>
-            <li>Storymaker</li>
-            <li>Entrega em 15 dias úteis</li>
-          </ul>
-          <div class="plan-actions">
-            <a href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Premium%20Completo%20de%20Eventos." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Contratar plano</a>
-            <button class="btn btn-ghost" onclick="openModal('eventos', 2)" aria-label="Ver detalhes do plano Premium Completo">Ver detalhes</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- DRONE -->
-    <div class="tab-panel" id="panel-drone" role="tabpanel" aria-labelledby="tab-drone">
-      <div class="plans-grid">
-        <div class="plan-card reveal">
-          <span class="plan-label">Registro Aéreo</span>
-          <h3 class="plan-name">Fotos Aéreas</h3>
-          <p class="plan-price">R$ 500</p>
-          <ul class="plan-features">
-            <li>Alta qualidade</li>
-            <li>Correção de cor/luz</li>
-            <li>Diária/serviço</li>
-            <li>Nuvem</li>
-          </ul>
-          <div class="plan-actions">
-            <a href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Fotos%20Aéreas." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Contratar plano</a>
-            <button class="btn btn-ghost" onclick="openModal('drone', 0)" aria-label="Ver detalhes do plano Fotos Aéreas">Ver detalhes</button>
-          </div>
-        </div>
-
-        <div class="plan-card reveal">
-          <span class="plan-label">Captação Profissional</span>
-          <h3 class="plan-name">Vídeo Bruto</h3>
-          <p class="plan-price">R$ 800</p>
-          <ul class="plan-features">
-            <li>Captação 4K/FHD 30/60/100fps</li>
-            <li>D-Log M 10 bits</li>
-            <li>Na íntegra</li>
-            <li>Diária/serviço</li>
-          </ul>
-          <div class="plan-actions">
-            <a href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Vídeo%20Bruto." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Contratar plano</a>
-            <button class="btn btn-ghost" onclick="openModal('drone', 1)" aria-label="Ver detalhes do plano Vídeo Bruto">Ver detalhes</button>
-          </div>
-        </div>
-
-        <div class="plan-card featured reveal">
-          <span class="plan-badge">Melhor Custo-Benefício</span>
-          <span class="plan-label">Produção Completa</span>
-          <h3 class="plan-name">Vídeo Editado</h3>
-          <p class="plan-price">R$ 1.200</p>
-          <ul class="plan-features">
-            <li>Captação</li>
-            <li>Edição dinâmica</li>
-            <li>Trilha sonora</li>
-            <li>Pronto para redes sociais</li>
-          </ul>
-          <div class="plan-actions">
-            <a href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Vídeo%20Editado." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Contratar plano</a>
-            <button class="btn btn-ghost" onclick="openModal('drone', 2)" aria-label="Ver detalhes do plano Vídeo Editado">Ver detalhes</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- VÍDEOS -->
-    <div class="tab-panel" id="panel-videos" role="tabpanel" aria-labelledby="tab-videos">
-      <div class="plans-grid">
+        <a href="#servicos" class="btn btn-outline btn-lg" style="color: #fff; border-color: rgba(255,255,255,0.4);">
+          Conheça nossos serviços
+        </a>
         
-        <div class="plan-card reveal">
-          <span class="plan-label">Para Empresas</span>
-          <h3 class="plan-name">Corporativo & Social</h3>
-          <p class="plan-price">R$ 1.200 <small>a R$ 5.000</small></p>
-          <ul class="plan-features">
-            <li>Produção para Social Media</li>
-            <li>Vídeo de Evento Corporativo</li>
-            <li>Edição e formatação ideal</li>
-            <li>Projeto conforme demanda</li>
-          </ul>
-          <div class="plan-actions">
-            <a href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Corporativo%20e%20Social." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Contratar plano</a>
-            <button class="btn btn-ghost" onclick="openModal('videos', 0)" aria-label="Ver detalhes">Ver detalhes</button>
-          </div>
-        </div>
-
-        <div class="plan-card reveal">
-          <span class="plan-label">Confraternização</span>
-          <h3 class="plan-name">Essencial</h3>
-          <p class="plan-price">R$ 1.200</p>
-          <ul class="plan-features">
-            <li>Gravação com 1 câmera</li>
-            <li>Edição dinâmica</li>
-            <li>Cobertura dos principais momentos</li>
-            <li>Entrega digital</li>
-          </ul>
-          <div class="plan-actions">
-            <a href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Confraternização%20Essencial." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Contratar plano</a>
-            <button class="btn btn-ghost" onclick="openModal('videos', 1)" aria-label="Ver detalhes">Ver detalhes</button>
-          </div>
-        </div>
-
-        <div class="plan-card featured reveal">
-          <span class="plan-badge">Mais Escolhido</span>
-          <span class="plan-label">Confraternização</span>
-          <h3 class="plan-name">Avançado</h3>
-          <p class="plan-price">R$ 1.800</p>
-          <ul class="plan-features">
-            <li>Gravação com 1 câmera</li>
-            <li>Captação aérea com Drone</li>
-            <li>Edição dinâmica</li>
-            <li>Entrega digital</li>
-          </ul>
-          <div class="plan-actions">
-            <a href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Confraternização%20Avançado." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Contratar plano</a>
-            <button class="btn btn-ghost" onclick="openModal('videos', 2)" aria-label="Ver detalhes">Ver detalhes</button>
-          </div>
-        </div>
-
-        <div class="plan-card reveal">
-          <span class="plan-label">Confraternização</span>
-          <h3 class="plan-name">Premium</h3>
-          <p class="plan-price">R$ 2.899</p>
-          <ul class="plan-features">
-            <li>Gravação com 2 câmeras</li>
-            <li>Captação aérea com Drone</li>
-            <li>Edição cinematográfica</li>
-            <li>Cobertura completa</li>
-          </ul>
-          <div class="plan-actions">
-            <a href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Confraternização%20Premium." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Contratar plano</a>
-            <button class="btn btn-ghost" onclick="openModal('videos', 3)" aria-label="Ver detalhes">Ver detalhes</button>
-          </div>
-        </div>
-
-        <div class="plan-card reveal">
-          <span class="plan-label">Sob Medida</span>
-          <h3 class="plan-name">Personalizado</h3>
-          <p class="plan-price">Consulta</p>
-          <ul class="plan-features">
-            <li>3 ou mais câmeras</li>
-            <li>5 horas+ de evento</li>
-            <li>Aplicações específicas</li>
-            <li>Roteiro e direção sob medida</li>
-          </ul>
-          <div class="plan-actions">
-            <a href="https://wa.me/5534996300397?text=Olá!%20Gostaria%20de%20um%20orçamento%20Personalizado%20para%20vídeo." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Solicitar orçamento</a>
-            <button class="btn btn-ghost" onclick="openModal('videos', 4)" aria-label="Ver detalhes">Ver detalhes</button>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-
-  </div>
-</section>
-
-<!-- ===== VIDEO LIGHTBOX ===== -->
-<div class="video-lightbox" id="videoLightbox">
-  <button class="video-lightbox-close" id="videoLightboxClose" aria-label="Fechar vídeo">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-  </button>
-  <div class="video-lightbox-inner" id="videoLightboxInner"></div>
-</div>
-
-<!-- ===== MODAL ===== -->
-<div class="modal-overlay" id="planModal" aria-modal="true" role="dialog" aria-label="Detalhes do plano">
-  <div class="modal-card">
-    <button class="modal-close" id="modalClose" aria-label="Fechar detalhes do plano">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
-    <span class="modal-label" id="modalLabel"></span>
-    <h3 class="modal-plan-name" id="modalName"></h3>
-    <p class="modal-plan-price" id="modalPrice"></p>
-    <ul class="modal-features" id="modalFeatures"></ul>
-    <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg modal-cta" id="modalCta">
-      <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-      Contratar pelo WhatsApp
-    </a>
-    <div class="modal-nav">
-      <button id="modalPrev" aria-label="Plano anterior">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-        Anterior
-      </button>
-      <button id="modalNext" aria-label="Próximo plano">
-        Próximo
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-      </button>
-    </div>
-  </div>
-</div>
-
-<!-- ===== TESTIMONIALS ===== -->
-<section class="section" id="depoimentos" style="background: var(--surface);">
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="section-label">Depoimentos</span>
-      <h2 class="section-title">Quem viveu, recomenda.</h2>
-    </div>
-    <div class="testimonials-grid">
-      <!-- PLACEHOLDER: Substitua os depoimentos fictícios por depoimentos reais -->
-      <div class="testimonial-card reveal">
-        <span class="testimonial-quote" aria-hidden="true">"</span>
-        <div class="testimonial-stars" aria-label="5 estrelas">
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        </div>
-        <p class="testimonial-text">"A Nvs superou todas as nossas expectativas. O vídeo do nosso casamento ficou simplesmente perfeito, com uma qualidade que nos emociona toda vez que assistimos."</p>
-        <p class="testimonial-author">Mariana e Lucas</p>
-        <p class="testimonial-role">Casamento — Uberlândia</p>
-      </div>
-
-      <div class="testimonial-card reveal">
-        <span class="testimonial-quote" aria-hidden="true">"</span>
-        <div class="testimonial-stars" aria-label="5 estrelas">
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        </div>
-        <p class="testimonial-text">"Profissionalismo do início ao fim. As fotos do nosso evento corporativo foram incríveis e entregues no prazo combinado. Recomendo sem hesitar."</p>
-        <p class="testimonial-author">Rafael Mendes</p>
-        <p class="testimonial-role">Evento Corporativo</p>
-      </div>
-
-      <div class="testimonial-card reveal">
-        <span class="testimonial-quote" aria-hidden="true">"</span>
-        <div class="testimonial-stars" aria-label="5 estrelas">
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        </div>
-        <p class="testimonial-text">"As imagens aéreas com drone deram um diferencial enorme ao nosso projeto imobiliário. Qualidade impecável e a equipe é extremamente atenciosa."</p>
-        <p class="testimonial-author">Fernanda Costa</p>
-        <p class="testimonial-role">Projeto Imobiliário</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== FAQ ===== -->
-<section class="section" id="faq">
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="section-label">Dúvidas</span>
-      <h2 class="section-title">Perguntas frequentes</h2>
-    </div>
-    <div class="faq-list reveal" role="list">
-      <div class="faq-item" role="listitem">
-        <button class="faq-question" aria-expanded="false">
-          <span>Qual é o prazo de entrega?</span>
-          <span class="faq-icon" aria-hidden="true"></span>
-        </button>
-        <div class="faq-answer" role="region">
-          <div class="faq-answer-inner">O prazo varia de acordo com o plano contratado. Em geral, as entregas são feitas entre 7 e 15 dias úteis após o evento. Para o plano Premium Completo, garantimos entrega em até 15 dias úteis.</div>
-        </div>
-      </div>
-      <div class="faq-item" role="listitem">
-        <button class="faq-question" aria-expanded="false">
-          <span>Vocês atendem fora de Uberlândia?</span>
-          <span class="faq-icon" aria-hidden="true"></span>
-        </button>
-        <div class="faq-answer" role="region">
-          <div class="faq-answer-inner">Sim! Atendemos Uberlândia e toda a região. Para eventos em outras cidades, entre em contato para que possamos avaliar a logística e apresentar uma proposta personalizada.</div>
-        </div>
-      </div>
-      <div class="faq-item" role="listitem">
-        <button class="faq-question" aria-expanded="false">
-          <span>Como funciona o pagamento?</span>
-          <span class="faq-icon" aria-hidden="true"></span>
-        </button>
-        <div class="faq-answer" role="region">
-          <div class="faq-answer-inner">Trabalhamos com pagamento via Pix, transferência bancária e parcelamento. Uma entrada é solicitada na contratação e o restante pode ser combinado conforme a necessidade do cliente.</div>
-        </div>
-      </div>
-      <div class="faq-item" role="listitem">
-        <button class="faq-question" aria-expanded="false">
-          <span>Vocês trabalham com drone?</span>
-          <span class="faq-icon" aria-hidden="true"></span>
-        </button>
-        <div class="faq-answer" role="region">
-          <div class="faq-answer-inner">Sim! Oferecemos serviços de fotos aéreas, vídeo bruto, vídeo editado e até mapeamento topográfico com equipamentos profissionais de última geração. Confira nossos planos de Drone.</div>
-        </div>
-      </div>
-      <div class="faq-item" role="listitem">
-        <button class="faq-question" aria-expanded="false">
-          <span>Posso personalizar um pacote?</span>
-          <span class="faq-icon" aria-hidden="true"></span>
-        </button>
-        <div class="faq-answer" role="region">
-          <div class="faq-answer-inner">Claro! Nossos planos servem como referência, mas estamos abertos a personalizar pacotes de acordo com as necessidades específicas do seu projeto. Fale conosco pelo WhatsApp para montar o seu.</div>
-        </div>
-      </div>
-      <div class="faq-item" role="listitem">
-        <button class="faq-question" aria-expanded="false">
-          <span>Como faço para contratar?</span>
-          <span class="faq-icon" aria-hidden="true"></span>
-        </button>
-        <div class="faq-answer" role="region">
-          <div class="faq-answer-inner">É simples! Basta entrar em contato pelo nosso <a href="https://wa.me/5534996300397" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 500;">WhatsApp</a> ou <a href="https://instagram.com/nvs.producoes" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 500;">Instagram</a>. Vamos conversar sobre o seu projeto, alinhar os detalhes e preparar tudo para o grande dia.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== CTA FINAL ===== -->
-<section class="section" id="contato">
-  <div class="cta-final reveal">
-    <div class="cta-final-inner">
-      <h2>Vamos transformar seu momento em uma história?</h2>
-      <p>Entre em contato e descubra como podemos eternizar seus momentos com qualidade cinematográfica. Estamos prontos para criar algo incrível com você.</p>
-      <div class="cta-final-actions">
-        <a href="https://wa.me/5534996300397" target="_blank" rel="noopener noreferrer" class="btn btn-white btn-lg">
+        <a href="https://wa.me/5534996300397" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg">
           <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-          Falar com a Nvs no WhatsApp
-        </a>
-        <a href="https://instagram.com/nvs.producoes" target="_blank" rel="noopener noreferrer" class="btn btn-outline-white btn-lg">
-          Ver Instagram
+          WhatsApp
         </a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- POR QUE ESCOLHER -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Nossos diferenciais</span>
+        <h2 class="section-title">Por que escolher a Nvs</h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-card reveal">
+          <div class="why-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg>
+          </div>
+          <h3>Qualidade Visual</h3>
+          <p>Produção com estética cinematográfica e atenção milimétrica aos detalhes.</p>
+        </div>
+        <div class="why-card reveal">
+          <div class="why-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
+          </div>
+          <h3>Experiência de Mercado</h3>
+          <p>Experiência na produção de registros de alto nível e eventos expressivos.</p>
+        </div>
+        <div class="why-card reveal">
+          <div class="why-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h3>Entrega Ágil</h3>
+          <p>Processo organizado, transparência total e prazos cumpridos rigorosamente.</p>
+        </div>
+        <div class="why-card reveal">
+          <div class="why-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          </div>
+          <h3>Equipamentos de Ponta</h3>
+          <p>Câmeras cinema, drones 4K e pós-produção profissional com color grading.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFÓLIO AUDIOVISUAL -->
+  <section class="section" id="portfolio" style="background: var(--surface-0);">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Nosso Trabalho</span>
+        <h2 class="section-title">Portfólio em Vídeo</h2>
+        <p class="section-subtitle">Clique para reproduzir nossos trabalhos recentes.</p>
+      </div>
+
+      <div class="portfolio-filters reveal" role="toolbar">
+        <button class="filter-btn active" data-filter="todos">Todos</button>
+        <button class="filter-btn" data-filter="eventos">Eventos</button>
+        <button class="filter-btn" data-filter="institucional">Institucional</button>
+        <button class="filter-btn" data-filter="drone">Drone</button>
+        <button class="filter-btn" data-filter="social">Social Media</button>
+        <button class="filter-btn" data-filter="ensaio">Ensaio</button>
+      </div>
+
+      <div class="portfolio-grid" id="portfolioGrid">
+        <div class="portfolio-item reveal" data-category="drone" data-video="aDJH6hqLRlk" onclick="openVideoLightbox(this)">
+          <img class="portfolio-thumb" src="https://img.youtube.com/vi/aDJH6hqLRlk/maxresdefault.jpg" alt="Drone" loading="lazy">
+          <div class="portfolio-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+          <div class="portfolio-overlay"><h4>Produção Aérea</h4><span>Drone</span></div>
+        </div>
+
+        <div class="portfolio-item reveal" data-category="eventos" data-video="T41612DRHyA" onclick="openVideoLightbox(this)">
+          <img class="portfolio-thumb" src="https://img.youtube.com/vi/T41612DRHyA/maxresdefault.jpg" alt="Confraternização" loading="lazy">
+          <div class="portfolio-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+          <div class="portfolio-overlay"><h4>Confraternização</h4><span>Eventos</span></div>
+        </div>
+
+        <div class="portfolio-item reveal" data-category="institucional" data-video="PzXkX8qnivg" onclick="openVideoLightbox(this)">
+          <img class="portfolio-thumb" src="https://img.youtube.com/vi/PzXkX8qnivg/maxresdefault.jpg" alt="Imobiliário" loading="lazy">
+          <div class="portfolio-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+          <div class="portfolio-overlay"><h4>Imobiliário</h4><span>Institucional</span></div>
+        </div>
+
+        <div class="portfolio-item reveal" data-category="eventos" data-video="7LOGyY0n6dU" onclick="openVideoLightbox(this)">
+          <img class="portfolio-thumb" src="https://img.youtube.com/vi/7LOGyY0n6dU/maxresdefault.jpg" alt="Corporativo" loading="lazy">
+          <div class="portfolio-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+          <div class="portfolio-overlay"><h4>Evento Corporativo</h4><span>Eventos</span></div>
+        </div>
+
+        <div class="portfolio-item reveal" data-category="social" data-video="9NNJ_DTPng8" data-short="true" onclick="openVideoLightbox(this)">
+          <img class="portfolio-thumb" src="https://img.youtube.com/vi/9NNJ_DTPng8/maxresdefault.jpg" alt="Social Media" loading="lazy">
+          <div class="portfolio-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+          <div class="portfolio-overlay"><h4>Conteúdo Digital</h4><span>Social Media</span></div>
+        </div>
+
+        <div class="portfolio-item reveal" data-category="ensaio" data-video="2OLhbEu2Wv0" data-short="true" onclick="openVideoLightbox(this)">
+          <img class="portfolio-thumb" src="https://img.youtube.com/vi/2OLhbEu2Wv0/maxresdefault.jpg" alt="Ensaio" loading="lazy">
+          <div class="portfolio-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+          <div class="portfolio-overlay"><h4>Ensaio</h4><span>Ensaio</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVIÇOS & PLANOS COM TODAS AS GUIAS: EVENTOS | DRONE | VÍDEOS -->
+  <section class="section" id="servicos">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Investimento</span>
+        <h2 class="section-title">Serviços & Planos</h2>
+        <p class="section-subtitle">Escolha o pacote ideal para a sua necessidade.</p>
+      </div>
+
+      <div class="tabs-nav reveal" role="tablist">
+        <button class="tab-btn active" data-tab="eventos">Eventos</button>
+        <button class="tab-btn" data-tab="drone">Drone</button>
+        <button class="tab-btn" data-tab="videos">Vídeos</button>
+      </div>
+
+      <!-- PAINEL EVENTOS -->
+      <div class="tab-panel active" id="panel-eventos">
+        <div class="plans-grid">
+          <div class="plan-card reveal">
+            <span class="plan-label">Ideal para Iniciar</span>
+            <h3 class="plan-name">Básico</h3>
+            <p class="plan-price">R$ 1.199</p>
+            <ul class="plan-features">
+              <li>Fotos em alta</li>
+              <li>Edição de cores</li>
+              <li>Entrega nuvem</li>
+            </ul>
+            <div class="plan-actions">
+              <a href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Básico%20de%20Eventos." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Contratar plano</a>
+              <button class="btn btn-ghost" onclick="openModal('eventos', 0)">Ver detalhes</button>
+            </div>
+          </div>
+
+          <div class="plan-card featured reveal">
+            <span class="plan-badge">Mais Popular</span>
+            <span class="plan-label">Melhor Custo-Benefício</span>
+            <h3 class="plan-name">Intermediário</h3>
+            <p class="plan-price">R$ 2.199</p>
+            <ul class="plan-features">
+              <li>Fotos</li>
+              <li>Filme 4K/FHD</li>
+              <li>Edição Teaser + Completo</li>
+              <li>Entrega digital</li>
+            </ul>
+            <div class="plan-actions">
+              <a href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Intermediário%20de%20Eventos." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Contratar plano</a>
+              <button class="btn btn-ghost" onclick="openModal('eventos', 1)">Ver detalhes</button>
+            </div>
+          </div>
+
+          <div class="plan-card reveal">
+            <span class="plan-label">Experiência Completa</span>
+            <h3 class="plan-name">Premium Completo</h3>
+            <p class="plan-price">R$ 3.299</p>
+            <ul class="plan-features">
+              <li>Fotos</li>
+              <li>2 Vídeos + Aéreo</li>
+              <li>Storymaker</li>
+              <li>Entrega em 15 dias úteis</li>
+            </ul>
+            <div class="plan-actions">
+              <a href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Premium%20Completo%20de%20Eventos." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Contratar plano</a>
+              <button class="btn btn-ghost" onclick="openModal('eventos', 2)">Ver detalhes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAINEL DRONE -->
+      <div class="tab-panel" id="panel-drone">
+        <div class="plans-grid">
+          <div class="plan-card reveal">
+            <span class="plan-label">Registro Aéreo</span>
+            <h3 class="plan-name">Fotos Aéreas</h3>
+            <p class="plan-price">R$ 500</p>
+            <ul class="plan-features">
+              <li>Alta qualidade</li>
+              <li>Correção de cor/luz</li>
+              <li>Diária/serviço</li>
+              <li>Nuvem</li>
+            </ul>
+            <div class="plan-actions">
+              <a href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Fotos%20Aéreas." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Contratar plano</a>
+              <button class="btn btn-ghost" onclick="openModal('drone', 0)">Ver detalhes</button>
+            </div>
+          </div>
+
+          <div class="plan-card reveal">
+            <span class="plan-label">Captação Profissional</span>
+            <h3 class="plan-name">Vídeo Bruto</h3>
+            <p class="plan-price">R$ 800</p>
+            <ul class="plan-features">
+              <li>Captação 4K/FHD</li>
+              <li>Na íntegra</li>
+              <li>Diária/serviço</li>
+            </ul>
+            <div class="plan-actions">
+              <a href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Vídeo%20Bruto." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Contratar plano</a>
+              <button class="btn btn-ghost" onclick="openModal('drone', 1)">Ver detalhes</button>
+            </div>
+          </div>
+
+          <div class="plan-card featured reveal">
+            <span class="plan-badge">Melhor Custo-Benefício</span>
+            <span class="plan-label">Produção Completa</span>
+            <h3 class="plan-name">Vídeo Editado</h3>
+            <p class="plan-price">R$ 1.200</p>
+            <ul class="plan-features">
+              <li>Captação</li>
+              <li>Edição dinâmica</li>
+              <li>Color grading</li>
+              <li>Trilha sonora</li>
+              <li>Pronto para redes sociais</li>
+            </ul>
+            <div class="plan-actions">
+              <a href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Vídeo%20Editado." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Contratar plano</a>
+              <button class="btn btn-ghost" onclick="openModal('drone', 2)">Ver detalhes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAINEL VÍDEOS -->
+      <div class="tab-panel" id="panel-videos">
+        <div class="plans-grid">
+          <div class="plan-card reveal">
+            <span class="plan-label">Para Empresas</span>
+            <h3 class="plan-name">Corporativo & Social</h3>
+            <p class="plan-price">R$ 1.200 <small>a R$ 5.000</small></p>
+            <ul class="plan-features">
+              <li>Produção para Social Media</li>
+              <li>Vídeo de Evento Corporativo</li>
+              <li>Edição e formatação ideal</li>
+              <li>Projeto conforme demanda</li>
+            </ul>
+            <div class="plan-actions">
+              <a href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Corporativo%20e%20Social." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Contratar plano</a>
+              <button class="btn btn-ghost" onclick="openModal('videos', 0)">Ver detalhes</button>
+            </div>
+          </div>
+
+          <div class="plan-card reveal">
+            <span class="plan-label">Confraternização</span>
+            <h3 class="plan-name">Essencial</h3>
+            <p class="plan-price">R$ 1.200</p>
+            <ul class="plan-features">
+              <li>Gravação com 1 câmera</li>
+              <li>Edição normal do evento</li>
+              <li>Cobertura dos momentos chave</li>
+              <li>Entrega digital</li>
+            </ul>
+            <div class="plan-actions">
+              <a href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Confraternização%20Essencial." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Contratar plano</a>
+              <button class="btn btn-ghost" onclick="openModal('videos', 1)">Ver detalhes</button>
+            </div>
+          </div>
+
+          <div class="plan-card featured reveal">
+            <span class="plan-badge">Mais Escolhido</span>
+            <span class="plan-label">Confraternização</span>
+            <h3 class="plan-name">Avançado</h3>
+            <p class="plan-price">R$ 1.800</p>
+            <ul class="plan-features">
+              <li>Gravação com 1 câmera</li>
+              <li>Captação aérea com Drone</li>
+              <li>Edição dinâmica</li>
+              <li>Entrega digital</li>
+            </ul>
+            <div class="plan-actions">
+              <a href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Confraternização%20Avançado." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Contratar plano</a>
+              <button class="btn btn-ghost" onclick="openModal('videos', 2)">Ver detalhes</button>
+            </div>
+          </div>
+
+          <div class="plan-card reveal">
+            <span class="plan-label">Confraternização</span>
+            <h3 class="plan-name">Premium</h3>
+            <p class="plan-price">R$ 2.899</p>
+            <ul class="plan-features">
+              <li>Gravação com 2 câmeras</li>
+              <li>Captação aérea com Drone</li>
+              <li>Edição cinematográfica</li>
+              <li>Cobertura completa</li>
+            </ul>
+            <div class="plan-actions">
+              <a href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Confraternização%20Premium." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Contratar plano</a>
+              <button class="btn btn-ghost" onclick="openModal('videos', 3)">Ver detalhes</button>
+            </div>
+          </div>
+
+          <div class="plan-card reveal">
+            <span class="plan-label">Sob Medida</span>
+            <h3 class="plan-name">Personalizado</h3>
+            <p class="plan-price">Sob Consulta</p>
+            <ul class="plan-features">
+              <li>3 ou mais câmeras</li>
+              <li>5 horas ou mais de evento</li>
+              <li>Aplicações específicas</li>
+              <li>Roteiro e direção sob medida</li>
+            </ul>
+            <div class="plan-actions">
+              <a href="https://wa.me/5534996300397?text=Olá!%20Gostaria%20de%20um%20orçamento%20Personalizado%20para%20vídeo." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Solicitar orçamento</a>
+              <button class="btn btn-ghost" onclick="openModal('videos', 4)">Ver detalhes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPOIMENTOS -->
+  <section class="section" id="depoimentos" style="background: var(--surface-0);">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Depoimentos</span>
+        <h2 class="section-title">Quem viveu, recomenda.</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal">
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testimonial-text">"A Nvs superou todas as nossas expectativas. O vídeo captou exatamente a emoção do momento com uma colorização cinematográfica impecável."</p>
+          <p class="testimonial-author">Mariana e Lucas</p>
+          <p class="testimonial-role">Casamento & Celebração</p>
+        </div>
+
+        <div class="testimonial-card reveal">
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testimonial-text">"Profissionalismo sem igual. As imagens do nosso evento corporativo foram entregues no prazo com uma edição dinâmica e moderna."</p>
+          <p class="testimonial-author">Rafael Mendes</p>
+          <p class="testimonial-role">Evento Corporativo</p>
+        </div>
+
+        <div class="testimonial-card reveal">
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testimonial-text">"As tomadas de drone e edição deram outro patamar para a divulgação dos nossos imóveis de alto padrão."</p>
+          <p class="testimonial-author">Fernanda Costa</p>
+          <p class="testimonial-role">Empreendimento Imobiliário</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Dúvidas</span>
+        <h2 class="section-title">Perguntas frequentes</h2>
+      </div>
+      <div class="faq-list reveal">
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Qual é o prazo de entrega?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">O prazo médio de entrega varia de 7 a 15 dias úteis, garantindo color grading e edição refinada.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Vocês atendem fora de Uberlândia?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Sim! Atendemos Uberlândia, Triângulo Mineiro e todo o Brasil para produções e gravações.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Como funciona a contratação de edição de vídeo?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Você pode contratar avulso por vídeo ou plano mensal de retenção. Acesse nossa guia exclusiva de <strong>Video Editing</strong> no topo para conferir os detalhes!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL PT -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-final reveal">
+        <h2>Vamos transformar seu momento em uma história?</h2>
+        <p>Converse com nosso time e planeje a produção perfeita para o seu evento ou projeto.</p>
+        <div class="hero-actions">
+          <a href="https://wa.me/5534996300397" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg">
+            Falar no WhatsApp
+          </a>
+          <button class="btn btn-outline btn-lg" onclick="switchMainView('en')">
+            Ver Portfólio de Edição (EN)
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+
+<!-- =========================================================================
+     VIEW 2: GUIA EXCLUSIVA EM INGLÊS (VIDEO EDITING PORTFOLIO)
+     ========================================================================= -->
+<div class="app-view" id="viewEn">
+
+  <!-- HERO SECTION VIDEO EDITING (HTML E SVG 3D FORNECIDOS) -->
+  <section class="editing-hero-wrapper" id="editing-hero">
+    <div class="editing-hero-container">
+      
+      <!-- Left Content -->
+      <div class="editing-left-content">
+        <div class="content-animate">
+          <p class="editing-tag">Professional video editing</p>
+          <h1 class="editing-title">
+            Cinematic
+            <span class="editing-title-gradient">storytelling</span>
+          </h1>
+        </div>
+        
+        <p class="editing-description content-animate">
+          Premium video production and editing for YouTube creators who demand excellence. From concept to final cut, let's bring your vision to life.
+        </p>
+        
+        <div class="editing-actions content-animate">
+          <a href="#editing-work" class="btn btn-primary btn-lg" style="box-shadow: 0 4px 14px rgba(220,38,38,0.4);">
+            View my work
+          </a>
+          <a href="https://wa.me/5534996300397?text=Hi!%20I'm%20interested%20in%20your%20professional%20video%20editing%20services." target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-lg" style="border-color: #dc2626; color: #dc2626;">
+            Get a quote
+          </a>
+        </div>
+
+        <div style="margin-top: 0.5rem; display: flex; align-items: center; gap: 1.5rem;">
+          <div style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.825rem; color: var(--text-muted);">
+            <span style="color: #22c55e;">●</span> Fast turnaround
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.825rem; color: var(--text-muted);">
+            <span style="color: #22c55e;">●</span> 4K 60fps Color Graded
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.825rem; color: var(--text-muted);">
+            <span style="color: #22c55e;">●</span> High Retention Editing
+          </div>
+        </div>
+      </div>
+      
+      <!-- Right: Timeline Visualization with 3D -->
+      <div id="timeline-container">
+        <svg id="timeline-svg" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+          <!-- Main timeline card -->
+          <rect x="20" y="30" width="460" height="340" rx="12" fill="var(--surface-1)" stroke="#dc2626" stroke-width="2"/>
+          
+          <!-- Header -->
+          <rect x="20" y="30" width="460" height="50" rx="12" fill="#dc2626"/>
+          <text x="40" y="65" font-size="16" font-weight="600" fill="white" font-family="var(--font-sans)">NVS Timeline Studio</text>
+          
+          <!-- Timeline ruler -->
+          <line x1="40" y1="110" x2="460" y2="110" stroke="var(--border)" stroke-width="1"/>
+          <text x="40" y="100" font-size="11" fill="var(--text-secondary)" font-family="var(--font-sans)">00:00</text>
+          <text x="150" y="100" font-size="11" fill="var(--text-secondary)" font-family="var(--font-sans)">01:30</text>
+          <text x="260" y="100" font-size="11" fill="var(--text-secondary)" font-family="var(--font-sans)">03:00</text>
+          <text x="370" y="100" font-size="11" fill="var(--text-secondary)" font-family="var(--font-sans)">04:30</text>
+          
+          <!-- Video track 1 -->
+          <g class="video-track">
+            <text x="30" y="145" font-size="13" font-weight="600" fill="var(--text-primary)" font-family="var(--font-sans)">V1</text>
+            <rect x="40" y="130" width="120" height="28" rx="4" fill="#fca5a5" stroke="#dc2626" stroke-width="1.5" class="clip-box"/>
+            <text x="50" y="150" font-size="12" font-weight="600" fill="#7f1d1d" font-family="var(--font-sans)">Hook / Intro</text>
+            
+            <rect x="170" y="130" width="140" height="28" rx="4" fill="#fca5a5" stroke="#dc2626" stroke-width="1.5" opacity="0.8" class="clip-box"/>
+            <text x="180" y="150" font-size="12" font-weight="600" fill="#7f1d1d" font-family="var(--font-sans)">Story & Pacing</text>
+            
+            <rect x="320" y="130" width="100" height="28" rx="4" fill="#fca5a5" stroke="#dc2626" stroke-width="1.5" opacity="0.6" class="clip-box"/>
+            <text x="330" y="150" font-size="12" font-weight="600" fill="#7f1d1d" font-family="var(--font-sans)">Call to Action</text>
+          </g>
+          
+          <!-- Audio track 1 -->
+          <g class="audio-track">
+            <text x="30" y="210" font-size="13" font-weight="600" fill="var(--text-primary)" font-family="var(--font-sans)">A1</text>
+            <rect x="40" y="195" width="380" height="20" rx="3" fill="var(--bg-accent)" stroke="var(--border-accent)" stroke-width="1"/>
+            <g id="waveform">
+              <circle cx="60" cy="205" r="3" fill="#dc2626" class="wave-bar"/>
+              <circle cx="90" cy="205" r="4" fill="#dc2626" class="wave-bar"/>
+              <circle cx="120" cy="205" r="2.5" fill="#dc2626" class="wave-bar"/>
+              <circle cx="150" cy="205" r="3.5" fill="#dc2626" class="wave-bar"/>
+              <circle cx="180" cy="205" r="3" fill="#dc2626" class="wave-bar"/>
+              <circle cx="210" cy="205" r="4" fill="#dc2626" class="wave-bar"/>
+              <circle cx="240" cy="205" r="2" fill="#dc2626" class="wave-bar"/>
+              <circle cx="270" cy="205" r="3" fill="#dc2626" class="wave-bar"/>
+              <circle cx="300" cy="205" r="3.5" fill="#dc2626" class="wave-bar"/>
+              <circle cx="330" cy="205" r="3" fill="#dc2626" class="wave-bar"/>
+              <circle cx="360" cy="205" r="4" fill="#dc2626" class="wave-bar"/>
+              <circle cx="390" cy="205" r="2.5" fill="#dc2626" class="wave-bar"/>
+            </g>
+          </g>
+          
+          <!-- Effects track -->
+          <g class="effects-track">
+            <text x="30" y="275" font-size="13" font-weight="600" fill="var(--text-primary)" font-family="var(--font-sans)">FX</text>
+            <rect x="100" y="260" width="50" height="18" rx="3" fill="#fed7aa" stroke="#f97316" stroke-width="1" class="fx-box"/>
+            <text x="110" y="272" font-size="10" font-weight="600" fill="#92400e" font-family="var(--font-sans)">Sound FX</text>
+            
+            <rect x="220" y="260" width="60" height="18" rx="3" fill="#fed7aa" stroke="#f97316" stroke-width="1" class="fx-box"/>
+            <text x="228" y="272" font-size="10" font-weight="600" fill="#92400e" font-family="var(--font-sans)">3D Graphics</text>
+            
+            <rect x="340" y="260" width="50" height="18" rx="3" fill="#fed7aa" stroke="#f97316" stroke-width="1" class="fx-box"/>
+            <text x="350" y="272" font-size="10" font-weight="600" fill="#92400e" font-family="var(--font-sans)">Color LUT</text>
+          </g>
+          
+          <!-- Animated Playhead -->
+          <g id="playhead-group">
+            <line x1="200" y1="110" x2="200" y2="300" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="3,3"/>
+            <polygon points="200,110 195,100 205,100" fill="#dc2626"/>
+          </g>
+        </svg>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SHOWCASE PREPARADO (ESPAÇO RESERVADO PARA OS FUTUROS VÍDEOS) -->
+  <section class="section" id="editing-work">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Editing Portfolio</span>
+        <h2 class="section-title">Selected Edits & Case Studies</h2>
+        <p class="section-subtitle">High-retention storytelling crafted for modern audiences. Click any preview to watch.</p>
+      </div>
+
+      <!-- FILTER TABS FOR EDITING -->
+      <div class="portfolio-filters reveal">
+        <button class="filter-btn active" data-editfilter="all">All Edits</button>
+        <button class="filter-btn" data-editfilter="youtube">YouTube Long-Form</button>
+        <button class="filter-btn" data-editfilter="shorts">Shorts & TikTok</button>
+        <button class="filter-btn" data-editfilter="doc">Documentary / Narrative</button>
+        <button class="filter-btn" data-editfilter="color">Color Grading</button>
+      </div>
+
+      <!-- RESERVED SLOTS FOR EDITING SHOWCASE -->
+      <div class="editing-showcase-grid">
+
+        <!-- RESERVED SLOT 1 -->
+        <div class="video-slot-card reveal" data-category="youtube">
+          <div class="video-slot-preview" onclick="alert('Slot reserved! Drop your YouTube Video ID in the index.html data-video attribute.')">
+            <span class="video-slot-badge">4K 60FPS</span>
+            <div class="video-slot-icon-play"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+            <span class="video-slot-duration">14:20</span>
+          </div>
+          <div class="video-slot-info">
+            <span class="video-slot-cat">YouTube Long-Form</span>
+            <h4 class="video-slot-title">High Retention Tech & Lifestyle</h4>
+            <p class="video-slot-desc">Dynamic pacing, kinetic text tracking, customized motion graphics and sound design.</p>
+          </div>
+        </div>
+
+        <!-- RESERVED SLOT 2 -->
+        <div class="video-slot-card reveal" data-category="doc">
+          <div class="video-slot-preview" onclick="alert('Slot reserved! Drop your YouTube Video ID in the index.html data-video attribute.')">
+            <span class="video-slot-badge">CINEMATIC</span>
+            <div class="video-slot-icon-play"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+            <span class="video-slot-duration">22:45</span>
+          </div>
+          <div class="video-slot-info">
+            <span class="video-slot-cat">Documentary / Storytelling</span>
+            <h4 class="video-slot-title">Documentary Deep-Dive Episode</h4>
+            <p class="video-slot-desc">Cinematic B-roll assembly, tension arcs, archival footage restyling and Foley mix.</p>
+          </div>
+        </div>
+
+        <!-- RESERVED SLOT 3 -->
+        <div class="video-slot-card reveal" data-category="shorts">
+          <div class="video-slot-preview" onclick="alert('Slot reserved! Drop your YouTube Video ID in the index.html data-video attribute.')">
+            <span class="video-slot-badge">VIRAL HOOK</span>
+            <div class="video-slot-icon-play"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+            <span class="video-slot-duration">0:55</span>
+          </div>
+          <div class="video-slot-info">
+            <span class="video-slot-cat">Shorts & Reels</span>
+            <h4 class="video-slot-title">Micro-Content Engagement Cut</h4>
+            <p class="video-slot-desc">Fast-paced subtitles, emoji popups, zoomed punch-ins and trend sound effects.</p>
+          </div>
+        </div>
+
+        <!-- RESERVED SLOT 4 -->
+        <div class="video-slot-card reveal" data-category="color">
+          <div class="video-slot-preview" onclick="alert('Slot reserved! Drop your YouTube Video ID in the index.html data-video attribute.')">
+            <span class="video-slot-badge">DAVINCI RESOLVE</span>
+            <div class="video-slot-icon-play"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+            <span class="video-slot-duration">08:15</span>
+          </div>
+          <div class="video-slot-info">
+            <span class="video-slot-cat">Color Grading & FX</span>
+            <h4 class="video-slot-title">Commercial Grade & Film Emulation</h4>
+            <p class="video-slot-desc">Halation, 35mm film grain, color harmony correction and HDR delivery.</p>
+          </div>
+        </div>
+
+        <!-- RESERVED SLOT 5 -->
+        <div class="video-slot-card reveal" data-category="youtube">
+          <div class="video-slot-preview" onclick="alert('Slot reserved! Drop your YouTube Video ID in the index.html data-video attribute.')">
+            <span class="video-slot-badge">TALKING HEAD</span>
+            <div class="video-slot-icon-play"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+            <span class="video-slot-duration">18:02</span>
+          </div>
+          <div class="video-slot-info">
+            <span class="video-slot-cat">YouTube Long-Form</span>
+            <h4 class="video-slot-title">Educational & Business Breakdown</h4>
+            <p class="video-slot-desc">Pattern interrupts, animated graphs, clean audio gating and chapter pacing.</p>
+          </div>
+        </div>
+
+        <!-- RESERVED SLOT 6 -->
+        <div class="video-slot-card reveal" data-category="shorts">
+          <div class="video-slot-preview" onclick="alert('Slot reserved! Drop your YouTube Video ID in the index.html data-video attribute.')">
+            <span class="video-slot-badge">REPURPOSED</span>
+            <div class="video-slot-icon-play"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+            <span class="video-slot-duration">0:45</span>
+          </div>
+          <div class="video-slot-info">
+            <span class="video-slot-cat">Shorts & Reels</span>
+            <h4 class="video-slot-title">Podcast & Interview Highlight</h4>
+            <p class="video-slot-desc">Multi-speaker face framing, custom animated captions and audio enhancement.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPABILITIES / HOW WE EDIT -->
+  <section class="section" style="background: var(--surface-0);">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Workflow & Value</span>
+        <h2 class="section-title">Engineered for Audience Retention</h2>
+        <p class="section-subtitle">We do more than cut video: we analyze view velocity and design stories people can't click away from.</p>
+      </div>
+
+      <div class="capabilities-grid">
+        <div class="capability-card reveal">
+          <div class="capability-num">01 / RETENTION</div>
+          <h3>Hook & Pattern Interrupts</h3>
+          <p>Every first 30 seconds are optimized to drop viewer drop-off. Strategic sound cues and visual changes every 3-5 seconds.</p>
+        </div>
+
+        <div class="capability-card reveal">
+          <div class="capability-num">02 / SOUND DESIGN</div>
+          <h3>Atmospheric Sound FX</h3>
+          <p>Rich Foley, whooshes, risers and licensed background tracks engineered to trigger emotional reactions throughout.</p>
+        </div>
+
+        <div class="capability-card reveal">
+          <div class="capability-num">03 / MOTION DESIGN</div>
+          <h3>Custom 2D/3D Callouts</h3>
+          <p>Keyframed overlays, tracking markers, custom lower thirds and infographics that elevate production value.</p>
+        </div>
+
+        <div class="capability-card reveal">
+          <div class="capability-num">04 / COLOR SCIENCE</div>
+          <h3>Cinematic Color Grading</h3>
+          <p>DaVinci Resolve color pipelines ensuring rich skin tones, natural highlights and coherent aesthetic branding.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA EN -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-final reveal">
+        <h2>Ready to Level Up Your YouTube Channel?</h2>
+        <p>Send us your raw footage link or schedule an onboarding call to discuss a sample edit.</p>
+        <div class="hero-actions">
+          <a href="https://wa.me/5534996300397?text=Hi!%20I'd%20like%20to%20talk%20about%20video%20editing%20for%20my%20channel." target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg">
+            Chat on WhatsApp
+          </a>
+          <button class="btn btn-outline btn-lg" onclick="switchMainView('pt')">
+            ← Voltar para Nvs Produções (BR)
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
 
 <!-- ===== FOOTER ===== -->
 <footer class="footer" id="footer">
@@ -1952,39 +2379,29 @@ a:focus:not(:focus-visible) {
     <div class="footer-grid">
       <div>
         <a href="#inicio" class="logo" style="display: inline-block; margin-bottom: 1rem;"><span>Nvs</span> Produções</a>
-        <p>Produtora audiovisual especializada em fotografia, vídeo, drone e conteúdo com qualidade cinematográfica em Uberlândia e região.</p>
+        <p>Produtora audiovisual e estúdio de edição cinematográfica. Atendimento no Brasil e projetos de edição de vídeo globais.</p>
       </div>
       <div>
-        <h4>Links rápidos</h4>
+        <h4>Navegação</h4>
         <div class="footer-links">
-          <a href="#inicio">Início</a>
-          <a href="#portfolio">Portfólio</a>
-          <a href="#servicos">Serviços</a>
-          <a href="#faq">FAQ</a>
-          <a href="#contato">Contato</a>
+          <a href="#inicio" onclick="switchMainView('pt')">Produção Audiovisual</a>
+          <a href="#editing-hero" onclick="switchMainView('en')">Video Editing (EN)</a>
+          <a href="#servicos" onclick="switchMainView('pt')">Planos & Preços</a>
+          <a href="#faq" onclick="switchMainView('pt')">FAQ</a>
         </div>
       </div>
       <div>
         <h4>Contato</h4>
         <div class="footer-contact">
-          <a href="https://wa.me/5534996300397" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-            WhatsApp
-          </a>
-          <a href="https://instagram.com/nvs.producoes" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-            @nvs.producoes
-          </a>
+          <a href="https://wa.me/5534996300397" target="_blank" rel="noopener noreferrer">WhatsApp: (34) 99630-0397</a>
+          <a href="https://instagram.com/nvs.producoes" target="_blank" rel="noopener noreferrer">Instagram: @nvs.producoes</a>
         </div>
       </div>
       <div>
         <h4>Localização</h4>
-        <p style="margin-bottom: 0.75rem;">Uberlândia — MG</p>
-        <!-- PLACEHOLDER: Substitua o conteúdo abaixo por um <iframe> do Google Maps real:
-        <iframe src="https://www.google.com/maps/embed?pb=..." width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-        -->
-        <div class="footer-map" aria-label="Mapa de Uberlândia">
-          <span>Mapa — Uberlândia, MG</span>
+        <p>Uberlândia — MG (Atendimento Global online)</p>
+        <div class="footer-map" style="margin-top: 0.75rem; border-radius: 8px; background: var(--surface-2); height: 100px; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; color: var(--text-muted); border: 1px solid var(--border);">
+          Uberlândia, MG & Edição Remota
         </div>
       </div>
     </div>
@@ -1994,49 +2411,57 @@ a:focus:not(:focus-visible) {
   </div>
 </footer>
 
+<!-- ===== VIDEO LIGHTBOX ===== -->
+<div class="video-lightbox" id="videoLightbox">
+  <button class="video-lightbox-close" id="videoLightboxClose" aria-label="Fechar vídeo">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <div class="video-lightbox-inner" id="videoLightboxInner"></div>
+</div>
+
+<!-- ===== MODAL DE DETALHES DE PLANOS ===== -->
+<div class="modal-overlay" id="planModal" aria-modal="true" role="dialog">
+  <div class="modal-card">
+    <button class="modal-close" id="modalClose" aria-label="Fechar modal">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <span class="modal-label" id="modalLabel"></span>
+    <h3 class="modal-plan-name" id="modalName"></h3>
+    <p class="modal-plan-price" id="modalPrice"></p>
+    <ul class="modal-features" id="modalFeatures"></ul>
+    <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg" id="modalCta" style="width: 100%; margin-bottom: 1rem;">
+      Contratar pelo WhatsApp
+    </a>
+    <div class="modal-nav">
+      <button id="modalPrev" class="btn btn-ghost">← Anterior</button>
+      <button id="modalNext" class="btn btn-ghost">Próximo →</button>
+    </div>
+  </div>
+</div>
+
 <script>
-/* ===== PLAN DATA ===== */
+/* ===== DADOS DOS PLANOS ===== */
 const plansData = {
   eventos: [
     {
       label: 'Ideal para Iniciar',
       name: 'Básico',
       price: 'R$ 1.199',
-      features: [
-        'Fotos em alta resolução',
-        'Edição de cores profissional',
-        'Entrega via nuvem',
-        'Atendimento personalizado'
-      ],
+      features: ['Fotos em alta resolução', 'Edição de cores profissional', 'Entrega via nuvem', 'Atendimento personalizado'],
       whatsapp: 'https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Básico%20de%20Eventos.'
     },
     {
       label: 'Mais Popular',
       name: 'Intermediário',
       price: 'R$ 2.199',
-      features: [
-        'Fotos em alta resolução',
-        'Filme em 4K / Full HD',
-        'Edição Teaser + Filme Completo',
-        'Entrega digital via nuvem',
-        'Atendimento personalizado',
-        'Melhor custo-benefício'
-      ],
+      features: ['Fotos em alta resolução', 'Filme 4K / Full HD', 'Edição Teaser + Completo', 'Entrega digital', 'Melhor custo-benefício'],
       whatsapp: 'https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Intermediário%20de%20Eventos.'
     },
     {
       label: 'Experiência Completa',
       name: 'Premium Completo',
       price: 'R$ 3.299',
-      features: [
-        'Fotos em alta resolução',
-        '2 Vídeos + Aéreo (drone)',
-        'Storymaker profissional',
-        'Entrega em até 15 dias úteis',
-        'Edição cinematográfica completa',
-        'Color grading avançado',
-        'Atendimento VIP'
-      ],
+      features: ['Fotos em alta', '2 Vídeos + Aéreo (drone)', 'Storymaker profissional', 'Entrega em até 15 dias úteis', 'Color grading cinematográfico'],
       whatsapp: 'https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Premium%20Completo%20de%20Eventos.'
     }
   ],
@@ -2045,40 +2470,21 @@ const plansData = {
       label: 'Registro Aéreo',
       name: 'Fotos Aéreas',
       price: 'R$ 500',
-      features: [
-        'Fotos aéreas em alta qualidade',
-        'Correção de cor e luz',
-        'Formato por diária/serviço',
-        'Entrega via nuvem',
-        'Equipamento profissional'
-      ],
+      features: ['Fotos aéreas em alta resolução', 'Correção de cor e luz', 'Formato por diária/serviço', 'Entrega nuvem'],
       whatsapp: 'https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Fotos%20Aéreas.'
     },
     {
       label: 'Captação Profissional',
       name: 'Vídeo Bruto',
       price: 'R$ 800',
-      features: [
-        'Captação aérea em 4K / Full HD',
-        'Material na íntegra, sem cortes',
-        'Formato por diária/serviço',
-        'Equipamento profissional',
-        'Flexibilidade de uso do material'
-      ],
+      features: ['Captação aérea 4K/FHD', 'Material bruto na íntegra', 'Formato diária/serviço', 'Equipamento homologado'],
       whatsapp: 'https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Vídeo%20Bruto.'
     },
     {
       label: 'Produção Completa',
       name: 'Vídeo Editado',
       price: 'R$ 1.200',
-      features: [
-        'Captação aérea profissional',
-        'Edição dinâmica e criativa',
-        'Color grading cinematográfico',
-        'Trilha sonora licenciada',
-        'Pronto para redes sociais',
-        'Melhor custo-benefício'
-      ],
+      features: ['Captação com Drone', 'Edição dinâmica', 'Color grading', 'Trilha sonora licenciada', 'Pronto para redes sociais'],
       whatsapp: 'https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Vídeo%20Editado.'
     }
   ],
@@ -2087,137 +2493,172 @@ const plansData = {
       label: 'Para Empresas',
       name: 'Corporativo & Social',
       price: 'R$ 1.200 a R$ 5.000',
-      features: [
-        'Produção para Social Media',
-        'Vídeo de Evento Corporativo',
-        'Edição e formatação ideal para as redes',
-        'Projeto escalável conforme a demanda'
-      ],
+      features: ['Produção para Social Media', 'Vídeo de Evento Corporativo', 'Edição e formatação ideal para redes', 'Projeto escalável conforme demanda'],
       whatsapp: 'https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Corporativo%20e%20Social.'
     },
     {
       label: 'Confraternização',
       name: 'Essencial',
       price: 'R$ 1.200',
-      features: [
-        'Gravação com 1 câmera',
-        'Edição normal do evento',
-        'Cobertura dos principais momentos',
-        'Entrega digital'
-      ],
+      features: ['Gravação com 1 câmera', 'Edição normal do evento', 'Cobertura dos momentos principais', 'Entrega digital'],
       whatsapp: 'https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Confraternização%20Essencial.'
     },
     {
       label: 'Confraternização',
       name: 'Avançado',
       price: 'R$ 1.800',
-      features: [
-        'Gravação com 1 câmera',
-        'Captação aérea com Drone',
-        'Edição dinâmica',
-        'Entrega digital',
-        'Melhor custo-benefício'
-      ],
+      features: ['Gravação com 1 câmera', 'Captação aérea com Drone', 'Edição dinâmica com trilha', 'Entrega digital'],
       whatsapp: 'https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Confraternização%20Avançado.'
     },
     {
       label: 'Confraternização',
       name: 'Premium',
       price: 'R$ 2.899',
-      features: [
-        'Gravação com 2 câmeras',
-        'Captação aérea com Drone',
-        'Edição cinematográfica',
-        'Cobertura completa com ângulos variados'
-      ],
+      features: ['Gravação com 2 câmeras', 'Captação aérea com Drone', 'Edição cinematográfica', 'Cobertura de múltiplos ângulos'],
       whatsapp: 'https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Confraternização%20Premium.'
     },
     {
       label: 'Sob Medida',
       name: 'Personalizado',
       price: 'Sob Consulta',
-      features: [
-        '3 ou mais câmeras',
-        '5 horas ou mais de evento',
-        'Aplicações e formatos específicos',
-        'Roteiro e direção sob medida'
-      ],
+      features: ['3 ou mais câmeras', '5 horas ou mais de evento', 'Aplicações específicas', 'Roteiro e direção sob medida'],
       whatsapp: 'https://wa.me/5534996300397?text=Olá!%20Gostaria%20de%20um%20orçamento%20Personalizado%20para%20vídeo.'
     }
   ]
 };
 
-/* ===== NAVIGATION ===== */
-function initNavigation() {
-  const header = document.getElementById('header');
-  const hamburger = document.getElementById('hamburger');
-  const mobileNav = document.getElementById('mobileNav');
-  const mobileOverlay = document.getElementById('mobileOverlay');
-  const mobileLinks = mobileNav.querySelectorAll('a');
+/* ===== SPA VIEW SWITCHER (AUDIONVISUAL vs VIDEO EDITING) ===== */
+function switchMainView(view) {
+  const viewPt = document.getElementById('viewPt');
+  const viewEn = document.getElementById('viewEn');
+  const btnPt = document.getElementById('viewBtnPt');
+  const btnEn = document.getElementById('viewBtnEn');
+  const btnPtMobile = document.getElementById('viewBtnPtMobile');
+  const btnEnMobile = document.getElementById('viewBtnEnMobile');
+  const headerCta = document.getElementById('headerCtaBtn');
+  const mainNav = document.getElementById('mainNavLinks');
 
-  function closeMobileMenu() {
-    hamburger.classList.remove('active');
-    hamburger.setAttribute('aria-expanded', 'false');
-    mobileNav.classList.remove('open');
-    mobileOverlay.classList.remove('visible');
-    setTimeout(() => { mobileOverlay.style.display = 'none'; }, 300);
-    document.body.style.overflow = '';
+  if (view === 'en') {
+    viewPt.classList.remove('active-view');
+    viewEn.classList.add('active-view');
+    btnPt.classList.remove('active');
+    btnEn.classList.add('active');
+    if (btnPtMobile) btnPtMobile.classList.remove('active');
+    if (btnEnMobile) btnEnMobile.classList.add('active');
+    
+    headerCta.textContent = "Get a quote";
+    headerCta.href = "https://wa.me/5534996300397?text=Hi!%20I'm%20interested%20in%20video%20editing%20services.";
+    
+    mainNav.innerHTML = `
+      <a href="#editing-hero">Home</a>
+      <a href="#editing-work">Portfolio</a>
+      <a href="https://wa.me/5534996300397" target="_blank" rel="noopener noreferrer">Contact</a>
+      <a href="javascript:void(0)" onclick="switchMainView('pt')" style="color: #dc2626;">🇧🇷 Voltar</a>
+    `;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    viewEn.classList.remove('active-view');
+    viewPt.classList.add('active-view');
+    btnEn.classList.remove('active');
+    btnPt.classList.add('active');
+    if (btnEnMobile) btnEnMobile.classList.remove('active');
+    if (btnPtMobile) btnPtMobile.classList.add('active');
+
+    headerCta.textContent = "Fale conosco";
+    headerCta.href = "https://wa.me/5534996300397";
+
+    mainNav.innerHTML = `
+      <a href="#inicio">Início</a>
+      <a href="#portfolio">Portfólio</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#depoimentos">Depoimentos</a>
+      <a href="#faq">FAQ</a>
+    `;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
-
-  function openMobileMenu() {
-    hamburger.classList.add('active');
-    hamburger.setAttribute('aria-expanded', 'true');
-    mobileOverlay.style.display = 'block';
-    requestAnimationFrame(() => {
-      mobileOverlay.classList.add('visible');
-      mobileNav.classList.add('open');
-    });
-    document.body.style.overflow = 'hidden';
-  }
-
-  hamburger.addEventListener('click', () => {
-    if (mobileNav.classList.contains('open')) {
-      closeMobileMenu();
-    } else {
-      openMobileMenu();
-    }
-  });
-
-  mobileOverlay.addEventListener('click', closeMobileMenu);
-
-  mobileLinks.forEach(link => {
-    link.addEventListener('click', closeMobileMenu);
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && mobileNav.classList.contains('open')) {
-      closeMobileMenu();
-    }
-  });
-
-  // Header scroll effect
-  let lastScroll = 0;
-  window.addEventListener('scroll', () => {
-    const currentScroll = window.scrollY;
-    if (currentScroll > 50) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-    lastScroll = currentScroll;
-  }, { passive: true });
 }
 
-/* ===== PORTFOLIO FILTERS ===== */
-function initPortfolioFilters() {
-  const filterBtns = document.querySelectorAll('.filter-btn');
+/* ===== THEME SWITCHER (DARK MODE DEFAULT) ===== */
+function initTheme() {
+  const themeBtn = document.getElementById('themeToggleBtn');
+  const sunIcon = document.getElementById('sunIcon');
+  const moonIcon = document.getElementById('moonIcon');
+
+  // Padrão: DARK MODE
+  const savedTheme = localStorage.getItem('nvs_theme') || 'dark';
+
+  if (savedTheme === 'light') {
+    document.body.classList.add('light-theme');
+    sunIcon.style.display = 'none';
+    moonIcon.style.display = 'block';
+  } else {
+    document.body.classList.remove('light-theme');
+    sunIcon.style.display = 'block';
+    moonIcon.style.display = 'none';
+  }
+
+  themeBtn.addEventListener('click', () => {
+    document.body.classList.toggle('light-theme');
+    const isLight = document.body.classList.contains('light-theme');
+    
+    if (isLight) {
+      sunIcon.style.display = 'none';
+      moonIcon.style.display = 'block';
+      localStorage.setItem('nvs_theme', 'light');
+    } else {
+      sunIcon.style.display = 'block';
+      moonIcon.style.display = 'none';
+      localStorage.setItem('nvs_theme', 'dark');
+    }
+  });
+}
+
+/* ===== TIMELINE 3D MOUSE EFFECT ===== */
+function initTimeline3D() {
+  const timelineSvg = document.getElementById('timeline-svg');
+  const container = document.getElementById('timeline-container');
+  
+  if (!container || !timelineSvg) return;
+  
+  container.addEventListener('mousemove', (e) => {
+    const rect = container.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+    
+    const rotateX = (y - 0.5) * 14;
+    const rotateY = (x - 0.5) * 14;
+    
+    timelineSvg.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+  });
+  
+  container.addEventListener('mouseleave', () => {
+    timelineSvg.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+  });
+}
+
+/* ===== PORTFOLIO & TABS SCRIPT ===== */
+function initTabsAndFilters() {
+  // Tabs de Serviços
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.tab-panel');
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => b.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  // Filtros de Portfólio Audiovisual
+  const filterBtns = document.querySelectorAll('.filter-btn[data-filter]');
   const items = document.querySelectorAll('.portfolio-item');
 
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       filterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-
       const filter = btn.dataset.filter;
       items.forEach(item => {
         if (filter === 'todos' || item.dataset.category === filter) {
@@ -2230,174 +2671,31 @@ function initPortfolioFilters() {
   });
 }
 
-/* ===== TABS ===== */
-function initTabs() {
-  const tabBtns = document.querySelectorAll('.tab-btn');
-  const panels = document.querySelectorAll('.tab-panel');
-
-  tabBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const tab = btn.dataset.tab;
-
-      tabBtns.forEach(b => {
-        b.classList.remove('active');
-        b.setAttribute('aria-selected', 'false');
-      });
-      btn.classList.add('active');
-      btn.setAttribute('aria-selected', 'true');
-
-      panels.forEach(panel => {
-        panel.classList.remove('active');
-      });
-      document.getElementById('panel-' + tab).classList.add('active');
-    });
-  });
-}
-
-/* ===== FAQ ===== */
+/* ===== FAQ ACCORDION ===== */
 function initFAQ() {
-  const items = document.querySelectorAll('.faq-item');
-
-  items.forEach(item => {
-    const question = item.querySelector('.faq-question');
-    const answer = item.querySelector('.faq-answer');
-
-    question.addEventListener('click', () => {
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const answer = item.querySelector('.faq-answer');
       const isOpen = item.classList.contains('open');
 
-      // Close all
-      items.forEach(other => {
+      document.querySelectorAll('.faq-item').forEach(other => {
         other.classList.remove('open');
-        other.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
         other.querySelector('.faq-answer').style.maxHeight = null;
       });
 
-      // Open clicked if was closed
       if (!isOpen) {
         item.classList.add('open');
-        question.setAttribute('aria-expanded', 'true');
         answer.style.maxHeight = answer.scrollHeight + 'px';
       }
     });
-
-    // Keyboard support
-    question.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        question.click();
-      }
-    });
   });
 }
 
-/* ===== SCROLL REVEAL ===== */
-function initScrollReveal() {
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (prefersReducedMotion) {
-    document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-visible'));
-    return;
-  }
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -40px 0px'
-  });
-
-  document.querySelectorAll('.reveal').forEach(el => {
-    observer.observe(el);
-  });
-}
-
-/* ===== PLAN MODAL ===== */
-let currentModalCategory = 'eventos';
-let currentModalIndex = 0;
-
-function initPlanModal() {
-  const modal = document.getElementById('planModal');
-  const closeBtn = document.getElementById('modalClose');
-  const prevBtn = document.getElementById('modalPrev');
-  const nextBtn = document.getElementById('modalNext');
-
-  closeBtn.addEventListener('click', closeModal);
-
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeModal();
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('open')) {
-      closeModal();
-    }
-    if (modal.classList.contains('open')) {
-      if (e.key === 'ArrowLeft') navigateModal(-1);
-      if (e.key === 'ArrowRight') navigateModal(1);
-    }
-  });
-
-  prevBtn.addEventListener('click', () => navigateModal(-1));
-  nextBtn.addEventListener('click', () => navigateModal(1));
-}
-
-function openModal(category, index) {
-  currentModalCategory = category;
-  currentModalIndex = index;
-  updateModalContent();
-  const modal = document.getElementById('planModal');
-  modal.classList.add('open');
-  document.body.style.overflow = 'hidden';
-  document.getElementById('modalClose').focus();
-}
-
-function closeModal() {
-  const modal = document.getElementById('planModal');
-  modal.classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-function navigateModal(direction) {
-  const plans = plansData[currentModalCategory];
-  const newIndex = currentModalIndex + direction;
-  if (newIndex >= 0 && newIndex < plans.length) {
-    currentModalIndex = newIndex;
-    updateModalContent();
-  }
-}
-
-function updateModalContent() {
-  const plan = plansData[currentModalCategory][currentModalIndex];
-  const plans = plansData[currentModalCategory];
-
-  document.getElementById('modalLabel').textContent = plan.label;
-  document.getElementById('modalName').textContent = plan.name;
-  document.getElementById('modalPrice').textContent = plan.price;
-
-  const featuresEl = document.getElementById('modalFeatures');
-  featuresEl.innerHTML = '';
-  plan.features.forEach(f => {
-    const li = document.createElement('li');
-    li.textContent = f;
-    featuresEl.appendChild(li);
-  });
-
-  document.getElementById('modalCta').href = plan.whatsapp;
-
-  const prevBtn = document.getElementById('modalPrev');
-  const nextBtn = document.getElementById('modalNext');
-  prevBtn.disabled = currentModalIndex === 0;
-  nextBtn.disabled = currentModalIndex === plans.length - 1;
-}
-
-/* ===== VIDEO LIGHTBOX ===== */
-function openVideoLightbox(element) {
-  const videoId = element.dataset.video;
-  const isShort = element.dataset.short === 'true';
+/* ===== LIGHTBOX DE VÍDEOS ===== */
+function openVideoLightbox(el) {
+  const videoId = el.dataset.video;
+  const isShort = el.dataset.short === 'true';
   const lightbox = document.getElementById('videoLightbox');
   const inner = document.getElementById('videoLightboxInner');
 
@@ -2407,8 +2705,7 @@ function openVideoLightbox(element) {
     inner.classList.remove('is-short');
   }
 
-  inner.innerHTML = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&showinfo=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
-  
+  inner.innerHTML = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0" title="YouTube Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
   lightbox.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
@@ -2416,41 +2713,125 @@ function openVideoLightbox(element) {
 function closeVideoLightbox() {
   const lightbox = document.getElementById('videoLightbox');
   const inner = document.getElementById('videoLightboxInner');
-  
   lightbox.classList.remove('open');
   document.body.style.overflow = '';
-  
-  setTimeout(() => {
-    inner.innerHTML = '';
-  }, 300);
+  setTimeout(() => { inner.innerHTML = ''; }, 300);
 }
 
+/* ===== MODAL DE PLANOS ===== */
+let currentModalCat = 'eventos';
+let currentModalIdx = 0;
+
+function openModal(category, index) {
+  currentModalCat = category;
+  currentModalIdx = index;
+  updateModal();
+  document.getElementById('planModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('planModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function updateModal() {
+  const plan = plansData[currentModalCat][currentModalIdx];
+  const list = plansData[currentModalCat];
+
+  document.getElementById('modalLabel').textContent = plan.label;
+  document.getElementById('modalName').textContent = plan.name;
+  document.getElementById('modalPrice').textContent = plan.price;
+  document.getElementById('modalCta').href = plan.whatsapp;
+
+  const fList = document.getElementById('modalFeatures');
+  fList.innerHTML = plan.features.map(f => `<li>✓ ${f}</li>`).join('');
+
+  document.getElementById('modalPrev').disabled = currentModalIdx === 0;
+  document.getElementById('modalNext').disabled = currentModalIdx === list.length - 1;
+}
+
+/* ===== MENU MOBILE & SCROLL REVEAL ===== */
+function closeMobileMenu() {
+  document.getElementById('hamburger').classList.remove('active');
+  document.getElementById('mobileNav').classList.remove('open');
+  document.getElementById('mobileOverlay').classList.remove('visible');
+  setTimeout(() => { document.getElementById('mobileOverlay').style.display = 'none'; }, 300);
+  document.body.style.overflow = '';
+}
+
+function openMobileMenu() {
+  document.getElementById('hamburger').classList.add('active');
+  const overlay = document.getElementById('mobileOverlay');
+  overlay.style.display = 'block';
+  requestAnimationFrame(() => {
+    overlay.classList.add('visible');
+    document.getElementById('mobileNav').classList.add('open');
+  });
+  document.body.style.overflow = 'hidden';
+}
+
+/* ===== INICIALIZAÇÃO ===== */
 document.addEventListener('DOMContentLoaded', () => {
-  const lightbox = document.getElementById('videoLightbox');
-  const lightboxClose = document.getElementById('videoLightboxClose');
-  
-  if (lightbox && lightboxClose) {
-    lightboxClose.addEventListener('click', closeVideoLightbox);
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) closeVideoLightbox();
-    });
-    
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && lightbox.classList.contains('open')) {
-        closeVideoLightbox();
+  initTheme();
+  initTabsAndFilters();
+  initFAQ();
+  initTimeline3D();
+
+  // Scroll Reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
       }
     });
-  }
-});
+  }, { threshold: 0.1 });
 
-/* ===== INIT ===== */
-document.addEventListener('DOMContentLoaded', () => {
-  initNavigation();
-  initPortfolioFilters();
-  initTabs();
-  initFAQ();
-  initScrollReveal();
-  initPlanModal();
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Lightbox close events
+  const lbClose = document.getElementById('videoLightboxClose');
+  const lb = document.getElementById('videoLightbox');
+  if (lbClose && lb) {
+    lbClose.addEventListener('click', closeVideoLightbox);
+    lb.addEventListener('click', (e) => { if (e.target === lb) closeVideoLightbox(); });
+  }
+
+  // Plan modal events
+  const modalClose = document.getElementById('modalClose');
+  const planModal = document.getElementById('planModal');
+  if (modalClose && planModal) {
+    modalClose.addEventListener('click', closeModal);
+    planModal.addEventListener('click', (e) => { if (e.target === planModal) closeModal(); });
+  }
+
+  document.getElementById('modalPrev').addEventListener('click', () => {
+    if (currentModalIdx > 0) { currentModalIdx--; updateModal(); }
+  });
+  document.getElementById('modalNext').addEventListener('click', () => {
+    if (currentModalIdx < plansData[currentModalCat].length - 1) { currentModalIdx++; updateModal(); }
+  });
+
+  // Mobile menu
+  const hamb = document.getElementById('hamburger');
+  hamb.addEventListener('click', () => {
+    if (document.getElementById('mobileNav').classList.contains('open')) {
+      closeMobileMenu();
+    } else {
+      openMobileMenu();
+    }
+  });
+  document.getElementById('mobileOverlay').addEventListener('click', closeMobileMenu);
+
+  // Tecla ESC fecha modais
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeVideoLightbox();
+      closeModal();
+      closeMobileMenu();
+    }
+  });
 });
 </script>
 
