@@ -1,680 +1,65 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Nvs Produções — fotografia, vídeo, drone e edição audiovisual cinematográfica em Uberlândia e Triângulo Mineiro." />
-<title>Nvs Produções — Audiovisual</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-<style>
-:root{
-  --bg:#080808;
-  --surface:#101010;
-  --surface-2:#151515;
-  --text:#f3f3f3;
-  --muted:#9a9a9a;
-  --line:#242424;
-  --accent:#ff2b2b;
-  --accent-glow:rgba(255,43,43,.45);
-  --max:1180px;
-  --radius:18px;
-}
-
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
-  background:var(--bg);
-  color:var(--text);
-  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  line-height:1.5;
-  overflow-x:hidden;
-}
-a{color:inherit;text-decoration:none}
-img{display:block;width:100%;height:100%;object-fit:cover}
-button{font-family:inherit}
-
-.container{width:min(calc(100% - 40px),var(--max));margin:auto}
-
-/* NAV */
-nav{
-  position:fixed;
-  top:0;left:0;right:0;
-  z-index:40;
-  border-bottom:1px solid transparent;
-  transition:.3s;
-}
-nav.scrolled{
-  background:rgba(8,8,8,.88);
-  backdrop-filter:blur(18px);
-  border-color:var(--line);
-}
-.nav-inner{
-  height:76px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-.logo{
-  font-size:18px;
-  font-weight:800;
-  letter-spacing:-.04em;
-  display:flex;
-  align-items:baseline;
-  gap:6px;
-}
-.logo .dot{color:var(--accent)}
-.logo small{font-weight:500;font-size:13px;color:var(--muted);letter-spacing:-.01em}
-.links{display:flex;gap:30px;font-size:13px;color:#bdbdbd}
-.links a{transition:.2s}
-.links a:hover{color:white}
-.nav-actions{display:flex;align-items:center;gap:12px}
-
-.nav-cta{
-  border:1px solid #353535;
-  padding:10px 16px;
-  border-radius:999px;
-  font-size:12px;
-  transition:.2s;
-  white-space:nowrap;
-}
-.nav-cta:hover{background:white;color:#090909;border-color:white}
-
-.btn-en-tag{
-  background:var(--accent);
-  color:white;
-  padding:9px 15px;
-  border-radius:999px;
-  font-size:12px;
-  font-weight:700;
-  box-shadow:0 0 16px var(--accent-glow);
-  cursor:pointer;
-  border:none;
-  transition:.2s;
-  white-space:nowrap;
-}
-.btn-en-tag:hover{
-  background:#e02424;
-  transform:translateY(-1px);
-  box-shadow:0 0 22px rgba(255,43,43,.7);
-}
-
-/* HERO */
-.hero{
-  min-height:100vh;
-  display:grid;
-  place-items:center;
-  position:relative;
-  overflow:hidden;
-  padding:120px 0 80px;
-}
-.hero::before{
-  content:"";
-  position:absolute;
-  width:620px;height:620px;
-  background:radial-gradient(circle,rgba(255,43,43,.14),transparent 68%);
-  top:4%;right:-14%;
-  pointer-events:none;
-}
-.hero::after{
-  content:"";
-  position:absolute;
-  width:500px;height:500px;
-  background:radial-gradient(circle,rgba(255,255,255,.035),transparent 70%);
-  left:-18%;bottom:-25%;
-  pointer-events:none;
-}
-.hero-grid{
-  display:grid;
-  grid-template-columns:1.15fr .85fr;
-  gap:70px;
-  align-items:end;
-  position:relative;
-  z-index:1;
-}
-.hero-grid > *{min-width:0}
-.eyebrow{
-  color:var(--accent);
-  text-transform:uppercase;
-  letter-spacing:.18em;
-  font-size:11px;
-  font-weight:700;
-  margin-bottom:24px;
-}
-h1{
-  font-size:clamp(42px,9vw,120px);
-  line-height:.86;
-  letter-spacing:-.07em;
-  max-width:850px;
-  overflow-wrap:break-word;
-  word-break:break-word;
-}
-h1 em{
-  color:transparent;
-  -webkit-text-stroke:1px #666;
-  font-style:normal;
-}
-.hero-copy{
-  margin-top:32px;
-  max-width:520px;
-  color:var(--muted);
-  font-size:16px;
-}
-.hero-actions{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  margin-top:32px;
-  flex-wrap:wrap;
-}
-.button{
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  padding:13px 19px;
-  border-radius:999px;
-  background:white;
-  color:#080808;
-  font-size:13px;
-  font-weight:700;
-  transition:.25s;
-  cursor:pointer;
-  border:none;
-}
-.button:hover{transform:translateY(-2px)}
-.button.dark{
-  background:transparent;
-  color:white;
-  border:1px solid #333;
-}
-.button.accent-red{
-  background:var(--accent);
-  color:white;
-  box-shadow:0 0 20px var(--accent-glow);
-}
-.button.accent-red:hover{
-  background:#e02424;
-  box-shadow:0 0 28px rgba(255,43,43,.75);
-}
-
-.hero-meta{
-  border-left:1px solid var(--line);
-  padding-left:28px;
-  margin-bottom:8px;
-  min-width:0;
-}
-.hero-meta .big{
-  font-size:clamp(28px,6vw,66px);
-  line-height:1;
-  letter-spacing:-.04em;
-  font-weight:800;
-  color:var(--accent);
-  overflow-wrap:break-word;
-  word-break:break-word;
-}
-.hero-meta p{color:var(--muted);font-size:12px;margin-top:10px;max-width:240px}
-
-.scroll{
-  position:absolute;
-  bottom:28px;
-  left:50%;
-  transform:translateX(-50%);
-  color:#666;
-  font-size:10px;
-  letter-spacing:.2em;
-  text-transform:uppercase;
-}
-
-/* SECTIONS */
-section{padding:120px 0}
-.section-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:end;
-  margin-bottom:34px;
-  gap:30px;
-}
-.section-number{
-  color:var(--accent);
-  font-size:11px;
-  font-weight:700;
-  letter-spacing:.15em;
-}
-h2{
-  margin-top:9px;
-  font-size:clamp(36px,5vw,64px);
-  letter-spacing:-.06em;
-  line-height:.97;
-}
-.section-head p{
-  max-width:340px;
-  color:var(--muted);
-  font-size:13px;
-}
-
-/* CATEGORY FILTERS */
-.work-filters{
-  display:flex;
-  gap:10px;
-  margin-bottom:32px;
-  flex-wrap:wrap;
-}
-.work-filter-btn{
-  border:1px solid #333;
-  padding:9px 16px;
-  border-radius:999px;
-  font-size:12px;
-  font-weight:600;
-  color:#aaa;
-  background:var(--surface);
-  cursor:pointer;
-  transition:.2s;
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-}
-.work-filter-btn:hover{color:#fff;border-color:#555}
-.work-filter-btn.active{
-  background:#fff;
-  color:#080808;
-  border-color:#fff;
-}
-.work-filter-btn .count{
-  font-size:10px;
-  padding:2px 6px;
-  border-radius:10px;
-  background:rgba(255,255,255,.1);
-}
-.work-filter-btn.active .count{
-  background:rgba(0,0,0,.15);
-  color:#000;
-}
-
-/* WORK GRID */
-.work-grid{
-  display:grid;
-  grid-template-columns:repeat(12,1fr);
-  gap:18px;
-}
-.work-grid > *{min-width:0}
-.project{
-  position:relative;
-  height:340px;
-  grid-column:span 4;
-  border-radius:var(--radius);
-  overflow:hidden;
-  background:var(--surface);
-  border:1px solid var(--line);
-  isolation:isolate;
-  cursor:pointer;
-  transition:transform .3s, opacity .3s;
-}
-.project.hidden{
-  display:none;
-}
-.project-bg{
-  position:absolute;inset:0;
-  background-size:cover;
-  background-position:center;
-  transition:transform .6s cubic-bezier(.2,.7,.2,1);
-}
-.project:hover .project-bg{transform:scale(1.045)}
-.project::after{
-  content:"";
-  position:absolute;inset:0;
-  background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.92));
-  z-index:1;
-}
-.project-info{
-  position:absolute;
-  z-index:2;
-  left:22px;right:22px;bottom:20px;
-  display:flex;justify-content:space-between;align-items:end;
-  gap:16px;
-}
-.project-title{font-size:20px;font-weight:700;letter-spacing:-.03em}
-.project-type{color:#bbb;font-size:11px;margin-top:5px}
-.arrow{
-  width:40px;height:40px;border:1px solid #666;border-radius:50%;
-  display:grid;place-items:center;
-  transition:.25s;
-  flex-shrink:0;
-}
-.arrow svg{width:14px;height:14px}
-.project:hover .arrow{background:white;border-color:white;transform:scale(1.06)}
-.project:hover .arrow svg{color:black}
-
-/* SERVICES / PLANS */
-.tabs{
-  display:flex;
-  gap:8px;
-  margin-bottom:44px;
-  flex-wrap:wrap;
-}
-.tab-btn{
-  border:1px solid #353535;
-  padding:10px 18px;
-  border-radius:999px;
-  font-size:12px;
-  color:#bdbdbd;
-  transition:.2s;
-  background:none;
-  cursor:pointer;
-}
-.tab-btn:hover{border-color:#555;color:white}
-.tab-btn.active{background:white;color:#090909;border-color:white}
-
-.plans{display:none}
-.plans.active{display:block}
-.plans-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
-  align-items:stretch;
-}
-.plans-grid > *{min-width:0}
-.plan-card{
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  padding:30px 26px;
-  background:var(--surface);
-  display:flex;
-  flex-direction:column;
-  position:relative;
-}
-.plan-card.featured{border-color:var(--accent)}
-.plan-badge{
-  position:absolute;
-  top:-11px;left:26px;
-  background:var(--accent);
-  color:white;
-  font-size:10px;
-  font-weight:700;
-  padding:4px 12px;
-  border-radius:999px;
-}
-.plan-label{font-size:12px;color:var(--muted);margin-bottom:8px}
-.plan-name{font-size:22px;font-weight:700;letter-spacing:-.03em;margin-bottom:14px}
-.plan-price{font-size:36px;font-weight:800;letter-spacing:-.04em;margin-bottom:22px}
-.plan-price small{font-size:13px;font-weight:500;color:var(--muted);letter-spacing:0}
-.plan-features{list-style:none;flex:1;margin-bottom:24px}
-.plan-features li{
-  font-size:13px;
-  color:var(--muted);
-  padding:9px 0;
-  border-bottom:1px solid var(--line);
-  display:flex;
-  gap:10px;
-}
-.plan-features li:last-child{border-bottom:none}
-.plan-features li::before{content:"–";color:var(--accent);flex-shrink:0}
-.plan-cta{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  padding:12px 18px;
-  border-radius:999px;
-  border:1px solid #353535;
-  font-size:12.5px;
-  font-weight:700;
-  transition:.2s;
-}
-.plan-cta:hover{background:white;color:#090909;border-color:white}
-
-/* ABOUT */
-.about-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:80px;
-  align-items:start;
-}
-.about-grid > *{min-width:0}
-.about-text{
-  font-size:clamp(24px,3.2vw,42px);
-  line-height:1.1;
-  letter-spacing:-.04em;
-}
-.about-text span{color:#555}
-.facts{border-top:1px solid var(--line)}
-.fact{
-  display:flex;justify-content:space-between;
-  padding:18px 0;border-bottom:1px solid var(--line);
-  font-size:13px;
-  gap:20px;
-}
-.fact span:first-child{color:#666;flex-shrink:0}
-.fact span:last-child{text-align:right;color:var(--text)}
-
-/* TESTIMONIALS */
-.testimonials-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:40px;
-}
-.testimonials-grid > *{min-width:0}
-.testimonial{border-top:1px solid var(--line);padding-top:22px}
-.testimonial .quote{font-size:14.5px;line-height:1.65;color:#dcdcdc;margin-bottom:20px}
-.testimonial .name{font-size:13px;font-weight:700}
-.testimonial .role{font-size:12px;color:#666;margin-top:2px}
-
-/* FAQ */
-.faq-list{max-width:760px}
-.faq-item{border-bottom:1px solid var(--line)}
-.faq-q{
-  width:100%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:20px;
-  padding:24px 0;
-  font-size:16px;
-  font-weight:600;
-  text-align:left;
-  background:none;
-  border:none;
-  color:var(--text);
-  cursor:pointer;
-}
-.faq-q .icon{
-  font-size:22px;
-  color:#666;
-  transition:.25s;
-  flex-shrink:0;
-}
-.faq-item.open .faq-q .icon{transform:rotate(45deg);color:var(--accent)}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .35s cubic-bezier(.4,0,.2,1)}
-.faq-a-inner{padding-bottom:24px;color:var(--muted);font-size:14px;max-width:620px;line-height:1.6}
-
-/* CONTACT */
-.contact{
-  padding:140px 0 100px;
-  text-align:center;
-  position:relative;
-  overflow:hidden;
-}
-.contact::before{
-  content:"";
-  position:absolute;
-  width:700px;height:400px;
-  left:50%;top:50%;
-  transform:translate(-50%,-50%);
-  background:radial-gradient(circle,rgba(255,43,43,.13),transparent 68%);
-  pointer-events:none;
-}
-.contact > *{position:relative;z-index:1}
-.contact h2{max-width:850px;margin:10px auto 28px}
-.contact p{color:var(--muted);max-width:480px;margin:auto;font-size:14px}
-.contact .hero-actions{justify-content:center;margin-top:32px}
-
-/* ENGLISH VIEW (SPA) */
-#viewEn{
-  display:none;
-  min-height:100vh;
-  padding:140px 0 100px;
-  position:relative;
-  background:radial-gradient(circle at 50% 10%, rgba(255,43,43,.12) 0%, transparent 65%);
-}
-body.show-en #viewPt{display:none}
-body.show-en #viewEn{display:block}
-
-.en-badge{
-  color:var(--accent);
-  letter-spacing:.2em;
-  font-size:11px;
-  font-weight:700;
-  text-transform:uppercase;
-  margin-bottom:18px;
-  display:inline-block;
-}
-.en-showcase-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-  gap:20px;
-  margin-top:60px;
-}
-.en-card{
-  background:var(--surface);
-  border:1px dashed #353535;
-  border-radius:var(--radius);
-  padding:36px;
-  text-align:left;
-  transition:.25s;
-}
-.en-card:hover{
-  border-color:var(--accent);
-  box-shadow:0 0 25px rgba(255,43,43,.15);
-}
-.en-card-tag{
-  color:var(--accent);
-  font-size:11px;
-  font-weight:700;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-}
-.en-card h3{font-size:22px;margin:14px 0 8px;letter-spacing:-.03em}
-.en-card p{color:var(--muted);font-size:14px;line-height:1.6}
-
-footer{
-  border-top:1px solid var(--line);
-  padding:25px 0;
-  color:#666;
-  font-size:11px;
-}
-.footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
-
-/* LIGHTBOX */
-.lightbox{
-  position:fixed;inset:0;z-index:100;
-  background:rgba(4,4,4,.94);
-  backdrop-filter:blur(10px);
-  display:flex;align-items:center;justify-content:center;
-  opacity:0;visibility:hidden;
-  transition:opacity .3s,visibility .3s;
-  padding:20px;
-}
-.lightbox.open{opacity:1;visibility:visible}
-.lightbox-inner{
-  width:100%;max-width:960px;aspect-ratio:16/9;
-  border-radius:var(--radius);overflow:hidden;background:#000;
-  border:1px solid var(--line);
-  transform:scale(.95);transition:transform .3s;
-}
-.lightbox.open .lightbox-inner{transform:scale(1)}
-.lightbox-inner.is-short{max-width:380px;aspect-ratio:9/16}
-.lightbox iframe{width:100%;height:100%;border:0}
-.lightbox-close{
-  position:fixed;top:24px;right:24px;
-  width:44px;height:44px;border:1px solid #353535;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;color:white;
-  background:rgba(8,8,8,.6);
-  cursor:pointer;
-  z-index:101;
-}
-
-@media(max-width:850px){
-  .links{display:none}
-  .hero-grid,.about-grid{grid-template-columns:1fr;gap:50px}
-  .hero-meta{border-left:0;border-top:1px solid var(--line);padding:25px 0 0}
-  .project{grid-column:span 12;height:300px}
-  .plans-grid{grid-template-columns:1fr;max-width:460px}
-  .testimonials-grid{grid-template-columns:1fr;gap:30px;max-width:480px}
-  section{padding:85px 0}
-}
-
-@media(max-width:520px){
-  .container{width:min(calc(100% - 28px),var(--max))}
-  .nav-inner{height:66px}
-  .nav-cta{padding:8px 12px}
-  h1{font-size:42px}
-  .eyebrow{letter-spacing:.12em}
-  .hero{padding-top:100px}
-  .hero-actions{flex-wrap:wrap}
-  .section-head{display:block}
-  .section-head p{margin-top:20px}
-  .footer-inner{display:block}
-  .footer-inner span{display:block;margin-top:7px}
-}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f2ea">
+  <meta name="description" content="Nvs Produções — fotografia, vídeo, drone e edição audiovisual cinematográfica em Uberlândia e Triângulo Mineiro.">
+  <title>NVS Produções — Fotografia, vídeo e drone</title>
+  <link rel="preload" href="fonts/barlow-condensed.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="portfolio.css">
+  <link rel="stylesheet" href="lower.css">
+  <script src="portfolio.js" defer></script>
 </head>
-
 <body>
-  <nav id="nav">
+  <a class="skip-link" href="#trabalho">Pular para os trabalhos</a>
+  <nav id="nav" aria-label="Principal">
     <div class="container nav-inner">
-      <a href="#" class="logo">Nvs<span class="dot">.</span> <small>Produções</small></a>
+      <a href="#inicio" class="logo" aria-label="NVS Produções, início">
+        <span class="brand-symbol" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="wordmark">NVS<span>PRODUÇÕES</span></span>
+      </a>
       <div class="links">
-        <a href="#trabalho">Trabalho</a>
-        <a href="#servicos">Serviços</a>
-        <a href="#sobre">Sobre</a>
+        <a href="#trabalho">Trabalho</a><a href="#servicos">Serviços</a><a href="#sobre">Sobre</a>
       </div>
       <div class="nav-actions">
-        <button class="btn-en-tag" id="btnToggleEn">Video Editing (EN)</button>
-        <a href="https://wa.me/5534996300397" target="_blank" rel="noopener noreferrer" class="nav-cta">WhatsApp ↗</a>
+        <button type="button" class="language-button" id="btnToggleEn">Edição (EN)</button>
+        <a class="nav-cta" href="https://wa.me/5534996300397" target="_blank" rel="noopener noreferrer">WhatsApp <span class="arrow-icon" aria-hidden="true"></span></a>
       </div>
     </div>
   </nav>
-
-  <!-- VIEW PT (PRINCIPAL) -->
   <main id="viewPt">
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <div class="eyebrow">Fotografia · Vídeo · Drone · Edição</div>
-          <h1>NVS<br><em>Produções</em></h1>
-          <p class="hero-copy">
-            Produção audiovisual cinematográfica para eventos, empresas e criadores
-            em Uberlândia e Triângulo Mineiro — da captação com câmeras cinema e
-            drone até a edição e color grading em DaVinci Resolve.
-          </p>
-          <div class="hero-actions">
-            <a href="#trabalho" class="button">Ver produções ↘</a>
-            <button class="button accent-red" id="heroBtnEn">Video Editing (EN)</button>
-            <a href="https://wa.me/5534996300397" target="_blank" rel="noopener noreferrer" class="button dark">WhatsApp ↗</a>
-          </div>
+    <section class="hero" id="inicio" aria-labelledby="heroHeading">
+      <img class="hero-image" id="heroImage" src="assets/hero-camera.webp" width="1672" height="941" fetchpriority="high" alt="">
+      <div class="hero-shade"></div>
+      <div class="container hero-layout">
+        <div class="hero-copy">
+          <p class="hero-kicker"><i aria-hidden="true"></i> Produtora audiovisual</p>
+          <h1 id="heroHeading" aria-label="NVS Produções"><span class="line-mask"><span>NVS</span></span><span class="line-mask"><span>Produções<b>.</b></span></span></h1>
+          <p class="hero-description">Produção audiovisual cinematográfica para eventos, empresas e criadores em Uberlândia e Triângulo Mineiro — da captação com câmeras cinema e drone até a edição e color grading em DaVinci Resolve.</p>
+          <a class="button hero-cta" href="#trabalho">Ver produções <span class="arrow-icon arrow-down" aria-hidden="true"></span></a>
         </div>
-
-        <div class="hero-meta">
-          <div class="big">Diferenciado</div>
-          <p>Captação de alta performance e acabamento cinematográfico.</p>
+        <div class="feature-bar" role="group" aria-label="Produções em destaque">
+          <button type="button" class="feature-play" id="heroPlay" aria-label="Assistir a Imagem Aérea">
+            <span class="play-disc" aria-hidden="true"></span><span><span class="feature-label">Em destaque</span><strong id="heroTitle" aria-live="polite">Imagem Aérea</strong></span>
+          </button>
+          <div class="feature-nav">
+            <span class="feature-index"><span id="heroIndex">01</span> <span>/ 03</span></span>
+            <button id="heroPrev" type="button" aria-label="Produção anterior">←</button>
+            <button id="heroNext" type="button" aria-label="Próxima produção">→</button>
+          </div>
         </div>
       </div>
-      <div class="scroll">Role para explorar</div>
     </section>
-
-    <section id="trabalho">
+    <div class="disciplines" aria-label="Áreas de atuação">
+      <div class="container disciplines-inner"><span>Fotografia</span><i aria-hidden="true">✳</i><span>Vídeo</span><i aria-hidden="true">✳</i><span>Drone</span><i aria-hidden="true">✳</i><span>Edição</span></div>
+    </div>
+    <section id="trabalho" aria-labelledby="work-heading">
       <div class="container">
         <div class="section-head">
-          <div>
-            <div class="section-number">01 / TRABALHO</div>
-            <h2>Produções<br>selecionadas.</h2>
-          </div>
+          <div><div class="section-number">Portfólio</div><h2 id="work-heading">Produções selecionadas<span>.</span></h2></div>
           <p>Uma seleção da nossa produção em vídeo — filtre abaixo para navegar por categoria.</p>
         </div>
-
-        <!-- FILTROS POR CATEGORIA -->
         <div class="work-filters" id="workFilters">
           <button class="work-filter-btn active" data-filter="all">
             Todos <span class="count" id="count-all">0</span>
@@ -694,112 +79,46 @@ footer{
         </div>
 
         <div class="work-grid" id="workGrid">
-          
-          <!-- Drone -->
-          <div class="project" data-category="drone" data-video="aDJH6hqLRlk" data-type="youtube">
-            <div class="project-bg" style="background-image:url('https://img.youtube.com/vi/aDJH6hqLRlk/maxresdefault.jpg')"></div>
-            <div class="project-info">
-              <div>
-                <div class="project-title">Imagem Aérea</div>
-                <div class="project-type">Drone · Captação</div>
-              </div>
-              <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
-            </div>
-          </div>
-
-          <!-- Festa Infantil (Novo) -->
-          <div class="project" data-category="eventos" data-video="DA_a7z_ofI8" data-type="youtube">
-            <div class="project-bg" style="background-image:url('https://img.youtube.com/vi/DA_a7z_ofI8/maxresdefault.jpg')"></div>
-            <div class="project-info">
-              <div>
-                <div class="project-title">Festa Infantil</div>
-                <div class="project-type">Celebração · Eventos</div>
-              </div>
-              <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
-            </div>
-          </div>
-
-          <!-- Show Musical (Novo - Instagram Reel) -->
-          <div class="project" data-category="social" data-video="DLB5YvgJp1M" data-type="instagram" data-short="true">
-            <div class="project-bg" style="background-image:url('https://res.cloudinary.com/yiqcgfn1/image/upload/f_auto,q_auto/hero')"></div>
-            <div class="project-info">
-              <div>
-                <div class="project-title">Show Musical</div>
-                <div class="project-type">Social Media · Reels / Instagram</div>
-              </div>
-              <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
-            </div>
-          </div>
-
-          <!-- Confraternização -->
-          <div class="project" data-category="eventos corporativo" data-video="T41612DRHyA" data-type="youtube">
-            <div class="project-bg" style="background-image:url('https://img.youtube.com/vi/T41612DRHyA/maxresdefault.jpg')"></div>
-            <div class="project-info">
-              <div>
-                <div class="project-title">Confraternização</div>
-                <div class="project-type">Eventos · Cobertura</div>
-              </div>
-              <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
-            </div>
-          </div>
-
-          <!-- Imobiliário -->
-          <div class="project" data-category="drone corporativo" data-video="PzXkX8qnivg" data-type="youtube">
-            <div class="project-bg" style="background-image:url('https://img.youtube.com/vi/PzXkX8qnivg/maxresdefault.jpg')"></div>
-            <div class="project-info">
-              <div>
-                <div class="project-title">Imobiliário</div>
-                <div class="project-type">Institucional · Drone</div>
-              </div>
-              <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
-            </div>
-          </div>
-
-          <!-- Evento Corporativo -->
-          <div class="project" data-category="corporativo eventos" data-video="7LOGyY0n6dU" data-type="youtube">
-            <div class="project-bg" style="background-image:url('https://img.youtube.com/vi/7LOGyY0n6dU/maxresdefault.jpg')"></div>
-            <div class="project-info">
-              <div>
-                <div class="project-title">Evento Corporativo</div>
-                <div class="project-type">Eventos · Cobertura</div>
-              </div>
-              <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
-            </div>
-          </div>
-
-          <!-- Social Media Short -->
-          <div class="project" data-category="social" data-video="9NNJ_DTPng8" data-type="youtube" data-short="true">
-            <div class="project-bg" style="background-image:url('https://img.youtube.com/vi/9NNJ_DTPng8/maxresdefault.jpg')"></div>
-            <div class="project-info">
-              <div>
-                <div class="project-title">Conteúdo Digital</div>
-                <div class="project-type">Social Media · Short</div>
-              </div>
-              <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
-            </div>
-          </div>
-
-          <!-- Ensaio -->
-          <div class="project" data-category="corporativo social" data-video="2OLhbEu2Wv0" data-type="youtube" data-short="true">
-            <div class="project-bg" style="background-image:url('https://img.youtube.com/vi/2OLhbEu2Wv0/maxresdefault.jpg')"></div>
-            <div class="project-info">
-              <div>
-                <div class="project-title">Ensaio</div>
-                <div class="project-type">Fotografia · Direção</div>
-              </div>
-              <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
-            </div>
-          </div>
-
+          <button type="button" class="project" data-category="drone" data-video="aDJH6hqLRlk" data-type="youtube" data-poster="assets/aDJH6hqLRlk.webp" aria-label="Assistir a Imagem Aérea">
+            <span class="project-frame"><img class="project-bg" src="assets/aDJH6hqLRlk.webp" alt="" loading="lazy" width="640" height="360"><span class="project-play" aria-hidden="true"></span></span>
+            <span class="project-info"><span><strong class="project-title">Imagem Aérea</strong><span class="project-type">Drone · Captação</span></span><span class="project-arrow arrow-icon" aria-hidden="true"></span></span>
+          </button>
+          <button type="button" class="project" data-category="eventos" data-video="DA_a7z_ofI8" data-type="youtube" data-poster="assets/DA_a7z_ofI8.webp" aria-label="Assistir a Festa Infantil">
+            <span class="project-frame"><img class="project-bg" src="assets/DA_a7z_ofI8.webp" alt="" loading="lazy" width="640" height="360"><span class="project-play" aria-hidden="true"></span></span>
+            <span class="project-info"><span><strong class="project-title">Festa Infantil</strong><span class="project-type">Celebração · Eventos</span></span><span class="project-arrow arrow-icon" aria-hidden="true"></span></span>
+          </button>
+          <button type="button" class="project" data-category="social" data-video="DLB5YvgJp1M" data-type="instagram" data-short="true" data-poster="assets/DLB5YvgJp1M.webp" aria-label="Assistir a Show Musical">
+            <span class="project-frame"><img class="project-bg" src="assets/DLB5YvgJp1M.webp" alt="" loading="lazy" width="640" height="360"><span class="project-play" aria-hidden="true"></span></span>
+            <span class="project-info"><span><strong class="project-title">Show Musical</strong><span class="project-type">Social Media · Reels / Instagram</span></span><span class="project-arrow arrow-icon" aria-hidden="true"></span></span>
+          </button>
+          <button type="button" class="project" data-category="eventos corporativo" data-video="T41612DRHyA" data-type="youtube" data-poster="assets/T41612DRHyA.webp" aria-label="Assistir a Confraternização">
+            <span class="project-frame"><img class="project-bg" src="assets/T41612DRHyA.webp" alt="" loading="lazy" width="640" height="360"><span class="project-play" aria-hidden="true"></span></span>
+            <span class="project-info"><span><strong class="project-title">Confraternização</strong><span class="project-type">Eventos · Cobertura</span></span><span class="project-arrow arrow-icon" aria-hidden="true"></span></span>
+          </button>
+          <button type="button" class="project" data-category="drone corporativo" data-video="PzXkX8qnivg" data-type="youtube" data-poster="assets/PzXkX8qnivg.webp" aria-label="Assistir a Imobiliário">
+            <span class="project-frame"><img class="project-bg" src="assets/PzXkX8qnivg.webp" alt="" loading="lazy" width="640" height="360"><span class="project-play" aria-hidden="true"></span></span>
+            <span class="project-info"><span><strong class="project-title">Imobiliário</strong><span class="project-type">Institucional · Drone</span></span><span class="project-arrow arrow-icon" aria-hidden="true"></span></span>
+          </button>
+          <button type="button" class="project" data-category="corporativo eventos" data-video="7LOGyY0n6dU" data-type="youtube" data-poster="assets/7LOGyY0n6dU.webp" aria-label="Assistir a Evento Corporativo">
+            <span class="project-frame"><img class="project-bg" src="assets/7LOGyY0n6dU.webp" alt="" loading="lazy" width="640" height="360"><span class="project-play" aria-hidden="true"></span></span>
+            <span class="project-info"><span><strong class="project-title">Evento Corporativo</strong><span class="project-type">Eventos · Cobertura</span></span><span class="project-arrow arrow-icon" aria-hidden="true"></span></span>
+          </button>
+          <button type="button" class="project" data-category="social" data-video="9NNJ_DTPng8" data-type="youtube" data-short="true" data-poster="assets/9NNJ_DTPng8.webp" aria-label="Assistir a Conteúdo Digital">
+            <span class="project-frame"><img class="project-bg" src="assets/9NNJ_DTPng8.webp" alt="" loading="lazy" width="640" height="360"><span class="project-play" aria-hidden="true"></span></span>
+            <span class="project-info"><span><strong class="project-title">Conteúdo Digital</strong><span class="project-type">Social Media · Short</span></span><span class="project-arrow arrow-icon" aria-hidden="true"></span></span>
+          </button>
+          <button type="button" class="project" data-category="corporativo social" data-video="2OLhbEu2Wv0" data-type="youtube" data-short="true" data-poster="assets/2OLhbEu2Wv0.webp" aria-label="Assistir a Ensaio">
+            <span class="project-frame"><img class="project-bg" src="assets/2OLhbEu2Wv0.webp" alt="" loading="lazy" width="640" height="360"><span class="project-play" aria-hidden="true"></span></span>
+            <span class="project-info"><span><strong class="project-title">Ensaio</strong><span class="project-type">Fotografia · Direção</span></span><span class="project-arrow arrow-icon" aria-hidden="true"></span></span>
+          </button>
         </div>
       </div>
     </section>
-
     <section id="servicos">
       <div class="container">
         <div class="section-head">
           <div>
-            <div class="section-number">02 / SERVIÇOS</div>
+            <div class="section-number">SERVIÇOS</div>
             <h2>Planos para cada<br>tipo de projeto.</h2>
           </div>
           <p>Escolha a categoria e o pacote ideal — ou peça um orçamento sob medida.</p>
@@ -823,7 +142,7 @@ footer{
                 <li>Edição de cores</li>
                 <li>Entrega em nuvem</li>
               </ul>
-              <a class="plan-cta" href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Básico%20de%20Eventos." target="_blank" rel="noopener noreferrer">Contratar plano ↗</a>
+              <a class="plan-cta" href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Básico%20de%20Eventos." target="_blank" rel="noopener noreferrer">Contratar plano <span class="arrow-icon" aria-hidden="true"></span></a>
             </div>
 
             <div class="plan-card featured">
@@ -837,7 +156,7 @@ footer{
                 <li>Edição teaser + completo</li>
                 <li>Entrega digital</li>
               </ul>
-              <a class="plan-cta" href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Intermediário%20de%20Eventos." target="_blank" rel="noopener noreferrer">Contratar plano ↗</a>
+              <a class="plan-cta" href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Intermediário%20de%20Eventos." target="_blank" rel="noopener noreferrer">Contratar plano <span class="arrow-icon" aria-hidden="true"></span></a>
             </div>
 
             <div class="plan-card">
@@ -850,7 +169,7 @@ footer{
                 <li>Storymaker</li>
                 <li>Entrega em até 15 dias úteis</li>
               </ul>
-              <a class="plan-cta" href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Premium%20Completo%20de%20Eventos." target="_blank" rel="noopener noreferrer">Contratar plano ↗</a>
+              <a class="plan-cta" href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Premium%20Completo%20de%20Eventos." target="_blank" rel="noopener noreferrer">Contratar plano <span class="arrow-icon" aria-hidden="true"></span></a>
             </div>
           </div>
         </div>
@@ -867,7 +186,7 @@ footer{
                 <li>Correção de cor e luz</li>
                 <li>Diária / serviço</li>
               </ul>
-              <a class="plan-cta" href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Fotos%20Aéreas." target="_blank" rel="noopener noreferrer">Contratar plano ↗</a>
+              <a class="plan-cta" href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Fotos%20Aéreas." target="_blank" rel="noopener noreferrer">Contratar plano <span class="arrow-icon" aria-hidden="true"></span></a>
             </div>
 
             <div class="plan-card">
@@ -879,7 +198,7 @@ footer{
                 <li>Material bruto na íntegra</li>
                 <li>Diária / serviço</li>
               </ul>
-              <a class="plan-cta" href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Vídeo%20Bruto." target="_blank" rel="noopener noreferrer">Contratar plano ↗</a>
+              <a class="plan-cta" href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Vídeo%20Bruto." target="_blank" rel="noopener noreferrer">Contratar plano <span class="arrow-icon" aria-hidden="true"></span></a>
             </div>
 
             <div class="plan-card featured">
@@ -893,7 +212,7 @@ footer{
                 <li>Color grading</li>
                 <li>Trilha sonora licenciada</li>
               </ul>
-              <a class="plan-cta" href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Vídeo%20Editado." target="_blank" rel="noopener noreferrer">Contratar plano ↗</a>
+              <a class="plan-cta" href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Vídeo%20Editado." target="_blank" rel="noopener noreferrer">Contratar plano <span class="arrow-icon" aria-hidden="true"></span></a>
             </div>
           </div>
         </div>
@@ -910,7 +229,7 @@ footer{
                 <li>Vídeo de evento corporativo</li>
                 <li>Edição e formatação para redes</li>
               </ul>
-              <a class="plan-cta" href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Corporativo%20e%20Social." target="_blank" rel="noopener noreferrer">Contratar plano ↗</a>
+              <a class="plan-cta" href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Corporativo%20e%20Social." target="_blank" rel="noopener noreferrer">Contratar plano <span class="arrow-icon" aria-hidden="true"></span></a>
             </div>
 
             <div class="plan-card">
@@ -922,7 +241,7 @@ footer{
                 <li>Edição normal do evento</li>
                 <li>Entrega digital</li>
               </ul>
-              <a class="plan-cta" href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Confraternização%20Essencial." target="_blank" rel="noopener noreferrer">Contratar plano ↗</a>
+              <a class="plan-cta" href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Confraternização%20Essencial." target="_blank" rel="noopener noreferrer">Contratar plano <span class="arrow-icon" aria-hidden="true"></span></a>
             </div>
 
             <div class="plan-card featured">
@@ -935,7 +254,7 @@ footer{
                 <li>Captação aérea com drone</li>
                 <li>Edição dinâmica</li>
               </ul>
-              <a class="plan-cta" href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Confraternização%20Avançado." target="_blank" rel="noopener noreferrer">Contratar plano ↗</a>
+              <a class="plan-cta" href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Confraternização%20Avançado." target="_blank" rel="noopener noreferrer">Contratar plano <span class="arrow-icon" aria-hidden="true"></span></a>
             </div>
 
             <div class="plan-card">
@@ -947,7 +266,7 @@ footer{
                 <li>Captação aérea com drone</li>
                 <li>Edição cinematográfica</li>
               </ul>
-              <a class="plan-cta" href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Confraternização%20Premium." target="_blank" rel="noopener noreferrer">Contratar plano ↗</a>
+              <a class="plan-cta" href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Confraternização%20Premium." target="_blank" rel="noopener noreferrer">Contratar plano <span class="arrow-icon" aria-hidden="true"></span></a>
             </div>
 
             <div class="plan-card">
@@ -959,7 +278,7 @@ footer{
                 <li>5 horas ou mais de evento</li>
                 <li>Roteiro sob medida</li>
               </ul>
-              <a class="plan-cta" href="https://wa.me/5534996300397?text=Olá!%20Gostaria%20de%20um%20orçamento%20Personalizado%20para%20vídeo." target="_blank" rel="noopener noreferrer">Solicitar orçamento ↗</a>
+              <a class="plan-cta" href="https://wa.me/5534996300397?text=Olá!%20Gostaria%20de%20um%20orçamento%20Personalizado%20para%20vídeo." target="_blank" rel="noopener noreferrer">Solicitar orçamento <span class="arrow-icon" aria-hidden="true"></span></a>
             </div>
           </div>
         </div>
@@ -969,11 +288,12 @@ footer{
     <section id="sobre">
       <div class="container about-grid">
         <div>
-          <div class="section-number">03 / SOBRE</div>
-          <div class="about-text" style="margin-top:25px">
+          <div class="section-number">SOBRE</div>
+          <div class="about-text">
             Não é só sobre equipamento.
             <span>É sobre transformar um momento em uma história.</span>
           </div>
+          <div class="about-note"><strong>Diferenciado</strong><p>Captação de alta performance e acabamento cinematográfico.</p></div>
         </div>
 
         <div class="facts">
@@ -991,7 +311,7 @@ footer{
       <div class="container">
         <div class="section-head">
           <div>
-            <div class="section-number">04 / DEPOIMENTOS</div>
+            <div class="section-number">DEPOIMENTOS</div>
             <h2>Quem viveu,<br>recomenda.</h2>
           </div>
         </div>
@@ -1020,7 +340,7 @@ footer{
       <div class="container">
         <div class="section-head">
           <div>
-            <div class="section-number">05 / FAQ</div>
+            <div class="section-number">FAQ</div>
             <h2>Perguntas<br>frequentes.</h2>
           </div>
         </div>
@@ -1048,30 +368,30 @@ footer{
 
     <section id="contato" class="contact">
       <div class="container">
-        <div class="section-number">06 / CONTATO</div>
+        <div class="section-number">CONTATO</div>
         <h2>Vamos transformar seu<br>momento em uma história?</h2>
         <p>
           Conte pra gente o que você quer produzir — evento, vídeo institucional, captação com
           drone ou edição. A partir daí, definimos o formato e o prazo ideal.
         </p>
         <div class="hero-actions">
-          <a class="button" href="https://wa.me/5534996300397" target="_blank" rel="noopener noreferrer">Falar no WhatsApp ↗</a>
-          <a class="button dark" href="https://instagram.com/nvs.producoes" target="_blank" rel="noopener noreferrer">@nvs.producoes ↗</a>
+          <a class="button" href="https://wa.me/5534996300397" target="_blank" rel="noopener noreferrer">Falar no WhatsApp <span class="arrow-icon" aria-hidden="true"></span></a>
+          <a class="button dark" href="https://instagram.com/nvs.producoes" target="_blank" rel="noopener noreferrer">@nvs.producoes <span class="arrow-icon" aria-hidden="true"></span></a>
         </div>
       </div>
     </section>
   </main>
 
   <!-- VIEW EN (VIDEO EDITING PORTFOLIO) -->
-  <main id="viewEn">
-    <div class="container" style="text-align:center;">
+  <main id="viewEn" lang="en" hidden>
+    <div class="container">
       <span class="en-badge">Post-Production & Video Editing</span>
-      <h1 style="margin:0 auto; max-width:900px;">Crafting High-Retention<br><em style="-webkit-text-stroke:1px var(--accent); color:transparent;">Visual Stories</em></h1>
-      <p style="color:var(--muted); max-width:620px; margin:28px auto 36px; font-size:16px;">
+      <h1>Crafting High-Retention<br><em>Visual Stories</em></h1>
+      <p>
         Specialized editing workflow for YouTube channels, high-pacing TikToks/Reels, sound design, dynamic zooms, and cinematic color correction.
       </p>
-      <div class="hero-actions" style="justify-content:center;">
-        <a href="https://wa.me/5534996300397?text=Hello!+I+want+to+hire+video+editing+services" target="_blank" rel="noopener noreferrer" class="button accent-red">Hire for Editing ↗</a>
+      <div class="hero-actions">
+        <a href="https://wa.me/5534996300397?text=Hello!+I+want+to+hire+video+editing+services" target="_blank" rel="noopener noreferrer" class="button accent-red">Hire for Editing <span class="arrow-icon" aria-hidden="true"></span></a>
         <button class="button dark" id="btnBackToPt">← Voltar ao Portfólio (PT)</button>
       </div>
 
@@ -1102,143 +422,12 @@ footer{
     </div>
   </footer>
 
-  <!-- VIDEO LIGHTBOX -->
-  <button class="lightbox-close" id="lightboxClose" aria-label="Fechar vídeo" style="display:none">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-  </button>
-  <div class="lightbox" id="lightbox">
-    <div class="lightbox-inner" id="lightboxInner"></div>
-  </div>
-
-<script>
-  /* SCROLL HEADER */
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 30);
-  });
-
-  /* TABS DE SERVIÇOS */
-  document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.plans').forEach(p => p.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById('plans-' + btn.dataset.tab).classList.add('active');
-    });
-  });
-
-  /* FAQ ACCORDION */
-  document.querySelectorAll('.faq-q').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const item = btn.closest('.faq-item');
-      const answer = item.querySelector('.faq-a');
-      const isOpen = item.classList.contains('open');
-
-      document.querySelectorAll('.faq-item').forEach(other => {
-        other.classList.remove('open');
-        other.querySelector('.faq-a').style.maxHeight = null;
-      });
-
-      if (!isOpen) {
-        item.classList.add('open');
-        answer.style.maxHeight = answer.scrollHeight + 'px';
-      }
-    });
-  });
-
-  /* FILTROS DINÂMICOS DE PROJETOS */
-  const filterBtns = document.querySelectorAll('.work-filter-btn');
-  const projectCards = document.querySelectorAll('.project');
-
-  function calculateCounts() {
-    const counts = { all: projectCards.length, drone: 0, social: 0, eventos: 0, corporativo: 0 };
-    projectCards.forEach(card => {
-      const cat = card.dataset.category || '';
-      if (cat.includes('drone')) counts.drone++;
-      if (cat.includes('social')) counts.social++;
-      if (cat.includes('eventos')) counts.eventos++;
-      if (cat.includes('corporativo')) counts.corporativo++;
-    });
-    document.getElementById('count-all').textContent = counts.all;
-    document.getElementById('count-drone').textContent = counts.drone;
-    document.getElementById('count-social').textContent = counts.social;
-    document.getElementById('count-eventos').textContent = counts.eventos;
-    document.getElementById('count-corporativo').textContent = counts.corporativo;
-  }
-  calculateCounts();
-
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const filter = btn.dataset.filter;
-
-      projectCards.forEach(card => {
-        const cat = card.dataset.category || '';
-        if (filter === 'all' || cat.includes(filter)) {
-          card.classList.remove('hidden');
-        } else {
-          card.classList.add('hidden');
-        }
-      });
-    });
-  });
-
-  /* ALTERNÂNCIA DE VIEW (PT / EN) */
-  const btnToggleEn = document.getElementById('btnToggleEn');
-  const heroBtnEn = document.getElementById('heroBtnEn');
-  const btnBackToPt = document.getElementById('btnBackToPt');
-
-  function toggleEnView(showEn) {
-    if (showEn) {
-      document.body.classList.add('show-en');
-      btnToggleEn.textContent = '← Portfólio (PT)';
-    } else {
-      document.body.classList.remove('show-en');
-      btnToggleEn.textContent = 'Video Editing (EN)';
-    }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  btnToggleEn.addEventListener('click', () => toggleEnView(!document.body.classList.contains('show-en')));
-  if (heroBtnEn) heroBtnEn.addEventListener('click', () => toggleEnView(true));
-  if (btnBackToPt) btnBackToPt.addEventListener('click', () => toggleEnView(false));
-
-  /* VIDEO LIGHTBOX (YOUTUBE & INSTAGRAM REEL) */
-  const lightbox = document.getElementById('lightbox');
-  const lightboxInner = document.getElementById('lightboxInner');
-  const lightboxClose = document.getElementById('lightboxClose');
-
-  function openLightbox(videoId, type, isShort){
-    lightboxInner.classList.toggle('is-short', !!isShort);
-    
-    if (type === 'instagram') {
-      lightboxInner.innerHTML = `<iframe src="https://www.instagram.com/reel/${videoId}/embed" frameborder="0" scrolling="no" allowtransparency="true" allowfullscreen></iframe>`;
-    } else {
-      lightboxInner.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0" title="Vídeo Nvs Produções" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
-    }
-
-    lightbox.classList.add('open');
-    lightboxClose.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeLightbox(){
-    lightbox.classList.remove('open');
-    lightboxClose.style.display = 'none';
-    document.body.style.overflow = '';
-    setTimeout(() => { lightboxInner.innerHTML = ''; }, 300);
-  }
-
-  projectCards.forEach(el => {
-    el.addEventListener('click', () => {
-      openLightbox(el.dataset.video, el.dataset.type || 'youtube', el.dataset.short === 'true');
-    });
-  });
-
-  lightboxClose.addEventListener('click', closeLightbox);
-  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
-</script>
+  <dialog id="lightbox" aria-labelledby="lightboxTitle">
+    <div class="lightbox-shell">
+      <div class="lightbox-heading"><h2 id="lightboxTitle">Vídeo</h2><button id="lightboxClose" type="button" aria-label="Fechar vídeo">×</button></div>
+      <div id="lightboxInner" class="lightbox-inner"></div>
+      <a id="lightboxSource" target="_blank" rel="noopener noreferrer"></a>
+    </div>
+  </dialog>
 </body>
 </html>
