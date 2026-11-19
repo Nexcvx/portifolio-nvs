@@ -132,6 +132,39 @@ document.querySelectorAll('#nav a[href^="#"], .skip-link').forEach(link => {
   });
 });
 
+
+
+// A compact mobile header; preserve desktop links and the original language action.
+const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+const mobileLinks = document.getElementById('mobileLinks');
+const mobileLanguageButton = document.getElementById('mobileLanguageButton');
+const mobileMenuQuery = window.matchMedia('(max-width: 640px)');
+
+function setMobileMenu(open = false) {
+  const expanded = mobileMenuQuery.matches && open;
+  mobileMenuToggle.setAttribute('aria-expanded', String(expanded));
+  mobileMenuToggle.setAttribute('aria-label', expanded ? 'Fechar menu' : 'Abrir menu');
+  mobileLinks.classList.toggle('open', expanded);
+  mobileLinks.inert = mobileMenuQuery.matches && !expanded;
+  mobileLanguageButton.textContent = languageLabel.textContent;
+}
+mobileMenuToggle.addEventListener('click', () => {
+  setMobileMenu(mobileMenuToggle.getAttribute('aria-expanded') !== 'true');
+});
+mobileLanguageButton.addEventListener('click', () => {
+  languageButton.click();
+  setMobileMenu(false);
+});
+mobileLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMobileMenu(false)));
+mobileMenuQuery.addEventListener('change', () => setMobileMenu(false));
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape') setMobileMenu(false);
+});
+document.addEventListener('pointerdown', event => {
+  if (!document.getElementById('nav').contains(event.target)) setMobileMenu(false);
+});
+setMobileMenu(false);
+
 const dialog = document.getElementById('lightbox');
 const player = document.getElementById('lightboxInner');
 const closeButton = document.getElementById('lightboxClose');
