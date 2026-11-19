@@ -1,5 +1,6 @@
 'use strict';
 
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const projects = [...document.querySelectorAll('.project[data-video]')];
 const filters = [...document.querySelectorAll('.work-filter-btn')];
 
@@ -7,21 +8,37 @@ function matchesFilter(project, filter) {
   return filter === 'all' || project.dataset.category.split(/\s+/).includes(filter);
 }
 
-function filterProjects(selected) {
+function filterProjects(selected, animate = false) {
+  const previous = new Map();
+  if (animate && !reduceMotion.matches) {
+    projects.filter(card => !card.hidden).forEach(card => previous.set(card, card.getBoundingClientRect()));
+  }
   filters.forEach(button => {
     const active = button === selected;
     button.classList.toggle('active', active);
     button.setAttribute('aria-pressed', String(active));
   });
   projects.forEach(project => {
+    project.getAnimations().forEach(animation => animation.cancel());
     project.hidden = !matchesFilter(project, selected.dataset.filter);
+  });
+  if (!previous.size) return;
+  projects.filter(card => !card.hidden).forEach(card => {
+    const before = previous.get(card);
+    const after = card.getBoundingClientRect();
+    const start = before
+      ? { transform: `translate(${before.left - after.left}px, ${before.top - after.top}px)` }
+      : { transform: 'translateY(18px) scale(.97)', opacity: .15 };
+    card.animate([start, { transform: 'none', opacity: 1 }], {
+      duration: 470, easing: 'cubic-bezier(.2,.8,.2,1)'
+    });
   });
 }
 
 filters.forEach(button => {
   const count = projects.filter(project => matchesFilter(project, button.dataset.filter)).length;
   button.querySelector('.count').textContent = count;
-  button.addEventListener('click', () => filterProjects(button));
+  button.addEventListener('click', () => filterProjects(button, true));
 });
 filterProjects(filters.find(button => button.classList.contains('active')) || filters[0]);
 
@@ -161,27 +178,156 @@ const featured = ['aDJH6hqLRlk', 'DA_a7z_ofI8', 'DLB5YvgJp1M']
 const heroImage = document.getElementById('heroImage');
 const cover = heroImage.getAttribute('src');
 const heroPlay = document.getElementById('heroPlay');
+const heroTitle = document.getElementById('heroTitle');
+const picker = document.querySelector('.film-picker');
 let currentFilm = 0;
+let slices;
+let selection = 0;
 
-function showFeatured(index) {
-  const next = (index + featured.length) % featured.length;
-  const changed = next !== currentFilm;
-  currentFilm = next;
-  const project = featured[currentFilm];
-  const title = project.querySelector('.project-title').textContent;
-  const poster = project.dataset.poster || project.querySelector('img')?.getAttribute('src');
-  heroImage.src = currentFilm === 0 ? cover : (poster || cover);
-  if (changed && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    heroImage.animate([{ opacity: 0.45 }, { opacity: 1 }], { duration: 360, easing: 'ease-out' });
+featured.forEach((project, index) => {
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.className = 'film-tile';
+  button.setAttribute('aria-label', 'Destacar ' + project.querySelector('.project-title').textContent);
+  const image = new Image();
+  image.src = project.dataset.poster;
+  image.alt = '';
+  button.append(image);
+  button.addEventListener('click', () => showFeatured(index));
+  picker.append(button);
+});
+
+// The outgoing photograph stays in place while the next still decodes.
+// Each strip crops the same full-size photograph, so adjacent strips align.
+async function changeFrame(source, backwards) {
+  const request = ++selection;
+  slices?.remove();
+  slices = null;
+  heroImage.classList.remove('hero-image-intro');
+  if (reduceMotion.matches) {
+    heroImage.src = source;
+    return;
   }
-  document.getElementById('heroTitle').textContent = title;
-  const category = document.getElementById('heroCategory');
-  if (category) category.textContent = project.querySelector('.project-type').textContent;
-  document.getElementById('heroIndex').textContent = String(currentFilm + 1).padStart(2, '0');
-  heroPlay.setAttribute('aria-label', `Assistir a ${title}`);
+
+  const outgoing = heroImage.getAttribute('src');
+  const still = new Image();
+  still.src = source;
+  try { await still.decode(); } catch { return; }
+  if (request !== selection) return;
+  heroImage.src = source;
+  if (reduceMotion.matches) return;
+
+  const layer = document.createElement('div');
+  layer.className = 'hero-slices';
+  slices = layer;
+  const finished = [];
+  for (let strip = 0; strip < 4; strip++) {
+    const frame = new Image();
+    frame.className = 'hero-image';
+    frame.alt = '';
+    frame.src = outgoing;
+    layer.append(frame);
+    const top = strip * 25;
+    const bottom = 75 - top;
+    const left = backwards ? '0' : '100%';
+    const right = backwards ? '100%' : '0';
+    const animation = frame.animate([
+      { clipPath: `inset(${top}% 0 ${bottom}% 0)` },
+      { clipPath: `inset(${top}% ${right} ${bottom}% ${left})` }
+    ], { duration: 650, delay: strip * 55, easing: 'cubic-bezier(.65,0,.2,1)', fill: 'both' });
+    finished.push(animation.finished);
+  }
+  heroImage.after(layer);
+  await Promise.allSettled(finished);
+  layer.remove();
+  if (slices === layer) slices = null;
 }
 
-document.getElementById('heroPrev').addEventListener('click', () => showFeatured(currentFilm - 1));
-document.getElementById('heroNext').addEventListener('click', () => showFeatured(currentFilm + 1));
+function showFeatured(index, backwards = index < currentFilm) {
+  const next = (index + featured.length) % featured.length;
+  const project = featured[next];
+  if (next !== currentFilm) changeFrame(next === 0 ? cover : project.dataset.poster, backwards);
+  currentFilm = next;
+  const title = project.querySelector('.project-title').textContent;
+  heroTitle.textContent = title;
+  document.getElementById('heroIndex').textContent = String(next + 1).padStart(2, '0');
+  heroPlay.setAttribute('aria-label', `Assistir a ${title}`);
+  [...picker.children].forEach((button, i) => button.setAttribute('aria-pressed', String(i === next)));
+}
+
+document.getElementById('heroPrev').addEventListener('click', () => showFeatured(currentFilm - 1, true));
+document.getElementById('heroNext').addEventListener('click', () => showFeatured(currentFilm + 1, false));
 heroPlay.addEventListener('click', () => openProject(featured[currentFilm], heroPlay));
 showFeatured(0);
+
+// Keep the heading's accessible name intact while its letters turn into view.
+let letterIndex = 0;
+document.querySelectorAll('#heroHeading .line-mask > span').forEach(line => {
+  const letters = [...line.textContent].map(character => {
+    const letter = document.createElement(character === '.' ? 'b' : 'span');
+    letter.className = 'title-letter';
+    letter.style.setProperty('--letter', letterIndex++);
+    letter.textContent = character;
+    return letter;
+  });
+  line.setAttribute('aria-hidden', 'true');
+  line.replaceChildren(...letters);
+});
+heroImage.classList.add('hero-image-intro');
+
+const filmTrack = document.querySelector('.film-track');
+const repeatedWords = filmTrack.firstElementChild.cloneNode(true);
+repeatedWords.setAttribute('aria-hidden', 'true');
+filmTrack.append(repeatedWords);
+
+const frames = projects.map(project => project.querySelector('.project-frame'));
+const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+function updateLenses() {
+  frames.forEach(frame => {
+    const lens = frame.querySelector('.project-lens');
+    if (reduceMotion.matches || !finePointer.matches) {
+      lens?.remove();
+      return;
+    }
+    if (lens) return;
+    const overlay = document.createElement('span');
+    overlay.className = 'project-lens';
+    overlay.setAttribute('aria-hidden', 'true');
+    overlay.append(frame.querySelector('img').cloneNode());
+    frame.append(overlay);
+  });
+}
+
+// Keep the source pixel under the pointer fixed as the lens magnifies it.
+frames.forEach(frame => {
+  frame.addEventListener('pointermove', event => {
+    if (!finePointer.matches || reduceMotion.matches) return;
+    const box = frame.getBoundingClientRect();
+    frame.style.setProperty('--x', ((event.clientX - box.left) / box.width) * 100 + '%');
+    frame.style.setProperty('--y', ((event.clientY - box.top) / box.height) * 100 + '%');
+  });
+});
+finePointer.addEventListener('change', updateLenses);
+reduceMotion.addEventListener('change', () => {
+  updateLenses();
+  if (reduceMotion.matches) {
+    slices?.remove();
+    frames.concat(projects).forEach(element => element.getAnimations().forEach(animation => animation.cancel()));
+  }
+});
+updateLenses();
+
+if ('IntersectionObserver' in window) {
+  const reveal = new IntersectionObserver(entries => {
+    const entering = entries.filter(entry => entry.isIntersecting);
+    entering.forEach(({ target }, i) => {
+      reveal.unobserve(target);
+      if (reduceMotion.matches) return;
+      target.animate([
+        { clipPath: 'inset(8% 0 64% 0)', transform: 'translateY(20px)' },
+        { clipPath: 'inset(0)', transform: 'none' }
+      ], { duration: 720, delay: (i % 3) * 65, easing: 'cubic-bezier(.18,.8,.2,1)', fill: 'backwards' });
+    });
+  }, { threshold: .12 });
+  frames.forEach(frame => reveal.observe(frame));
+}

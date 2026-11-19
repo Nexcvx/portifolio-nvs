@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f4f2ea">
+  <meta name="theme-color" content="#f5f2ee">
   <meta name="description" content="Nvs Produções — fotografia, vídeo, drone e edição audiovisual cinematográfica em Uberlândia e Triângulo Mineiro.">
   <title>NVS Produções — Fotografia, vídeo e drone</title>
   <link rel="preload" href="fonts/barlow-condensed.woff2" as="font" type="font/woff2" crossorigin>
@@ -30,7 +30,9 @@
   </nav>
   <main id="viewPt">
     <section class="hero" id="inicio" aria-labelledby="heroHeading">
-      <img class="hero-image" id="heroImage" src="assets/hero-camera.webp" width="1672" height="941" fetchpriority="high" alt="">
+      <div class="hero-stage" aria-hidden="true">
+        <img class="hero-image" id="heroImage" src="assets/hero-camera.webp" width="1672" height="941" fetchpriority="high" alt="">
+      </div>
       <div class="hero-shade"></div>
       <div class="container hero-layout">
         <div class="hero-copy">
@@ -43,6 +45,7 @@
           <button type="button" class="feature-play" id="heroPlay" aria-label="Assistir a Imagem Aérea">
             <span class="play-disc" aria-hidden="true"></span><span><span class="feature-label">Em destaque</span><strong id="heroTitle" aria-live="polite">Imagem Aérea</strong></span>
           </button>
+          <div class="film-picker" role="group" aria-label="Escolher produção em destaque"></div>
           <div class="feature-nav">
             <span class="feature-index"><span id="heroIndex">01</span> <span>/ 03</span></span>
             <button id="heroPrev" type="button" aria-label="Produção anterior">←</button>
@@ -52,7 +55,9 @@
       </div>
     </section>
     <div class="disciplines" aria-label="Áreas de atuação">
-      <div class="container disciplines-inner"><span>Fotografia</span><i aria-hidden="true">✳</i><span>Vídeo</span><i aria-hidden="true">✳</i><span>Drone</span><i aria-hidden="true">✳</i><span>Edição</span></div>
+      <div class="film-track">
+        <div class="disciplines-inner"><span>Fotografia</span><i aria-hidden="true"></i><span>Vídeo</span><i aria-hidden="true"></i><span>Drone</span><i aria-hidden="true"></i><span>Edição</span><i aria-hidden="true"></i></div>
+      </div>
     </div>
     <section id="trabalho" aria-labelledby="work-heading">
       <div class="container">
