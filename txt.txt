@@ -491,7 +491,7 @@ footer{
         <a href="#servicos">Serviços</a>
         <a href="#sobre">Sobre</a>
       </div>
-      <a href="https://wa.me/5534996300397" target="_blank" rel="noopener noreferrer" class="nav-cta">Falar no WhatsApp ↗</a>
+      <a href="https://wa.me/5534997197922" target="_blank" rel="noopener noreferrer" class="nav-cta">Falar no WhatsApp ↗</a>
     </div>
   </nav>
 
@@ -508,7 +508,7 @@ footer{
           </p>
           <div class="hero-actions">
             <a href="#trabalho" class="button">Ver produções ↘</a>
-            <a href="https://wa.me/5534996300397" target="_blank" rel="noopener noreferrer" class="button dark">Falar no WhatsApp</a>
+            <a href="https://wa.me/5534997197922" target="_blank" rel="noopener noreferrer" class="button dark">Falar no WhatsApp</a>
           </div>
         </div>
 
@@ -628,7 +628,7 @@ footer{
                 <li>Edição de cores</li>
                 <li>Entrega em nuvem</li>
               </ul>
-              <a class="plan-cta" href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Básico%20de%20Eventos." target="_blank" rel="noopener noreferrer">Contratar plano ↗</a>
+              <a class="plan-cta" href="https://wa.me/5534997197922?text=Olá!%20Tenho%20interesse%20no%20plano%20Básico%20de%20Eventos." target="_blank" rel="noopener noreferrer">Contratar plano ↗</a>
             </div>
 
             <div class="plan-card featured">
@@ -642,7 +642,7 @@ footer{
                 <li>Edição teaser + completo</li>
                 <li>Entrega digital</li>
               </ul>
-              <a class="plan-cta" href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Intermediário%20de%20Eventos." target="_blank" rel="noopener noreferrer">Contratar plano ↗</a>
+              <a class="plan-cta" href="https://wa.me/5534997197922?text=Olá!%20Tenho%20interesse%20no%20plano%20Intermediário%20de%20Eventos." target="_blank" rel="noopener noreferrer">Contratar plano ↗</a>
             </div>
 
             <div class="plan-card">
@@ -655,7 +655,7 @@ footer{
                 <li>Storymaker</li>
                 <li>Entrega em até 15 dias úteis</li>
               </ul>
-              <a class="plan-cta" href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Premium%20Completo%20de%20Eventos." target="_blank" rel="noopener noreferrer">Contratar plano ↗</a>
+              <a class="plan-cta" href="https://wa.me/5534997197922?text=Olá!%20Tenho%20interesse%20no%20plano%20Premium%20Completo%20de%20Eventos." target="_blank" rel="noopener noreferrer">Contratar plano ↗</a>
             </div>
           </div>
         </div>
@@ -672,7 +672,7 @@ footer{
                 <li>Correção de cor e luz</li>
                 <li>Diária / serviço</li>
               </ul>
-              <a class="plan-cta" href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Fotos%20Aéreas." target="_blank" rel="noopener noreferrer">Contratar plano ↗</a>
+              <a class="plan-cta" href="https://wa.me/5534997197922?text=Olá!%20Tenho%20interesse%20no%20plano%20Fotos%20Aéreas." target="_blank" rel="noopener noreferrer">Contratar plano ↗</a>
             </div>
 
             <div class="plan-card">
@@ -684,7 +684,7 @@ footer{
                 <li>Material bruto na íntegra</li>
                 <li>Diária / serviço</li>
               </ul>
-              <a class="plan-cta" href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Vídeo%20Bruto." target="_blank" rel="noopener noreferrer">Contratar plano ↗</a>
+              <a class="plan-cta" href="https://wa.me/5534997197922?text=Olá!%20Tenho%20interesse%20no%20plano%20Vídeo%20Bruto." target="_blank" rel="noopener noreferrer">Contratar plano ↗</a>
             </div>
 
             <div class="plan-card featured">
@@ -698,7 +698,7 @@ footer{
                 <li>Color grading</li>
                 <li>Trilha sonora licenciada</li>
               </ul>
-              <a class="plan-cta" href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Vídeo%20Editado." target="_blank" rel="noopener noreferrer">Contratar plano ↗</a>
+              <a class="plan-cta" href="https://wa.me/5534997197922?text=Olá!%20Tenho%20interesse%20no%20plano%20Vídeo%20Editado." target="_blank" rel="noopener noreferrer">Contratar plano ↗</a>
             </div>
           </div>
         </div>
@@ -715,7 +715,7 @@ footer{
                 <li>Vídeo de evento corporativo</li>
                 <li>Edição e formatação para redes</li>
               </ul>
-              <a class="plan-cta" href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Corporativo%20e%20Social." target="_blank" rel="noopener noreferrer">Contratar plano ↗</a>
+              <a class="plan-cta" href="https://wa.me/5534997197922?text=Olá!%20Tenho%20interesse%20no%20plano%20Corporativo%20e%20Social." target="_blank" rel="noopener noreferrer">Contratar plano ↗</a>
             </div>
 
             <div class="plan-card">
@@ -727,7 +727,7 @@ footer{
                 <li>Edição normal do evento</li>
                 <li>Entrega digital</li>
               </ul>
-              <a class="plan-cta" href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Confraternização%20Essencial." target="_blank" rel="noopener noreferrer">Contratar plano ↗</a>
+              <a class="plan-cta" href="https://wa.me/5534997197922?text=Olá!%20Tenho%20interesse%20no%20plano%20Confraternização%20Essencial." target="_blank" rel="noopener noreferrer">Contratar plano ↗</a>
             </div>
 
             <div class="plan-card featured">
@@ -740,7 +740,7 @@ footer{
                 <li>Captação aérea com drone</li>
                 <li>Edição dinâmica</li>
               </ul>
-              <a class="plan-cta" href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Confraternização%20Avançado." target="_blank" rel="noopener noreferrer">Contratar plano ↗</a>
+              <a class="plan-cta" href="https://wa.me/5534997197922?text=Olá!%20Tenho%20interesse%20no%20plano%20Confraternização%20Avançado." target="_blank" rel="noopener noreferrer">Contratar plano ↗</a>
             </div>
 
             <div class="plan-card">
@@ -752,7 +752,7 @@ footer{
                 <li>Captação aérea com drone</li>
                 <li>Edição cinematográfica</li>
               </ul>
-              <a class="plan-cta" href="https://wa.me/5534996300397?text=Olá!%20Tenho%20interesse%20no%20plano%20Confraternização%20Premium." target="_blank" rel="noopener noreferrer">Contratar plano ↗</a>
+              <a class="plan-cta" href="https://wa.me/5534997197922?text=Olá!%20Tenho%20interesse%20no%20plano%20Confraternização%20Premium." target="_blank" rel="noopener noreferrer">Contratar plano ↗</a>
             </div>
 
             <div class="plan-card">
@@ -764,7 +764,7 @@ footer{
                 <li>5 horas ou mais de evento</li>
                 <li>Roteiro sob medida</li>
               </ul>
-              <a class="plan-cta" href="https://wa.me/5534996300397?text=Olá!%20Gostaria%20de%20um%20orçamento%20Personalizado%20para%20vídeo." target="_blank" rel="noopener noreferrer">Solicitar orçamento ↗</a>
+              <a class="plan-cta" href="https://wa.me/5534997197922?text=Olá!%20Gostaria%20de%20um%20orçamento%20Personalizado%20para%20vídeo." target="_blank" rel="noopener noreferrer">Solicitar orçamento ↗</a>
             </div>
           </div>
         </div>
@@ -860,7 +860,7 @@ footer{
           drone ou edição. A partir daí, definimos o formato e o prazo ideal.
         </p>
         <div class="hero-actions">
-          <a class="button" href="https://wa.me/5534996300397" target="_blank" rel="noopener noreferrer">Falar no WhatsApp ↗</a>
+          <a class="button" href="https://wa.me/5534997197922" target="_blank" rel="noopener noreferrer">Falar no WhatsApp ↗</a>
           <a class="button dark" href="https://instagram.com/nvs.producoes" target="_blank" rel="noopener noreferrer">@nvs.producoes ↗</a>
         </div>
       </div>
