@@ -38,7 +38,22 @@
       <div class="container hero-layout">
         <div class="hero-copy">
           <p class="hero-kicker"><i aria-hidden="true"></i> Produtora audiovisual</p>
-          <h1 id="heroHeading" aria-label="NVS Produções"><span class="line-mask" aria-hidden="true"><span>NVS</span></span><span class="line-mask" aria-hidden="true"><span>Produções<b>.</b></span></span></h1>
+          <h1 id="heroHeading" aria-label="NVS Produções">
+            <!-- Alpha threshold from Originkit's Text Morph. -->
+            <svg class="title-morph-defs" aria-hidden="true" width="0" height="0">
+              <defs>
+                <filter id="title-morph-threshold" x="-25%" y="-35%" width="150%" height="170%" color-interpolation-filters="sRGB">
+                  <feColorMatrix in="SourceGraphic" type="matrix"
+                    values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 25 -9" result="goo" />
+                  <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+                </filter>
+              </defs>
+            </svg>
+            <span class="title-morph" aria-hidden="true">
+              <span class="title-morph-short">NVS</span>
+              <span class="title-morph-full">NVS<br>Produções<b>.</b></span>
+            </span>
+          </h1>
           <p class="hero-description">Produção audiovisual cinematográfica para eventos, empresas e criadores em Uberlândia e Triângulo Mineiro — da captação com câmeras cinema e drone até a edição e color grading em DaVinci Resolve.</p>
           <a class="button hero-cta" href="#trabalho">Ver produções <span class="arrow-icon arrow-down" aria-hidden="true"></span></a>
         </div>

@@ -83,8 +83,10 @@ section[id] { scroll-margin-top: 76px; }
 .hero-kicker, .section-number { display: flex; align-items: center; gap: .65rem; }
 .hero-kicker i { display: block; border-radius: 50%; width: .55rem; aspect-ratio: 1; background: var(--accent); }
 .hero h1 { font: 800 clamp(5.6rem, 9.6vw, 10.5rem)/.82 var(--display); text-transform: uppercase; letter-spacing: -.035em; margin: 1.05rem 0 1.65rem; }
-.line-mask { display: block; overflow: clip; padding-block: .13em .18em; margin-block: -.13em -.18em; }
-.line-mask > span { display: inline-block; }
+.title-morph-defs { position: absolute; pointer-events: none; }
+.title-morph { position: relative; display: block; }
+.title-morph-short { position: absolute; top: 50%; left: 0; opacity: 0; }
+.title-morph-full { display: inline-block; transform-origin: left center; }
 .hero h1 b { font-weight: inherit; color: var(--accent); }
 .hero-description { color: #f2ede8; max-width: 49ch; font-size: clamp(.85rem, 1.06vw, 1.02rem); line-height: 1.5; }
 .hero-cta { margin-top: 1.35rem; background: var(--accent); color: var(--ink); }
@@ -154,7 +156,7 @@ body:has(#lightbox[open]) { overflow: hidden; }
   .hero-stage { background-image: url('assets/ribbon-tall.webp'); }
   .hero-shade { background: linear-gradient(90deg, #08080d66, transparent 90%), linear-gradient(0deg, #08080da6, #08080d85 38%, #08080d80 60%, transparent 86%); }
   .hero-copy { align-self: end; padding-block: 3.5rem 1.75rem; }
-  .hero h1 { font-size: clamp(4.6rem, 18vw, 7rem); margin: 1.2rem 0 1.4rem; }
+  .hero h1 { font-size: clamp(3.6rem, 18vw, 7rem); margin: 1.2rem 0 1.4rem; }
   .hero-description { font-size: .9rem; max-width: 40ch; }
   .work-filters { gap: .35rem; }
   .work-filter-btn { font-size: .72rem; min-height: 34px; gap: .35rem; padding-inline: .7rem; }
@@ -284,11 +286,27 @@ body:has(#lightbox[open]) { overflow: hidden; }
     .project:hover .project-frame { --cut: 0%; }
   }
 
-  .line-mask > span { animation: title-settle .64s cubic-bezier(.2,.78,.24,1) backwards; }
-  .line-mask + .line-mask > span { animation-delay: .09s; }
-  @keyframes title-settle {
-    from { opacity: 0; transform: translateY(.24em); }
-    to { opacity: 1; transform: none; }
+  .title-morph {
+    --morph-duration: 1.45s;
+    animation: title-threshold var(--morph-duration) steps(1, end);
+  }
+  .title-morph-short {
+    transform-origin: left center;
+    animation: title-short var(--morph-duration) ease-in-out both;
+  }
+  .title-morph-full { animation: title-full var(--morph-duration) ease-in-out backwards; }
+  @keyframes title-threshold {
+    from { filter: url(#title-morph-threshold); }
+    to { filter: none; }
+  }
+  @keyframes title-short {
+    0% { opacity: 0; filter: blur(20px); transform: translateY(-50%) scale(.8); }
+    22%, 36% { opacity: 1; filter: blur(0); transform: translateY(-50%); }
+    76%, 100% { opacity: 0; filter: blur(20px); transform: translateY(-50%) scale(1.2); }
+  }
+  @keyframes title-full {
+    0%, 36% { opacity: 0; filter: blur(20px); transform: scale(.8); }
+    92%, 100% { opacity: 1; filter: blur(0); transform: none; }
   }
   .plans.active .plan-card { animation: print-in .55s cubic-bezier(.18,.8,.2,1) backwards; }
   .plans.active .plan-card:nth-child(3n+2) { animation-delay: 65ms; }
