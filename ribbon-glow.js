@@ -109,7 +109,7 @@ void main() {
 }
 `
 
-const RIBBON_SPEED = .18;
+const RIBBON_SPEED = .12;
 const FRAME_INTERVAL_MS = 32;
 const hero = document.getElementById('inicio');
 const canvas = hero.querySelector('.ribbon-canvas');
