@@ -175,14 +175,10 @@ dialog.addEventListener('close', () => {
 
 const featured = ['aDJH6hqLRlk', 'DA_a7z_ofI8', 'DLB5YvgJp1M']
   .map(id => projects.find(project => project.dataset.video === id));
-const heroImage = document.getElementById('heroImage');
-const cover = heroImage.getAttribute('src');
 const heroPlay = document.getElementById('heroPlay');
 const heroTitle = document.getElementById('heroTitle');
 const picker = document.querySelector('.film-picker');
 let currentFilm = 0;
-let slices;
-let selection = 0;
 
 featured.forEach((project, index) => {
   const button = document.createElement('button');
@@ -197,56 +193,9 @@ featured.forEach((project, index) => {
   picker.append(button);
 });
 
-// The outgoing photograph stays in place while the next still decodes.
-// Each strip crops the same full-size photograph, so adjacent strips align.
-async function changeFrame(source, backwards) {
-  const request = ++selection;
-  slices?.remove();
-  slices = null;
-  heroImage.classList.remove('hero-image-intro');
-  if (reduceMotion.matches) {
-    heroImage.src = source;
-    return;
-  }
-
-  const outgoing = heroImage.getAttribute('src');
-  const still = new Image();
-  still.src = source;
-  try { await still.decode(); } catch { return; }
-  if (request !== selection) return;
-  heroImage.src = source;
-  if (reduceMotion.matches) return;
-
-  const layer = document.createElement('div');
-  layer.className = 'hero-slices';
-  slices = layer;
-  const finished = [];
-  for (let strip = 0; strip < 4; strip++) {
-    const frame = new Image();
-    frame.className = 'hero-image';
-    frame.alt = '';
-    frame.src = outgoing;
-    layer.append(frame);
-    const top = strip * 25;
-    const bottom = 75 - top;
-    const left = backwards ? '0' : '100%';
-    const right = backwards ? '100%' : '0';
-    const animation = frame.animate([
-      { clipPath: `inset(${top}% 0 ${bottom}% 0)` },
-      { clipPath: `inset(${top}% ${right} ${bottom}% ${left})` }
-    ], { duration: 650, delay: strip * 55, easing: 'cubic-bezier(.65,0,.2,1)', fill: 'both' });
-    finished.push(animation.finished);
-  }
-  heroImage.after(layer);
-  await Promise.allSettled(finished);
-  layer.remove();
-  if (slices === layer) slices = null;
-}
-
-function showFeatured(index, backwards = index < currentFilm) {
+function showFeatured(index) {
   const next = (index + featured.length) % featured.length;
   const project = featured[next];
-  if (next !== currentFilm) changeFrame(next === 0 ? cover : project.dataset.poster, backwards);
   currentFilm = next;
   const title = project.querySelector('.project-title').textContent;
   heroTitle.textContent = title;
@@ -255,12 +204,10 @@ function showFeatured(index, backwards = index < currentFilm) {
   [...picker.children].forEach((button, i) => button.setAttribute('aria-pressed', String(i === next)));
 }
 
-document.getElementById('heroPrev').addEventListener('click', () => showFeatured(currentFilm - 1, true));
-document.getElementById('heroNext').addEventListener('click', () => showFeatured(currentFilm + 1, false));
+document.getElementById('heroPrev').addEventListener('click', () => showFeatured(currentFilm - 1));
+document.getElementById('heroNext').addEventListener('click', () => showFeatured(currentFilm + 1));
 heroPlay.addEventListener('click', () => openProject(featured[currentFilm], heroPlay));
 showFeatured(0);
-
-heroImage.classList.add('hero-image-intro');
 
 const filmTrack = document.querySelector('.film-track');
 const repeatedWords = filmTrack.firstElementChild.cloneNode(true);
@@ -310,7 +257,6 @@ if ('IntersectionObserver' in window) {
 
 reduceMotion.addEventListener('change', () => {
   if (reduceMotion.matches) {
-    slices?.remove();
     projects.forEach(project => project.getAnimations().forEach(animation => animation.cancel()));
   } else {
     requestCoverPaint();

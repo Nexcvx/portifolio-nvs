@@ -60,10 +60,23 @@ section[id] { scroll-margin-top: 76px; }
 .nav-cta:is(:hover, :focus-visible) span { transform: translate(2px,-2px); }
 .hero { position: relative; isolation: isolate; background: var(--ink); color: var(--paper); overflow: hidden; }
 .hero-stage, .hero-shade { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; }
-.hero-stage { z-index: -2; overflow: hidden; }
-.hero-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 55% 51%; }
-.hero-shade { background: linear-gradient(90deg,#0d0d10ef,rgba(14,14,17,.5) 36%,transparent 69%),linear-gradient(0deg,#0c0c10dd,transparent 30%); }
-.hero-image[src$="hero-camera.webp"] { filter: grayscale(1) contrast(1.08); }
+.hero-stage {
+  z-index: -2;
+  overflow: hidden;
+  pointer-events: none;
+  background: #0b0a10 url('assets/ribbon-wide.webp') center / cover no-repeat;
+}
+.ribbon-canvas { display: block; width: 100%; height: 100%; }
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: url('assets/film-grain.png') repeat;
+  opacity: .115;
+}
+.hero-shade { background: linear-gradient(90deg, #08080d55, transparent 62%), linear-gradient(0deg, #08080d94, transparent 20%); }
 .hero-layout { min-height: clamp(545px, 42vw, 720px); display: grid; grid-template-rows: 1fr auto; }
 .hero-copy { align-self: center; padding-block: clamp(38px, 3.5vw, 65px) 2rem; }
 .hero-kicker, .section-number, .feature-label, .feature-index { font: 600 .68rem/1.4 var(--mono); letter-spacing: .11em; text-transform: uppercase; }
@@ -138,8 +151,8 @@ body:has(#lightbox[open]) { overflow: hidden; }
   .nav-cta { min-height: 36px; padding: .45rem .85rem; gap: .5rem; font-size: .78rem; }
   section[id] { scroll-margin-top: 90px; }
   .hero-layout { min-height: 560px; }
-  .hero-image { object-position: 67% 50%; }
-  .hero-shade { background: linear-gradient(90deg,rgba(14,12,12,.78),rgba(14,12,12,.28) 85%),linear-gradient(0deg,#130f0ee8,transparent 65%); }
+  .hero-stage { background-image: url('assets/ribbon-tall.webp'); }
+  .hero-shade { background: linear-gradient(90deg, #08080d66, transparent 90%), linear-gradient(0deg, #08080da6, #08080d85 38%, #08080d80 60%, transparent 86%); }
   .hero-copy { align-self: end; padding-block: 3.5rem 1.75rem; }
   .hero h1 { font-size: clamp(4.6rem, 18vw, 7rem); margin: 1.2rem 0 1.4rem; }
   .hero-description { font-size: .9rem; max-width: 40ch; }
@@ -188,7 +201,6 @@ body:has(#lightbox[open]) { overflow: hidden; }
 .film-tile img { width: 100%; height: 100%; display: block; object-fit: cover; opacity: .62; transition: opacity .25s; }
 .film-tile:is(:hover,:focus-visible) img, .film-tile[aria-pressed="true"] img { opacity: 1; }
 .film-tile[aria-pressed="true"] { width: 83px; border: 2px solid var(--accent); }
-.hero-slices { position: absolute; inset: 0; pointer-events: none; }
 .disciplines { position: relative; overflow: hidden; background: var(--ink); color: var(--paper); border-block: 1px solid var(--rule); }
 .film-track { display: flex; }
 .disciplines-inner {
@@ -265,36 +277,11 @@ body:has(#lightbox[open]) { overflow: hidden; }
     .project:hover .project-frame { --cut: 0%; }
   }
 
-  /* Two offsets of the same title resolve into the final, clean lettering. */
-  .line-mask { position: relative; }
-  .line-mask > span { position: relative; animation: title-expose 1.14s cubic-bezier(.16,.76,.23,1) backwards; }
-  .line-mask::before, .line-mask::after {
-    content: attr(data-title);
-    position: absolute;
-    inset: .13em auto auto 0;
-    pointer-events: none;
-    opacity: 0;
-    color: var(--paper);
-    animation: title-register 1.12s cubic-bezier(.17,.7,.25,1) backwards;
-  }
-  .line-mask::before { --offset: -.45em; clip-path: inset(-18% 0 51%); }
-  .line-mask::after { --offset: .55em; clip-path: inset(47% 0 -28%); color: var(--accent); }
-  .line-mask:nth-child(2) > span, .line-mask:nth-child(2)::before, .line-mask:nth-child(2)::after { animation-delay: .13s; }
-  @keyframes title-expose {
-    0%, 19% { opacity: 0; transform: translateY(.18em); }
-    68% { opacity: 1; }
+  .line-mask > span { animation: title-settle .64s cubic-bezier(.2,.78,.24,1) backwards; }
+  .line-mask + .line-mask > span { animation-delay: .09s; }
+  @keyframes title-settle {
+    from { opacity: 0; transform: translateY(.24em); }
     to { opacity: 1; transform: none; }
-  }
-  @keyframes title-register {
-    0% { opacity: 0; transform: translateX(var(--offset)); }
-    24% { opacity: 1; }
-    76% { opacity: .85; transform: translateX(0); }
-    to { opacity: 0; transform: translateX(0); }
-  }
-  .hero-image-intro { animation: frame-in 1.2s cubic-bezier(.16,.75,.2,1) both; }
-  @keyframes frame-in {
-    from { clip-path: inset(5% 6%); transform: scale(1.09); }
-    to { clip-path: inset(0); transform: none; }
   }
   .plans.active .plan-card { animation: print-in .55s cubic-bezier(.18,.8,.2,1) backwards; }
   .plans.active .plan-card:nth-child(3n+2) { animation-delay: 65ms; }
@@ -304,9 +291,6 @@ body:has(#lightbox[open]) { overflow: hidden; }
     to { opacity: 1; transform: none; }
   }
   @supports (animation-timeline: view()) {
-    .hero { view-timeline: --opening block; }
-    .hero-stage { animation: camera-drift linear both; animation-timeline: --opening; animation-range: exit 0% exit 100%; }
-    @keyframes camera-drift { to { transform: translateY(16%) scale(1.08); } }
     .disciplines { view-timeline: --film block; }
     .film-track:has([aria-hidden="true"].disciplines-inner) { animation: advance-film linear both; animation-timeline: --film; animation-range: cover; }
     @keyframes advance-film { from { transform: translateX(0); } to { transform: translateX(-42%); } }
