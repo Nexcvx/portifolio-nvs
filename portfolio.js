@@ -31,7 +31,7 @@ function filterProjects(selected, animate = false) {
       : { transform: 'translateY(18px) scale(.97)', opacity: .15 };
     card.animate([start, { transform: 'none', opacity: 1 }], {
       duration: 470, easing: 'cubic-bezier(.2,.8,.2,1)'
-    });
+    }).addEventListener('finish', requestCoverPaint, { once: true });
   });
 }
 
@@ -260,19 +260,6 @@ document.getElementById('heroNext').addEventListener('click', () => showFeatured
 heroPlay.addEventListener('click', () => openProject(featured[currentFilm], heroPlay));
 showFeatured(0);
 
-// Keep the heading's accessible name intact while its letters turn into view.
-let letterIndex = 0;
-document.querySelectorAll('#heroHeading .line-mask > span').forEach(line => {
-  const letters = [...line.textContent].map(character => {
-    const letter = document.createElement(character === '.' ? 'b' : 'span');
-    letter.className = 'title-letter';
-    letter.style.setProperty('--letter', letterIndex++);
-    letter.textContent = character;
-    return letter;
-  });
-  line.setAttribute('aria-hidden', 'true');
-  line.replaceChildren(...letters);
-});
 heroImage.classList.add('hero-image-intro');
 
 const filmTrack = document.querySelector('.film-track');
@@ -280,54 +267,52 @@ const repeatedWords = filmTrack.firstElementChild.cloneNode(true);
 repeatedWords.setAttribute('aria-hidden', 'true');
 filmTrack.append(repeatedWords);
 
-const frames = projects.map(project => project.querySelector('.project-frame'));
-const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
-function updateLenses() {
-  frames.forEach(frame => {
-    const lens = frame.querySelector('.project-lens');
-    if (reduceMotion.matches || !finePointer.matches) {
-      lens?.remove();
-      return;
-    }
-    if (lens) return;
-    const overlay = document.createElement('span');
-    overlay.className = 'project-lens';
-    overlay.setAttribute('aria-hidden', 'true');
-    overlay.append(frame.querySelector('img').cloneNode());
-    frame.append(overlay);
+// Paint only the covers near the viewport. A value of 100% hides the still
+// behind the red card. Scrolling it into view exposes the still from below.
+const nearbyFrames = new Set();
+let paintRequest = 0;
+
+function paintCovers() {
+  paintRequest = 0;
+  const start = window.innerHeight * .94;
+  const cuts = [];
+  nearbyFrames.forEach(frame => {
+    const { top, height } = frame.getBoundingClientRect();
+    if (!height) return;
+    const distance = Math.min(height * .9, window.innerHeight * .33);
+    const fraction = Math.max(0, Math.min(1, 1 - (start - top) / distance));
+    cuts.push([frame, Math.round(fraction * 100) + '%']);
+  });
+  cuts.forEach(([frame, cut]) => {
+    if (frame.style.getPropertyValue('--scroll-cut') !== cut) frame.style.setProperty('--scroll-cut', cut);
   });
 }
-
-// Keep the source pixel under the pointer fixed as the lens magnifies it.
-frames.forEach(frame => {
-  frame.addEventListener('pointermove', event => {
-    if (!finePointer.matches || reduceMotion.matches) return;
-    const box = frame.getBoundingClientRect();
-    frame.style.setProperty('--x', ((event.clientX - box.left) / box.width) * 100 + '%');
-    frame.style.setProperty('--y', ((event.clientY - box.top) / box.height) * 100 + '%');
-  });
-});
-finePointer.addEventListener('change', updateLenses);
-reduceMotion.addEventListener('change', () => {
-  updateLenses();
-  if (reduceMotion.matches) {
-    slices?.remove();
-    frames.concat(projects).forEach(element => element.getAnimations().forEach(animation => animation.cancel()));
-  }
-});
-updateLenses();
+function requestCoverPaint() {
+  if (!reduceMotion.matches && nearbyFrames.size && !paintRequest) paintRequest = requestAnimationFrame(paintCovers);
+}
 
 if ('IntersectionObserver' in window) {
-  const reveal = new IntersectionObserver(entries => {
-    const entering = entries.filter(entry => entry.isIntersecting);
-    entering.forEach(({ target }, i) => {
-      reveal.unobserve(target);
-      if (reduceMotion.matches) return;
-      target.animate([
-        { clipPath: 'inset(8% 0 64% 0)', transform: 'translateY(20px)' },
-        { clipPath: 'inset(0)', transform: 'none' }
-      ], { duration: 720, delay: (i % 3) * 65, easing: 'cubic-bezier(.18,.8,.2,1)', fill: 'backwards' });
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(({ target, isIntersecting }) => {
+      if (isIntersecting) nearbyFrames.add(target);
+      else nearbyFrames.delete(target);
     });
-  }, { threshold: .12 });
-  frames.forEach(frame => reveal.observe(frame));
+    requestCoverPaint();
+  }, { rootMargin: '96px 0px' });
+  projects.forEach(project => {
+    const frame = project.querySelector('.project-frame');
+    frame.style.setProperty('--poster', `url("${project.dataset.poster}")`);
+    observer.observe(frame);
+  });
+  window.addEventListener('scroll', requestCoverPaint, { passive: true });
+  window.addEventListener('resize', requestCoverPaint);
 }
+
+reduceMotion.addEventListener('change', () => {
+  if (reduceMotion.matches) {
+    slices?.remove();
+    projects.forEach(project => project.getAnimations().forEach(animation => animation.cancel()));
+  } else {
+    requestCoverPaint();
+  }
+});
