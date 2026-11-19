@@ -158,20 +158,21 @@ body:has(#lightbox[open]) { overflow: hidden; }
 }
 @media (max-width: 640px) {
   :root { --gutter: 20px; }
-  .nav-inner { display: grid; grid-template-columns: 1fr auto; height: auto; padding-top: 10px; gap: 6px .5rem; }
-  .nav-actions { gap: .85rem; }
+  .nav-inner { display: grid; grid-template-columns: 1fr auto; height: auto; padding-top: 6px; gap: 2px .5rem; }
+  .nav-actions { gap: .65rem; }
+  .language-button { min-height: 44px; }
   .links { grid-row: 2; grid-column: 1/-1; justify-content: space-between; width: 100%; margin: 0; border-top: 1px solid var(--rule); }
-  .links a { padding-block: .45rem; font-size: .78rem; }
+  .links a { display: flex; align-items: center; min-height: 44px; font-size: .82rem; }
   .nav-cta { min-height: 36px; padding: .45rem .85rem; gap: .5rem; font-size: .78rem; }
   section[id] { scroll-margin-top: 90px; }
-  .hero-layout { min-height: 560px; }
+  .hero-layout { min-height: 0; }
   .hero-stage { background-image: url('assets/ribbon-tall.webp'); }
   .hero-shade { background: linear-gradient(90deg, #08080d66, transparent 90%), linear-gradient(0deg, #08080da6, #08080d85 38%, #08080d80 60%, transparent 86%); }
-  .hero-copy { align-self: end; padding-block: 3.5rem 1.75rem; }
-  .hero h1 { font-size: min(15.5vw, 6rem); margin: 1.2rem 0 1.4rem; }
-  .hero-description { font-size: .9rem; max-width: 40ch; }
+  .hero-copy { align-self: start; padding-block: clamp(1.8rem, 7vw, 2.75rem) 1.4rem; }
+  .hero h1 { font-size: min(15.5vw, 6rem); margin: .95rem 0 1.15rem; }
+  .hero-description { font-size: .9rem; line-height: 1.55; max-width: 42ch; }
   .work-filters { gap: .35rem; }
-  .work-filter-btn { font-size: .72rem; min-height: 34px; gap: .35rem; padding-inline: .7rem; }
+  .work-filter-btn { font-size: .75rem; min-height: 44px; gap: .35rem; padding-inline: .7rem; }
 }
 @media (max-width: 490px) {
   .work-grid { grid-template-columns: 1fr; }
@@ -179,7 +180,7 @@ body:has(#lightbox[open]) { overflow: hidden; }
   .section-head h2 { font-size: clamp(2.9rem, 12.7vw, 3.9rem); }
   .feature-nav { gap: .35rem; }
   .feature-index { margin-right: .15rem; }
-  .feature-nav button { width: 32px; height: 32px; }
+  .feature-nav button, #lightboxClose { width: 44px; height: 44px; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -236,8 +237,11 @@ body:has(#lightbox[open]) { overflow: hidden; }
 @media (max-width: 640px) {
   .feature-bar { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: .65rem; }
   .film-picker { width: 100%; margin: 0; grid-row: 2; grid-column: 1/-1; }
-  .film-tile { width: 24%; height: 30px; }
-  .film-tile[aria-pressed="true"] { width: 52%; }
+  .film-tile { width: 0; flex: 1; height: 44px; }
+  .film-tile[aria-pressed="true"] { width: 0; flex: 1.4; }
+  .disciplines-inner { padding-inline: var(--gutter); justify-content: space-between; }
+  .disciplines-inner[aria-hidden="true"] { display: none; }
+  .disciplines-inner i:last-child { display: none; }
   .disciplines-inner span:nth-of-type(even) { color: var(--paper); -webkit-text-stroke: 0; }
 }
 
@@ -327,12 +331,18 @@ body:has(#lightbox[open]) { overflow: hidden; }
     from { opacity: .3; transform: translateY(18px); }
     to { opacity: 1; transform: none; }
   }
-  @supports (animation-timeline: view()) {
-    .disciplines { view-timeline: --film block; }
-    .film-track:has([aria-hidden="true"].disciplines-inner) { animation: advance-film linear both; animation-timeline: --film; animation-range: cover; }
-    @keyframes advance-film { from { transform: translateX(0); } to { transform: translateX(-42%); } }
+  @media (min-width: 641px) and (hover: hover) {
+    @supports (animation-timeline: view()) {
+      .disciplines { view-timeline: --film block; }
+      .film-track:has([aria-hidden="true"].disciplines-inner) { animation: advance-film linear both; animation-timeline: --film; animation-range: cover; }
+      @keyframes advance-film { from { transform: translateX(0); } to { transform: translateX(-42%); } }
+    }
   }
 }
 @media (prefers-reduced-motion: reduce) {
   .film-tile, .film-tile img { transition: none; }
+}
+
+@media (max-width: 640px) and (pointer: coarse) {
+  .project-frame { --cut: 0%; }
 }
