@@ -257,6 +257,14 @@ body:has(#lightbox[open]) { overflow: hidden; }
 }
 .project-bg { position: relative; }
 @media (prefers-reduced-motion: no-preference) {
+  .hero-stage:has(.ribbon-canvas[hidden]) {
+    animation: ribbon-drift 42s ease-in-out infinite alternate;
+  }
+  @keyframes ribbon-drift {
+    from { transform: scale(1); }
+    to { transform: translate(-1.5%, 1%) scale(1.075); }
+  }
+
   .project-frame .project-bg {
     clip-path: inset(var(--cut) 0 0);
     transition: clip-path .28s cubic-bezier(.18,.72,.25,1);

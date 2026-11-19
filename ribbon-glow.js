@@ -109,7 +109,8 @@ void main() {
 }
 `
 
-// The supplied preset has no time animation. Only pointer movement deforms the field.
+const RIBBON_SPEED = .18;
+const FRAME_INTERVAL_MS = 32;
 const hero = document.getElementById('inicio');
 const canvas = hero.querySelector('.ribbon-canvas');
 const still = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -147,7 +148,7 @@ function setup(gl) {
   const vao = gl.createVertexArray();
   if (!field || !finish || !texture || !buffer || !vao) return null;
 
-  const fieldUniforms = uniforms(gl, field, ['uRes', 'uC1', 'uC2', 'uSize', 'uAngle', 'uMouse', 'uOn', 'uReach', 'uVel']);
+  const fieldUniforms = uniforms(gl, field, ['uRes', 'uTime', 'uC1', 'uC2', 'uSize', 'uAngle', 'uMouse', 'uOn', 'uReach', 'uVel']);
   const finishUniforms = uniforms(gl, finish, ['uRes', 'uBg', 'uField']);
   gl.bindVertexArray(vao);
   gl.bindTexture(gl.TEXTURE_2D, texture);
@@ -164,11 +165,11 @@ function setup(gl) {
   gl.useProgram(finish);
   gl.uniform3f(finishUniforms.uBg, 11 / 255, 10 / 255, 16 / 255);
   gl.uniform1i(finishUniforms.uField, 0);
-  // uTime and uPaper keep their default zero values (still frame on a dark ground).
+  // Leave the finishing pass on a dark ground with fixed noise.
   let allowFloat = Boolean(gl.getExtension('EXT_color_buffer_float'));
   let fieldWidth = 0;
   let fieldHeight = 0;
-  return (width, height, x, y, vx, vy, presence) => {
+  return (width, height, time, x, y, vx, vy, presence) => {
     const dpr = Math.min(window.devicePixelRatio || 1, 2, 1600 / Math.max(width, height));
     const w = Math.max(1, Math.round(width * dpr));
     const h = Math.max(1, Math.round(height * dpr));
@@ -195,6 +196,7 @@ function setup(gl) {
     gl.useProgram(field);
     gl.viewport(0, 0, fw, fh);
     gl.uniform2f(fieldUniforms.uRes, fw, fh);
+    gl.uniform1f(fieldUniforms.uTime, time);
     gl.uniform2f(fieldUniforms.uMouse, (x - width / 2) / height, (height / 2 - y) / height);
     gl.uniform1f(fieldUniforms.uOn, 2 * presence);
     gl.uniform1f(fieldUniforms.uReach, 240 / height);
@@ -214,6 +216,7 @@ function setup(gl) {
 
 let frame = 0;
 let last = 0;
+let time = 0;
 let visible = false;
 let inside = false;
 let targetX = 0, targetY = 0;
@@ -223,11 +226,23 @@ function requestDraw() {
   if (!frame && visible && !document.hidden && !still.matches && redraw) frame = requestAnimationFrame(draw);
 }
 
+function pauseDraw() {
+  cancelAnimationFrame(frame);
+  frame = 0;
+  last = 0;
+}
+
 function draw(now) {
   frame = 0;
   const width = hero.clientWidth, height = hero.clientHeight;
   if (!width || !height || !visible || document.hidden || still.matches || !redraw) return;
-  const dt = last ? Math.min(.05, Math.max(.001, (now - last) / 1000)) : 1 / 60;
+  if (last && now - last < FRAME_INTERVAL_MS) {
+    requestDraw();
+    return;
+  }
+  const elapsed = last ? (now - last) / 1000 : 0;
+  time += elapsed * RIBBON_SPEED;
+  const dt = Math.min(.05, Math.max(.001, elapsed));
   last = now;
   const dx = (targetX - x) * (1 - Math.exp(-dt * 16));
   const dy = (targetY - y) * (1 - Math.exp(-dt * 16));
@@ -238,8 +253,8 @@ function draw(now) {
   const targetPresence = inside ? 1 : 0;
   presence += (targetPresence - presence) * (1 - Math.exp(-dt * 5));
   if (Math.abs(targetPresence - presence) < .001) presence = targetPresence;
-  canvas.hidden = !redraw(width, height, x, y, vx, vy, presence);
-  if (!canvas.hidden && (presence !== targetPresence || (inside && Math.abs(dx) + Math.abs(dy) + Math.abs(vx) + Math.abs(vy) > .15))) requestDraw();
+  canvas.hidden = !redraw(width, height, time, x, y, vx, vy, presence);
+  if (!canvas.hidden) requestDraw();
 }
 
 function initialize() {
@@ -275,22 +290,28 @@ hero.addEventListener('pointerup', event => { if (event.pointerType !== 'mouse')
 
 canvas.addEventListener('webglcontextlost', event => {
   event.preventDefault();
+  pauseDraw();
   redraw = null;
   canvas.hidden = true;
 });
 canvas.addEventListener('webglcontextrestored', initialize);
 still.addEventListener('change', () => {
+  pauseDraw();
   inside = false;
   presence = 0;
   canvas.hidden = true;
   if (!still.matches && !redraw) initialize();
   else requestDraw();
 });
-document.addEventListener('visibilitychange', () => { leave(); });
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) pauseDraw();
+  leave();
+});
 new ResizeObserver(requestDraw).observe(hero);
 new IntersectionObserver(([entry]) => {
   visible = entry.isIntersecting;
   if (!visible) {
+    pauseDraw();
     inside = false;
     presence = 0;
   }
