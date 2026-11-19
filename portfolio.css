@@ -11,6 +11,13 @@
   font-weight: 400 700;
   font-display: swap;
 }
+@font-face {
+  font-family: 'Froople';
+  src: url('fonts/froople.otf') format('opentype');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
 :root {
   color-scheme: dark;
   --ink: #0b101b;
@@ -82,7 +89,12 @@ section[id] { scroll-margin-top: 76px; }
 .hero-kicker, .section-number, .feature-label, .feature-index { font: 600 .68rem/1.4 var(--mono); letter-spacing: .11em; text-transform: uppercase; }
 .hero-kicker, .section-number { display: flex; align-items: center; gap: .65rem; }
 .hero-kicker i { display: block; border-radius: 50%; width: .55rem; aspect-ratio: 1; background: var(--accent); }
-.hero h1 { font: 800 clamp(5.6rem, 9.6vw, 10.5rem)/.82 var(--display); text-transform: uppercase; letter-spacing: -.035em; margin: 1.05rem 0 1.65rem; }
+.hero h1 {
+  font: 400 clamp(4.5rem, 8.5vw, 8.6rem)/1.08 'Froople', var(--display);
+  text-transform: uppercase;
+  letter-spacing: -.025em;
+  margin: 1.05rem 0 1.65rem;
+}
 .title-morph-defs { position: absolute; pointer-events: none; }
 .title-morph { position: relative; display: block; }
 .title-morph-short { position: absolute; top: 50%; left: 0; opacity: 0; }
@@ -156,7 +168,7 @@ body:has(#lightbox[open]) { overflow: hidden; }
   .hero-stage { background-image: url('assets/ribbon-tall.webp'); }
   .hero-shade { background: linear-gradient(90deg, #08080d66, transparent 90%), linear-gradient(0deg, #08080da6, #08080d85 38%, #08080d80 60%, transparent 86%); }
   .hero-copy { align-self: end; padding-block: 3.5rem 1.75rem; }
-  .hero h1 { font-size: clamp(3.6rem, 18vw, 7rem); margin: 1.2rem 0 1.4rem; }
+  .hero h1 { font-size: min(15.5vw, 6rem); margin: 1.2rem 0 1.4rem; }
   .hero-description { font-size: .9rem; max-width: 40ch; }
   .work-filters { gap: .35rem; }
   .work-filter-btn { font-size: .72rem; min-height: 34px; gap: .35rem; padding-inline: .7rem; }
